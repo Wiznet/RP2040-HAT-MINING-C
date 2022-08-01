@@ -48,7 +48,8 @@
 
 /* Socket */
 #define SOCKET_HTTP 0
-#define SOCKET_TCP  1
+#define SOCKET_DHCP 1
+#define SOCKET_TCP  2
 
 /* Port */
 #define PORT_SSL 443
@@ -62,7 +63,7 @@
 #define DUINO_USER_NAME         "USER_NAME"
 #define DUINO_MINER_KEY         "1234"
     // Change the part in brackets if you want to set a custom miner name (use Auto to autogenerate, None for no name)
-#define DUINO_RIG_IDENTIFIER    "None" 
+#define DUINO_RIG_IDENTIFIER    "W5100" 
     // Do not change the lines below. These lines are static and dynamic variables
     //  that will be used by the program for counters and measurements.
 #define DUINO_HTTP_GET_URL      "https://server.duinocoin.com/getPool"
@@ -100,8 +101,13 @@ static wiz_NetInfo g_net_info =
         .sn =  {255, 255, 255, 0},                    // Subnet Mask
         .gw =  {192, 168, 11, 1},                     // Gateway
         .dns = {8, 8, 8, 8},                         // DNS server
-        .dhcp = NETINFO_STATIC                       // DHCP enable/disable
+        .dhcp = NETINFO_DHCP                       // DHCP enable/disable
 };
+
+static uint8_t g_ethernet_buf[ETHERNET_BUF_MAX_SIZE] = {
+    0,
+};
+
 
 /* Http */
 static tlsContext_t g_http_tls_context;
@@ -135,6 +141,11 @@ static uint32_t duco_numeric_result;
  * Functions
  * ----------------------------------------------------------------------------------------------------
  */
+/*DHCP*/
+static void wizchip_dhcp_init(void);
+static void wizchip_dhcp_assign(void);
+static void wizchip_dhcp_conflict(void);
+
 /* Clock */
 static void set_clock_khz(void);
 
@@ -160,6 +171,8 @@ int main()
 {
 
     int ret, i;    
+
+    uint8_t socket_num=SOCKET_TCP;
     uint16_t len = 0;
     uint32_t size= 0;
     uint32_t retval  = 0;
@@ -204,6 +217,7 @@ int main()
             }
             wizchip_delay_ms(1000);
         }
+        socket_num= SOCKET_DHCP;
     }
     else // static
     {
@@ -216,9 +230,10 @@ int main()
     /* send msg [GET] */
     http_get(SOCKET_HTTP, g_http_buf, DUINO_HTTP_GET_URL, &g_http_tls_context);
  
+    
     /* connect to server */
-    ret = socket(SOCKET_TCP, Sn_MR_TCP, g_duino_host.port, 0);
-    if (ret != SOCKET_TCP)
+    ret = socket(socket_num, Sn_MR_TCP, g_duino_host.port, 0);
+    if (ret != socket_num)
     {
         printf(" failed\n  ! socket returned %d\n\n", ret);
         while (1);
@@ -232,7 +247,7 @@ int main()
     while(1)
     {
         /* send msg: request hash data */
-        ret= connect(SOCKET_TCP, g_duino_host.ip,  g_duino_host.port);
+        ret= connect(socket_num, g_duino_host.ip,  g_duino_host.port);
         if (ret == SOCK_FATAL)
         {
             printf(" failed\n  ! connect returned %d\n\n", ret);
@@ -240,12 +255,12 @@ int main()
         }
         printf("Asking for a new job for user: %s", DUINO_USER_NAME);
 
-        send(SOCKET_TCP, g_send_req_hash, strlen(g_send_req_hash));
+        send(socket_num, g_send_req_hash, strlen(g_send_req_hash));
 
          /* wait msg requested hash data */
         while(1)
         {
-            if (getSn_RX_RSR(SOCKET_TCP) > 0)  size = recv(SOCKET_TCP, pBuffer, 1024);
+            if (getSn_RX_RSR(socket_num) > 0)  size = recv(socket_num, pBuffer, 1024);
             if (size != 0)
             {
                 ret= get_duino_hash_data(pBuffer, ",", last_block_hash_str, expected_hash_str, &difficulty);                                                                      
@@ -283,29 +298,33 @@ int main()
             if(!(memcmp(expected_hash_arry, hashArray, 20)))
             {
                 elapsed_time= time_us_32() - start_time;
-                elapsed_time_s = elapsed_time * .000001f;
-                hashrate = duco_numeric_result / elapsed_time_s;
-                
+                elapsed_time_s = (elapsed_time * .000001f);
+                hashrate= (duco_numeric_result / elapsed_time_s)/5;
+
                 break;
             }
         }
+        mbedtls_sha1_free(&sha1_ctx_base);
 
         /* send msg: response hash data */
         set_duino_res_msg(duco_numeric_result, hashrate);
-        send(SOCKET_TCP, g_send_res_hash, strlen(g_send_res_hash));
+        send(socket_num, g_send_res_hash, strlen(g_send_res_hash));
 
         /* wait msg response GOOD */
         size= 0;
         while (1)
         {
-            if (getSn_RX_RSR(SOCKET_TCP) > 0)  size = recv(SOCKET_TCP, pBuffer, 1024);
+            if (getSn_RX_RSR(socket_num) > 0)  size = recv(socket_num, pBuffer, 1024);
             if (size != 0)
             {
-                if (strcmp(pBuffer, "GOOD"))  break;                  
+                if (0 == strncmp(pBuffer, "GOOD", 4)) {
+                    printf("\r\n GOOD share #%d: %d, hashrate:%.2fKH/s (%.2fs)  \r\n\r\n", hash_cnt, duco_numeric_result, hashrate/1000, elapsed_time_s);
+                    break;                  
+                } 
             }
             sleep_ms(10);
         }
-        printf("\r\n GOOD share #%d: %d, hashrate:%0.2fKH/s (%0.2fs)  \r\n\r\n", hash_cnt, duco_numeric_result, hashrate, elapsed_time_s);
+
         hash_cnt++;
 
         memset(pBuffer, 0x00, 1024);
@@ -322,6 +341,41 @@ int main()
  * Functions
  * ----------------------------------------------------------------------------------------------------
  */
+
+/* DHCP */
+static void wizchip_dhcp_init(void)
+{
+    printf(" DHCP client running\n");
+
+    DHCP_init(SOCKET_DHCP, g_ethernet_buf);
+
+    reg_dhcp_cbfunc(wizchip_dhcp_assign, wizchip_dhcp_assign, wizchip_dhcp_conflict);
+}
+
+static void wizchip_dhcp_assign(void)
+{
+    getIPfromDHCP(g_net_info.ip);
+    getGWfromDHCP(g_net_info.gw);
+    getSNfromDHCP(g_net_info.sn);
+    getDNSfromDHCP(g_net_info.dns);
+
+    g_net_info.dhcp = NETINFO_DHCP;
+
+    /* Network initialize */
+    network_initialize(g_net_info); // apply from DHCP
+
+    print_network_information(g_net_info);
+    printf(" DHCP leased time : %ld seconds\n", getDHCPLeasetime());
+}
+
+static void wizchip_dhcp_conflict(void)
+{
+    printf(" Conflict IP from DHCP\n");
+
+    // halt or reset or any...
+    while (1); // this example is halt.
+}
+
 /* Clock */
 static void set_clock_khz(void)
 {
@@ -422,8 +476,8 @@ static void set_duino_req_msg (void)
 static void set_duino_res_msg(uint32_t duco_numeric_result, float hashrate)
 {
     memset(g_send_res_hash, 0x00, ETHERNET_BUF_MAX_SIZE );
-    sprintf(g_send_res_hash, "%d,%0.2f,%s %s,%s,DUCOID%s\n", duco_numeric_result , hashrate     , DUINO_MINER_BANNER, DUINO_MINER_VER
-                                                           , DUINO_RIG_IDENTIFIER, DUINO_CHIP_ID);
+    sprintf(g_send_res_hash, "%d,%.2f,%s %s,%s,DUCOID%s\n", duco_numeric_result , hashrate       , DUINO_MINER_BANNER, DUINO_MINER_VER
+                                                           , DUINO_RIG_IDENTIFIER, DUINO_CHIP_ID);                                                      
 }
 
 void set_duino_host_addr_info (uint8_t* addr, uint32_t* port)
