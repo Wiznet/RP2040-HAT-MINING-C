@@ -76,12 +76,7 @@ static wiz_NetInfo g_net_info =
 
 3. Setup duino coin user information such as USER_NAME, MINING_KEY, CHIP_ID in 'duino_coin.c', which is the DUINO COIN example in 'RP2040-HAT-MINING-C/examples/duino
 _coin/' directory.
- - 'DUINO_CHIP_ID' is a chip id or any value if no chip id
- 
- - You can check user name and maining key on the main page of the Duino Web Wallet.
- 
- [**WEB_WALLET**][link-duino_coin_wallet]
- 
+
  ```cpp
 /* duino coin */
 	#define DUINO_CHIP_ID           "1234b"
@@ -89,6 +84,9 @@ _coin/' directory.
 	#define DUINO_MINER_KEY         "1234"
 };
 ```
+- 'DUINO_CHIP_ID' is a chip id or any value if no chip id
+- You can check user name and maining key on the main page of the Duino Web Wallet. 
+- [**WEB_WALLET**][link-duino_coin_wallet]
 ![][link-duino_coin_web_minimng_info]
 
 4. Duino coin State Flow
@@ -129,7 +127,11 @@ _coin/' directory.
 ![][link-duino_coin_hash_process]
 
 7. Also, the web site dashboard will show mining status 
-   (*Sometimes it takes more than 5 minutes for mining to be applied to the web.)
+ - Sometimes it takes more than 5 minutes for mining to be applied to the web
+ - [GOOD share #N: ...]: Success Mining
+ - [BAD share #N: ... >>BAD,Incorrect difficulty]: Adjust difficulty from server. normal operation soon. 
+ - [BAD share #N: ... >>BAD,Incorrect result]: Failed calulate.
+ 
 ![][link-duino_coin_web_process]
 
 
