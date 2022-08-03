@@ -43,6 +43,10 @@
 /* Clock */
 #define PLL_SYS_KHZ (133 * 1000)
 
+/* Timer*/
+#define US_TIMER_MAX            0xFFFF0000 //4295000000 //1 hour 11 minutes and 35 seconds.
+#define US_TIMER_WAIT_TIMEOUT   5000000 //5s
+
 /* Buffer */
 #define ETHERNET_BUF_MAX_SIZE (1024 * 2)
 
@@ -68,10 +72,10 @@
     //  that will be used by the program for counters and measurements.
 #define DUINO_HTTP_GET_URL      "https://server.duinocoin.com/getPool"
 #define DUINO_MINER_VER         "3.18"                  
-#define DUINO_MINER_BANNER      "Official W5100 Miner"  
+#define DUINO_MINER_BANNER      "Official ESP8266 Miner"  
 
 #define DUINO_MSG_LEN_HASH  41
-#define DUINO_MSG_LEN_TOTAL 85
+#define DUINO_MSG_LEN_TOTAL 90
 
 
 /**
@@ -101,7 +105,7 @@ static wiz_NetInfo g_net_info =
         .sn =  {255, 255, 255, 0},                    // Subnet Mask
         .gw =  {192, 168, 11, 1},                     // Gateway
         .dns = {8, 8, 8, 8},                         // DNS server
-        .dhcp = NETINFO_DHCP                       // DHCP enable/disable
+        .dhcp = NETINFO_STATIC                       // DHCP enable/disable
 };
 
 static uint8_t g_ethernet_buf[ETHERNET_BUF_MAX_SIZE] = {
@@ -128,6 +132,7 @@ sha1_context br_sha1_ctx, br_sha1_ctx_base;
 /* duino hash*/
 static char last_block_hash_str[DUINO_MSG_LEN_HASH];
 static char expected_hash_str[DUINO_MSG_LEN_HASH];  
+
 static uint32_t difficulty = 0;
 static uint8_t hashArray[20];
 static uint8_t duco_numeric_result_str[128];
@@ -183,7 +188,8 @@ int main()
     void* pBuffer= recvBuf;
     memset(pBuffer, 0x00, 1024);
 
-    float start_time =0;
+    uint32_t start_time =0;
+    uint32_t end_time =0;
     unsigned long elapsed_time= 0; 
     float elapsed_time_s= 0;
 
@@ -229,7 +235,6 @@ int main()
 
     /* send msg [GET] */
     http_get(SOCKET_HTTP, g_http_buf, DUINO_HTTP_GET_URL, &g_http_tls_context);
- 
     
     /* connect to server */
     ret = socket(socket_num, Sn_MR_TCP, g_duino_host.port, 0);
@@ -263,16 +268,19 @@ int main()
             if (getSn_RX_RSR(socket_num) > 0)  size = recv(socket_num, pBuffer, 1024);
             if (size != 0)
             {
-                ret= get_duino_hash_data(pBuffer, ",", last_block_hash_str, expected_hash_str, &difficulty);                                                                      
-                if (!ret) break;
+                ret= get_duino_hash_data(pBuffer, ",", last_block_hash_str, expected_hash_str, &difficulty);
+                size= 0;
 
-                sleep_ms(10);
+                if (!ret) break;
             }
+            sleep_ms(10);
         }
         memset(pBuffer, 0x00, 1024);
+        printf(", difficulty: %d", difficulty);
 
         /* run hash */
         start_time= time_us_32();
+
         mbedtls_sha1_init(&sha1_ctx_base);
 
         if( ( ret = mbedtls_sha1_starts_ret( &sha1_ctx_base ) ) != 0 )
@@ -293,13 +301,16 @@ int main()
                 printf("Failed mbedtls_sha1_update_ret = %d\r\n", ret);
 
             if ( ret = mbedtls_sha1_finish_ret(&sha1_ctx, hashArray) != 0 )
-                printf("Failed mbedtls_sha1_finish_ret = %d\r\n", ret);
-
+                printf("Failed mbedtls_sha1_finish_ret = %d\r\n", ret);            
+            
             if(!(memcmp(expected_hash_arry, hashArray, 20)))
             {
-                elapsed_time= time_us_32() - start_time;
+                end_time= time_us_32();
+                if (start_time > end_time) end_time= end_time+ (US_TIMER_MAX-start_time);
+
+                elapsed_time   = end_time- start_time;
                 elapsed_time_s = (elapsed_time * .000001f);
-                hashrate= (duco_numeric_result / elapsed_time_s)/5;
+                hashrate= (duco_numeric_result / elapsed_time_s);
 
                 break;
             }
@@ -312,6 +323,7 @@ int main()
 
         /* wait msg response GOOD */
         size= 0;
+        start_time= time_us_32();
         while (1)
         {
             if (getSn_RX_RSR(socket_num) > 0)  size = recv(socket_num, pBuffer, 1024);
@@ -321,8 +333,31 @@ int main()
                     printf("\r\n GOOD share #%d: %d, hashrate:%.2fKH/s (%.2fs)  \r\n\r\n", hash_cnt, duco_numeric_result, hashrate/1000, elapsed_time_s);
                     break;                  
                 } 
+                else if (0 == strncmp(pBuffer, "BAD", 3)) {
+                    printf("\r\n BAD share #%d: %d, hashrate:%.2fKH/s (%.2fs)  ", hash_cnt, duco_numeric_result, hashrate/1000, elapsed_time_s);
+                    printf("\r\n   >> %.*s\r\n\r\n", 25, pBuffer);
+
+                    break;
+                }
+                else
+                {;}
+                size= 0;
             }
             sleep_ms(10);
+
+            end_time= time_us_32();
+            if (start_time > end_time) end_time= end_time+ (US_TIMER_MAX-start_time);
+            
+            if (US_TIMER_WAIT_TIMEOUT <= (end_time- start_time) ) 
+            {
+                printf("\r\n TIME OUT! no response until 5s, try reconnet to https \r\n\r\n");
+
+                ret= http_get(SOCKET_HTTP, g_http_buf, DUINO_HTTP_GET_URL, &g_http_tls_context);
+                if (ret== HTTPSuccess) socket(socket_num, Sn_MR_TCP, g_duino_host.port, 0);
+                else                   printf("http get failed");
+
+                break;
+            }
         }
 
         hash_cnt++;
@@ -333,7 +368,6 @@ int main()
     
     printf("Duino failed...\r\n");
     while(1);
-    
 }
 
 /**
@@ -423,7 +457,7 @@ static int get_duino_hash_data (char* data, char* separator, char* last_block_ha
 
     int idx_cnt1= 0; 
     int idx_cnt2= 0;
-    int temp_num= 0;
+    uint32_t temp_num= 0;
 
     char temp_data[DUINO_MSG_LEN_TOTAL];
     char temp_out1[DUINO_MSG_LEN_HASH];
@@ -458,7 +492,7 @@ static int get_duino_hash_data (char* data, char* separator, char* last_block_ha
     memcpy(expected_hash, temp_out2, idx_cnt2);
 
     idx_cnt1++; // jump ,
-    temp_num= atoi(&temp_data[idx_cnt1]) ;
+    temp_num= atol(&temp_data[idx_cnt1]) ;
     if (temp_num==0) return 3;
 
     *difficulty= temp_num*100+1;
@@ -477,7 +511,7 @@ static void set_duino_res_msg(uint32_t duco_numeric_result, float hashrate)
 {
     memset(g_send_res_hash, 0x00, ETHERNET_BUF_MAX_SIZE );
     sprintf(g_send_res_hash, "%d,%.2f,%s %s,%s,DUCOID%s\n", duco_numeric_result , hashrate       , DUINO_MINER_BANNER, DUINO_MINER_VER
-                                                           , DUINO_RIG_IDENTIFIER, DUINO_CHIP_ID);                                                      
+                                                          , DUINO_RIG_IDENTIFIER, DUINO_CHIP_ID);                                                                                                           
 }
 
 void set_duino_host_addr_info (uint8_t* addr, uint32_t* port)
