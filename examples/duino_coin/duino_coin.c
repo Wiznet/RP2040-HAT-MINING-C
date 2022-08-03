@@ -125,7 +125,6 @@ static mbedtls_ssl_config g_conf;
 static mbedtls_ssl_context g_ssl;
 
 /* Timer  */
-static volatile uint32_t g_msec_cnt = 0;
 static mbedtls_sha1_context sha1_ctx, sha1_ctx_base;
 sha1_context br_sha1_ctx, br_sha1_ctx_base;
 
@@ -138,7 +137,6 @@ static uint8_t hashArray[20];
 static uint8_t duco_numeric_result_str[128];
 static uint8_t expected_hash_arry[20];
 static uint32_t duco_numeric_result;
-
 
 
 /**
@@ -263,17 +261,41 @@ int main()
         send(socket_num, g_send_req_hash, strlen(g_send_req_hash));
 
          /* wait msg requested hash data */
+        start_time= time_us_32();
         while(1)
         {
+            size= 0;
             if (getSn_RX_RSR(socket_num) > 0)  size = recv(socket_num, pBuffer, 1024);
             if (size != 0)
             {
                 ret= get_duino_hash_data(pBuffer, ",", last_block_hash_str, expected_hash_str, &difficulty);
-                size= 0;
-
                 if (!ret) break;
             }
             sleep_ms(10);
+
+            end_time= time_us_32();
+            if (start_time > end_time) end_time= end_time+ (US_TIMER_MAX-start_time);
+
+            if (US_TIMER_WAIT_TIMEOUT <= (end_time- start_time) ) 
+            {
+
+                printf("\r\n TIME OUT! no JOB until 5s, try reconnet to https \r\n\r\n");
+
+                ret= http_get(SOCKET_HTTP, g_http_buf, DUINO_HTTP_GET_URL, &g_http_tls_context);
+                if (ret== HTTPSuccess) socket(socket_num, Sn_MR_TCP, g_duino_host.port, 0);
+                else                   printf("http get failed");
+
+                ret= connect(socket_num, g_duino_host.ip,  g_duino_host.port);
+                if (ret == SOCK_FATAL)
+                {
+                    printf(" failed\n  ! connect returned %d\n\n", ret);
+                    while(1);
+                }
+                printf("Asking for a new job for user: %s", DUINO_USER_NAME);
+
+                send(socket_num, g_send_req_hash, strlen(g_send_req_hash));
+                start_time= time_us_32();
+            }
         }
         memset(pBuffer, 0x00, 1024);
         printf(", difficulty: %d", difficulty);
