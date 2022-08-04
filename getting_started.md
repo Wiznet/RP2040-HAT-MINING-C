@@ -1,11 +1,11 @@
-# Getting Started with AWS IoT SDK Examples
+# Getting Started with MINING SDK Examples
 
-These sections will guide you through a series of steps from configuring development environment to running AWS IoT SDK examples using the **WIZnet's ethernet products**.
+These sections will guide you through a series of steps from configuring development environment to running MINING SDK examples using the **WIZnet's ethernet products**.
 
 - [**Development environment configuration**](#development_environment_configuration)
 - [**Hardware requirements**](#hardware_requirements)
-- [**AWS IoT SDK example structure**](#aws_iot_sdk_example_structure)
-- [**AWS IoT SDK example testing**](#aws_iot_sdk_example_testing)
+- [**MINING SDK example structure**](#mining_sdk_example_structure)
+- [**MINING SDK example testing**](#mining_sdk_example_testing)
 - [**How to use port directory**](#how_to_use_port_directory)
 
 
@@ -13,20 +13,20 @@ These sections will guide you through a series of steps from configuring develop
 <a name="development_environment_configuration"></a>
 ## Development environment configuration
 
-To test the AWS IoT SDK examples, the development environment must be configured to use Raspberry Pi Pico, W5100S-EVB-Pico or W5500-EVB-Pico.
+To test the MINING SDK examples, the development environment must be configured to use Raspberry Pi Pico, W5100S-EVB-Pico or W5500-EVB-Pico.
 
-The AWS IoT SDK examples were tested by configuring the development environment for **Windows**. Please refer to the '**9.2. Building on MS Windows**' section of '**Getting started with Raspberry Pi Pico**' document below and configure accordingly.
+The MINING SDK examples were tested by configuring the development environment for **Windows**. Please refer to the '**9.2. Building on MS Windows**' section of '**Getting started with Raspberry Pi Pico**' document below and configure accordingly.
 
 - [**Getting started with Raspberry Pi Pico**][link-getting_started_with_raspberry_pi_pico]
 
-**Visual Studio Code** was used during development and testing of AWS IoT SDK examples, the guide document in each directory was prepared also base on development with Visual Studio Code. Please refer to corresponding document.
+**Visual Studio Code** was used during development and testing of MINING SDK examples, the guide document in each directory was prepared also base on development with Visual Studio Code. Please refer to corresponding document.
 
 
 
 <a name="hardware_requirements"></a>
 ## Hardware requirements
 
-The AWS IoT SDK examples use **Raspberry Pi Pico** and **WIZnet Ethernet HAT** - ethernet I/O module built on WIZnet's [**W5100S**][link-w5100s] ethernet chip, **W5100S-EVB-Pico** - ethernet I/O module built on [**RP2040**][link-rp2040] and WIZnet's [**W5100S**][link-w5100s] ethernet chip or **W5500-EVB-Pico** - ethernet I/O module built on [**RP2040**][link-rp2040] and WIZnet's [**W5500**][link-w5500] ethernet chip.
+The MINING SDK examples use **Raspberry Pi Pico** and **WIZnet Ethernet HAT** - ethernet I/O module built on WIZnet's [**W5100S**][link-w5100s] ethernet chip, **W5100S-EVB-Pico** - ethernet I/O module built on [**RP2040**][link-rp2040] and WIZnet's [**W5100S**][link-w5100s] ethernet chip or **W5500-EVB-Pico** - ethernet I/O module built on [**RP2040**][link-rp2040] and WIZnet's [**W5500**][link-w5500] ethernet chip.
 
 - [**Raspberry Pi Pico**][link-raspberry_pi_pico]
 
@@ -46,18 +46,18 @@ The AWS IoT SDK examples use **Raspberry Pi Pico** and **WIZnet Ethernet HAT** -
 
 
 
-<a name="aws_iot_sdk_example_structure"></a>
-## AWS IoT SDK example structure
+<a name="mining_sdk_example_structure"></a>
+## MINING SDK example structure
 
 Examples are available at '**RP2040-HAT-MINING-C/examples/**' directory. As of now, following examples are provided.
 
 - [**DUINO COIN**][link-duino_coin]
 
-Note that **ioLibrary_Driver**, **mbedtls**, **aws-iot-device-sdk-embedded-C**, **pico-sdk** are needed to run AWS IoT SDK examples.
+Note that **ioLibrary_Driver**, **mbedtls**, **aws-iot-device-sdk-embedded-C**, **pico-sdk** are needed to run MINING SDK examples.
 
 - **ioLibrary_Driver** library is applicable to WIZnet's W5x00 ethernet chip.
 - **mbedtls** library supports additional algorithms and support related to TLS and SSL connections.
-- **aws-iot-device-sdk-embedded-C** library is embedded C (C-SDK) is a collection of C source files that can be used in embedded applications to securely connect IoT devices to AWS IoT Core.
+- **aws-iot-device-sdk-embedded-C** library is embedded C (C-SDK) is a collection of C source files that can be used in embedded applications to securely connect IoT devices to MINING Core.
 - **pico-sdk** is made available by Pico to enable developers to build software applications for the Pico platform.
 - **pico-extras** has additional libraries that are not yet ready for inclusion the Pico SDK proper, or are just useful but don't necessarily belong in the Pico SDK.
 
@@ -73,21 +73,16 @@ If you want to modify the code that MCU-dependent and use a MCU other than **RP2
 
 - [**ioLibrary_Driver**][link-port_iolibrary_driver]
 - [**mbedtls**][link-port_mbedtls]
-- [**aws-iot-device-sdk-embedded-C**][link-port_aws_iot_device_sdk_embedded_c]
+- [**aws-iot-sdk-embedded-C**][link-port_aws_iot_device_sdk_embedded_c]
 - [**timer**][link-port_timer]
 
-The structure of this RP2040-HAT-C 2.0.0 version or higher has changed a lot compared to the previous version. If you want to refer to the previous version, please refer to the link below.
 
-- [**RP2040-HAT-MINING-C 1.0.0 version**][link-rp2040_hat_mining_c_1_0_0_version]
-
-
-
-<a name="aws_iot_sdk_example_testing"></a>
-## AWS IoT SDK example testing
+<a name="mining_sdk_example_testing"></a>
+## MINING SDK example testing
 
 1. Download
 
-If the AWS IoT SDK examples are cloned, the library set as a submodule is an empty directory. Therefore, if you want to download the library set as a submodule together, clone the AWS IoT SDK examples with the following Git command.
+If the MINING SDK examples are cloned, the library set as a submodule is an empty directory. Therefore, if you want to download the library set as a submodule together, clone the MINING SDK examples with the following Git command.
 
 ```cpp
 /* Change directory */
@@ -145,7 +140,7 @@ git apply --ignore-whitespace ../../../../../patches/01_aws_iot_device_sdk_embed
 
 4. Test
 
-Please refer to 'README.md' in each example directory to find detail guide for testing AWS IoT SDK examples.
+Please refer to 'README.md' in each example directory to find detail guide for testing MINING SDK examples.
 
 
 
@@ -437,4 +432,4 @@ Link
 [link-port_mbedtls]: https://github.com/Wiznet/RP2040-HAT-MINING-C/tree/main/port/mbedtls
 [link-port_aws_iot_device_sdk_embedded_c]: https://github.com/Wiznet/RP2040-HAT-MINING-C/tree/main/port/aws-iot-device-sdk-embedded-C
 [link-port_timer]: https://github.com/Wiznet/RP2040-HAT-MINING-C/tree/main/port/timer
-[link-rp2040_hat_mining_c_1_0_0_version]: https://github.com/Wiznet/RP2040-HAT-MINING-C/tree/0e3f9188b56df9dd082dbacb252cb7cf37e05c55
+
