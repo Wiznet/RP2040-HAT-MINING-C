@@ -11,6 +11,7 @@ target_include_directories(${TARGET_NAME} PUBLIC
 
 target_link_libraries(${TARGET_NAME} PRIVATE
         pico_stdlib
+        pico_multicore
         hardware_spi
         hardware_dma
         ETHERNET_FILES
