@@ -3,10 +3,13 @@ set(TARGET_NAME duino_coin)
 add_executable(${TARGET_NAME}
         ${JSON_SOURCES}
         ${TARGET_NAME}.c
+        ILI9340/ILI9340.c
+        ILI9340/ILI9340_font.c
 )
 
 target_include_directories(${TARGET_NAME} PUBLIC
         ${JSON_INCLUDE_PUBLIC_DIRS}
+        ILI9340/
 )
 
 target_link_libraries(${TARGET_NAME} PRIVATE

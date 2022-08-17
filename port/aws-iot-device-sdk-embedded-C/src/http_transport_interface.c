@@ -26,7 +26,6 @@
 #include "timer_interface.h"
 #include "util.h"
 
-#define DUINO_COIN
 
 /**
  * ----------------------------------------------------------------------------------------------------
@@ -191,47 +190,6 @@ int32_t http_send_request(TransportInterface_t *pTransportInterface, uint8_t *bu
     }
     else if (httpStatus == HTTPSuccess)
     {    
-#ifdef DUINO_COIN
-        uint32_t port= 0;
-
-        uint8_t ip[4]={0,0,0,0};
-        char s_ip[20];
-        char * pOutValue= NULL;
-        uint32_t outValueLength= 0U;
-        JSONStatus_t result = JSONSuccess;
-
-        result = JSON_Validate( ( const char * ) response.pBody, response.bodyLen );
-
-        if( result == JSONSuccess )
-        {
-            JSON_Search( ( char * )response.pBody, response.bodyLen, "client", sizeof("client")-1, &pOutValue, (size_t *)&outValueLength);
-            printf("\r\n Client ip:%.*s", outValueLength, pOutValue);
-            
-            JSON_Search( ( char * )response.pBody, response.bodyLen, "ip", sizeof("ip")-1, &pOutValue, (size_t *)&outValueLength);
-            sprintf(s_ip,"%.*s", outValueLength, pOutValue);
-            printf("\r\n Host ip  :%.*s ", outValueLength, pOutValue);
-            inet_addr_(s_ip, ip);
-
-            JSON_Search( ( char * )response.pBody, response.bodyLen, "name", sizeof("name")-1, &pOutValue, (size_t *)&outValueLength);
-            printf("\r\n Name     :%.*s", outValueLength, pOutValue);
-
-            JSON_Search( ( char * )response.pBody, response.bodyLen, "port", sizeof("port")-1, &pOutValue, (size_t *)&outValueLength);
-            port = ( uint32_t ) strtoul( pOutValue, NULL, 10 );
-            printf("\r\n Port     :%d ", port);
-
-            JSON_Search( ( char * )response.pBody, response.bodyLen, "server", sizeof("server")-1, &pOutValue, (size_t *)&outValueLength);
-            printf("\r\n Server   :%.*s", outValueLength, pOutValue);
-
-            JSON_Search( ( char * )response.pBody, response.bodyLen, "success", sizeof("success")-1, &pOutValue, (size_t *)&outValueLength);
-            printf("\r\n Success  :%.*s\r\n", outValueLength, pOutValue);
-
-            set_duino_host_addr_info(ip, &port);
-        }
-        else
-        {
-            printf("\r\nThe json document is invalid!!");
-        }
-#endif /* DUINO_COIN */
         printf("Response Content Length: %d\n", response.contentLength);
         printf("Response Body:\n%.*s\n", response.bodyLen, response.pBody);
     }

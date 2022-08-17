@@ -13,7 +13,9 @@
 
 #include "port_common.h"
 #include "pico/multicore.h"
+#include "pico/unique_id.h"
 
+#include "core_json.h"
 #include "wizchip_conf.h"
 #include "socket.h"
 #include "w5x00_spi.h"
@@ -36,6 +38,7 @@
 #include <assert.h>
 #include <limits.h>
 
+#include "ILI9340/ILI9340.h"
 /**
  * ----------------------------------------------------------------------------------------------------
  * Macros
@@ -68,7 +71,7 @@
 
 /* Duino coin */
 #define DUINO_CHIP_ID           "1234b" 
-#define DUINO_USER_NAME         "wiznet-mason"
+#define DUINO_USER_NAME         "wiznet_test"
 #define DUINO_MINER_KEY         "1234"
     // Change the part in brackets if you want to set a custom miner name (use Auto to autogenerate, None for no name)
 #define DUINO_RIG_IDENTIFIER    "W5100" 
@@ -77,9 +80,8 @@
 #define DUINO_HTTP_GET_URL      "https://server.duinocoin.com/getPool"
 #define DUINO_MINER_VER         "3.18"                  
 #define DUINO_MINER_BANNER      "W5100S-EVB-Pico Miner"
-//#define DUINO_MINER_BANNER      "Official ESP8266 Miner"
 
-#define DUINO_MSG_LEN_HASH  41
+#define DUINO_MSG_LEN_HASH  40
 #define DUINO_MSG_LEN_TOTAL 90
 
 /* Multicore*/
@@ -91,7 +93,7 @@
 #define HASH_NOT_FIND 1
 
 #define HASH_RATE_DELAY_US 0
-#define TEST_PIN 15
+//#define TEST_PIN 15
 
 /**
  * ----------------------------------------------------------------------------------------------------
@@ -114,14 +116,22 @@ typedef struct Duino_host_t
     uint8_t  ip[4];   ///< host ip
 }Duino_host;
 
+/* LCD */
+typedef struct Duino_lcd_info_t
+{
+    char  slave_index[LCD_STRING_SIZE_SLAVE_INDEX];
+    char  result[LCD_STRING_SIZE_RESULT];
+    char  hashrate[LCD_STRING_SIZE_HASH_RATE];
+    char  elapsed_time_s[LCD_STRING_SIZE_ELAP_TIME];
+    char  difficulty[LCD_STRING_SIZE_DIFFICULTY];
+}Duino_lcd_info;
+
 /**
  * ----------------------------------------------------------------------------------------------------
  * Variables
  * ----------------------------------------------------------------------------------------------------
  */
 
-/* duino */
-static Duino_host g_duino_host; 
 
 /* Network */
 static wiz_NetInfo g_net_info =
@@ -141,10 +151,14 @@ static uint8_t g_ethernet_buf[ETHERNET_BUF_MAX_SIZE] = {
 /* Http */
 static tlsContext_t g_http_tls_context;
 
+/* duino */
+static Duino_host g_duino_host; 
+static char rp2040_id[8];
+
 /* duino hash*/
 static mbedtls_sha1_context core0_sha1_ctx, core1_sha1_ctx, core0_sha1_ctx_base, core1_sha1_ctx_base;
-static char last_block_hash_str[DUINO_MSG_LEN_HASH];
-static char expected_hash_str[DUINO_MSG_LEN_HASH];  
+static char last_block_hash_str[DUINO_MSG_LEN_HASH+1];
+static char expected_hash_str[DUINO_MSG_LEN_HASH+1];  
 static char send_req_str[128];
 
 static uint32_t difficulty = 0;
@@ -160,6 +174,14 @@ static float hashrate = 0;
 volatile static uint8_t hash_start_flag = HASH_END;
 volatile static uint8_t core1_hash_find = HASH_FINDING;
 
+
+/* LCD */
+static Duino_host g_duino_host; 
+static Duino_lcd_info g_duino_lcd_info[LCD_DUINO_INFO_MEM_ARR_SIZE];
+
+int8_t g_lcd_newest_mem_index= 0;
+int8_t g_lcd_printed_line_cnt= 1;
+
 /**
  * ----------------------------------------------------------------------------------------------------
  * Functions
@@ -173,18 +195,13 @@ static void wizchip_dhcp_conflict(void);
 /* Clock */
 static void set_clock_khz(void);
 
-/* duino */
+/* Duino */
 static uint8_t str_to_array(uint8_t * str, uint8_t * hex);
 
 static void set_duino_req_msg (void);
 static void set_duino_res_msg (uint32_t duco_numeric_result, float hashrate);
-static int  get_duino_hash_data (char* data, char* separator, char* last_block_hash, char* expected_hash, uint32_t* difficulty);
-extern void set_duino_host_addr_info (uint8_t* addr, uint32_t* port);
-
-/* Multicore */
-void core1_entry(void);
-
-/* Duino */
+static uint8_t get_duino_hash_data (char* data, char* separator, char* last_block_hash, char* expected_hash, uint32_t* difficulty);
+void set_duino_host_addr_info (uint8_t* addr, uint32_t* port);
 void update_pool(void);
 void connect_to_server(uint8_t socket_num, uint32_t close_flag);
 int recv_data_from_server(uint8_t socket_num, uint8_t *recv_buf, uint32_t buf_size, uint32_t timeout);
@@ -192,7 +209,12 @@ int get_hash_data_from_server(uint8_t socket_num);
 float calulate_hash(uint8_t socket_num);
 void send_hash_result_to_server(uint8_t socket_num);
 
+/* Multicore */
+void core1_entry(void);
 
+/* LCD */
+void set_lcd_print_info(int8_t mem_index, int8_t slave_indnex, float elapsed_time_s, float hashrate, uint32_t difficulty, char* result);
+void set_lcd_print_log(void);
 
 /**
  * ----------------------------------------------------------------------------------------------------
@@ -229,6 +251,9 @@ int main()
     wizchip_initialize();
     wizchip_check();
     wizchip_1ms_timer_initialize(repeating_timer_callback);
+    
+    rp2040_get_board_id();
+    ILI9340_initialize();
 
     if (g_net_info.dhcp == NETINFO_DHCP) // DHCP
     {
@@ -250,13 +275,9 @@ int main()
         network_initialize(g_net_info);
         print_network_information(g_net_info);
     }
-
-    gpio_init(TEST_PIN);
-    gpio_set_dir(TEST_PIN, GPIO_OUT);
-    gpio_put(TEST_PIN, 0);
-
     
     set_duino_req_msg();
+    ILI9340_DrawCharString(LCD_HIGHT_BASE_X, LCD_WIDTH_BASE_Y, "         ", sizeof("         ")-1, BLACK);
     /* run duino hash loop */
     while(1)
     {
@@ -269,14 +290,7 @@ int main()
             case ConServer :
                 connect_to_server(socket_num, close_flag);
                 close_flag = 0;
-#if 0
-                if (send_flag)
-                {
-                    loop_state = SendHash;
-                    send_flag = 0;
-                }
-                else
-#endif
+
                 loop_state = GetHash;
                 break;
                 
@@ -309,11 +323,6 @@ int main()
                     fail_count = 0;
                     loop_state = CalHash;
                 }
-#if 0
-                ret = disconnect(socket_num);
-                printf("disconnect(socket_num) = 0x%X\r\n", ret);
-                close(socket_num);
-#endif
                 break;
 
             case CalHash :
@@ -351,19 +360,23 @@ int main()
                     loop_state = ConServer;
                 }
                 else
-                    loop_state = GetHash;
+                {
+                    if (0 == strncmp(g_ethernet_buf, "GOOD", 4)) {
+                        printf("\r\n GOOD share #%d: %d, hashrate:%.2fKH/s (%.2fs)  \r\n\r\n", hash_cnt, duco_numeric_result, hashrate/1000, elapsed_time_s);
+                        set_lcd_print_info(g_lcd_newest_mem_index, 1, elapsed_time_s, hashrate/1000, difficulty, "GOOD");            
+                    }
+                    else if (0 == strncmp(g_ethernet_buf, "BAD", 3)) {
+                        printf("\r\n BAD share #%d: %d, hashrate:%.2fKH/s (%.2fs)  ", hash_cnt, duco_numeric_result, hashrate/1000, elapsed_time_s);                      
 
-                if (0 == strncmp(g_ethernet_buf, "GOOD", 4)) {
-                    printf("\r\n GOOD share #%d: %d, hashrate:%.2fKH/s (%.2fs)  \r\n\r\n", hash_cnt, duco_numeric_result, hashrate/1000, elapsed_time_s);                
-                }
-                else if (0 == strncmp(g_ethernet_buf, "BAD", 3)) {
-                    printf("\r\n BAD share #%d: %d, hashrate:%.2fKH/s (%.2fs)  ", hash_cnt, duco_numeric_result, hashrate/1000, elapsed_time_s);
-                    printf("\r\n   >> %.*s\r\n\r\n", 25, g_ethernet_buf);
+                        set_lcd_print_info(g_lcd_newest_mem_index, 1, elapsed_time_s, hashrate/1000, difficulty, "BAD ");
+                    }
+                    set_lcd_print_log();
+                    loop_state = GetHash;
                 }
                 hash_cnt++;
                 break;
         }
-        DHCP_run();;
+        DHCP_run();
     }/* run duino loop */ 
     
     printf("Duino failed...\r\n");
@@ -451,53 +464,19 @@ static uint8_t str_to_array(uint8_t * str, uint8_t * hex)
 	return 1;
 }
 
-static int get_duino_hash_data (char* data, char* separator, char* last_block_hash, char* expected_hash, uint32_t* difficulty)
+static uint8_t get_duino_hash_data (char* data, char* separator, char* last_block_hash, char* expected_hash, uint32_t* difficulty)
 {
-    bool ret= 0;
-
-    int idx_cnt1= 0; 
-    int idx_cnt2= 0;
     uint32_t temp_num= 0;
+    char* cursor=NULL, ret;
 
-    char temp_data[DUINO_MSG_LEN_TOTAL];
-    char temp_out1[DUINO_MSG_LEN_HASH];
-    char temp_out2[DUINO_MSG_LEN_HASH];
+    strncpy(last_block_hash, data, DUINO_MSG_LEN_HASH);
 
-    if (data[0] == NULL)
-      return -1;
+    cursor= strchr(data, *separator)+1;
+    strncpy(expected_hash, cursor, DUINO_MSG_LEN_HASH);
 
-    memset(temp_data, 0x00, DUINO_MSG_LEN_TOTAL);
-    memset(temp_out1, 0x00, DUINO_MSG_LEN_HASH);
-    memset(temp_out2, 0x00, DUINO_MSG_LEN_HASH);
+    cursor= strchr(cursor, *separator)+1;
 
-    memcpy(temp_data, data, DUINO_MSG_LEN_TOTAL);
-
-    while (idx_cnt1 <= DUINO_MSG_LEN_TOTAL) 
-    {
-        if (temp_data[idx_cnt1] == *separator) break;
-        if (idx_cnt1 == DUINO_MSG_LEN_HASH)    return 1;
-  
-        temp_out1[idx_cnt1]= temp_data[idx_cnt1];
-        idx_cnt1++;
-    }
-    memcpy(last_block_hash, temp_out1, idx_cnt1);
-
-    idx_cnt1++; // jump ,
-    while (idx_cnt1 <= DUINO_MSG_LEN_TOTAL) 
-    {
-        if (temp_data[idx_cnt1] == *separator) break;
-        if (idx_cnt1 == DUINO_MSG_LEN_TOTAL)   return 2;
-        
-        temp_out2[idx_cnt2]= temp_data[idx_cnt1];
-        idx_cnt1++; 
-        idx_cnt2++;
-    }    
-    memcpy(expected_hash, temp_out2, idx_cnt2);
-
-    idx_cnt1++; // jump ,
-    temp_num= atol(&temp_data[idx_cnt1]) ;
-    if (temp_num==0) return 3;
-
+    temp_num= atol(cursor);
     *difficulty= temp_num*100+1;
 
     return 0;
@@ -507,12 +486,8 @@ static int get_duino_hash_data (char* data, char* separator, char* last_block_ha
 static void set_duino_req_msg (void)
 {
     memset(send_req_str, 0x00, 128);
-    //sprintf(send_req_str, "JOB,%s,RP2040,%s\n", DUINO_USER_NAME, DUINO_MINER_KEY);
-    //sprintf(send_req_str, "JOB,%s,ESP32,%s\n", DUINO_USER_NAME, DUINO_MINER_KEY);
-    //sprintf(send_req_str, "JOB,%s,Arduino,%s\n", DUINO_USER_NAME, DUINO_MINER_KEY);
     sprintf(send_req_str, "JOB,%s,LOW,%s\n", DUINO_USER_NAME, DUINO_MINER_KEY);
-    //sprintf(send_req_str, "JOB,%s,Raspberry Pi Pico,%s\n", DUINO_USER_NAME, DUINO_MINER_KEY);
-    //sprintf(send_req_str, "JOB,%s,ESP8266,%s\n", DUINO_USER_NAME, DUINO_MINER_KEY);
+
 }
 
 static void set_duino_res_msg(uint32_t duco_numeric_result, float hashrate)
@@ -548,7 +523,6 @@ void core1_entry(void)
         {
             printf("core1 hash_start_flag == HASH_START\r\n");
             /* run hash */
-            //start_time = time_us_32();
             core1_hash_find = HASH_FINDING;
             mbedtls_sha1_init(&core1_sha1_ctx_base);
             
@@ -560,7 +534,6 @@ void core1_entry(void)
             
             str_to_array(expected_hash_str, expected_hash_arry);
             
-            //for (hash_number = core1_difficulty_start; hash_number < difficulty; hash_number++)
             for (hash_number = 1; hash_number < difficulty; hash_number+=2)
             {
                 memcpy(&core1_sha1_ctx, &core1_sha1_ctx_base, sizeof(mbedtls_sha1_context));
@@ -600,12 +573,46 @@ void core1_entry(void)
 
 void update_pool(void)
 {
+
+    char* pBody;
+    size_t bodyLen;
+    uint32_t port= 0;
+
+    uint8_t ip[4]={0,0,0,0};
+    char s_ip[20];
+    char * pOutValue= NULL;
+    uint32_t outValueLength= 0U;
+    JSONStatus_t result = JSONSuccess;
+
     g_http_tls_context.rootca_option = MBEDTLS_SSL_VERIFY_NONE; // not used client certificate
     g_http_tls_context.clica_option = 0;                        // not used Root CA verify
 
     memset(g_ethernet_buf, 0x00, ETHERNET_BUF_MAX_SIZE);
     http_get(SOCKET_HTTP, g_ethernet_buf, DUINO_HTTP_GET_URL, &g_http_tls_context);
-    //set IP
+
+    pBody= strchr(g_ethernet_buf, '{');
+    bodyLen= strcspn(pBody, "}") +1;
+
+    result = JSON_Validate( ( const char * ) pBody, bodyLen );
+
+    if( result == JSONSuccess )
+    {
+        JSON_Search( ( char * )pBody, bodyLen, "ip", sizeof("ip")-1, &pOutValue, (size_t *)&outValueLength);
+        sprintf(s_ip,"%.*s", outValueLength, pOutValue);
+        printf("\r\n Host ip  :%.*s ", outValueLength, pOutValue);
+        inet_addr_(s_ip, ip);
+
+        JSON_Search( ( char * )pBody, bodyLen, "port", sizeof("port")-1, &pOutValue, (size_t *)&outValueLength);
+        port = ( uint32_t ) strtoul( pOutValue, NULL, 10 );
+        printf("\r\n Port     :%d ", port);
+
+        set_duino_host_addr_info(ip, &port);
+    }
+    else
+    {
+        printf("\r\nThe json document is invalid!!: %d", result);
+    }
+
 }
 
 void connect_to_server(uint8_t socket_num, uint32_t close_flag)
@@ -677,102 +684,6 @@ int get_hash_data_from_server(uint8_t socket_num)
     return ret;
 }
 
-#if 0
-double calulate_hash(uint8_t socket_num)
-{
-    int ret;
-    uint32_t hash_number;    
-    uint32_t start_time = 0;
-    uint32_t end_time = 0;
-
-    uint32_t keepalive_start_time = 0;
-    uint32_t keepalive_end_time = 0;
-    
-    uint64_t elapsed_time = 0; 
-    double elapsed_time_s = 0;
-    
-    start_time = time_us_32();
-    str_to_array(expected_hash_str, expected_hash_arry);
-    hash_start_flag = HASH_START;
-    /* run hash */
-
-    printf("Core0 Hash Start\r\n");
-    mbedtls_sha1_init(&core0_sha1_ctx_base);
-
-    if( ( ret = mbedtls_sha1_starts_ret( &core0_sha1_ctx_base ) ) != 0 )
-        printf("Failed mbedtls_sha1_starts_ret = %d\r\n", ret);
-        
-    if ( ret = mbedtls_sha1_update_ret(&core0_sha1_ctx_base, last_block_hash_str, strlen(last_block_hash_str) ) != 0 )
-        printf("Failed mbedtls_sha1_update_ret = %d\r\n", ret);
-        
-    keepalive_start_time = time_us_32();
-    for (hash_number = 0; hash_number < difficulty; hash_number+=2)
-    {
-        memcpy(&core0_sha1_ctx, &core0_sha1_ctx_base, sizeof(mbedtls_sha1_context));
-        memset(duco_numeric_result_str, 0x00, 128);
-        sprintf(duco_numeric_result_str, "%d", hash_number);
-
-        if ( ret = mbedtls_sha1_update_ret(&core0_sha1_ctx, duco_numeric_result_str, strlen(duco_numeric_result_str) ) != 0 )
-            printf("Failed mbedtls_sha1_update_ret = %d\r\n", ret);
-
-        if ( ret = mbedtls_sha1_finish_ret(&core0_sha1_ctx, core0_hashArray) != 0 )
-            printf("Failed mbedtls_sha1_finish_ret = %d\r\n", ret);
-
-        keepalive_end_time = time_us_32();
-
-        if ((keepalive_end_time - keepalive_start_time) > US_TIMER_KEEPALIVE)
-        {
-            ret = setsockopt(socket_num, SO_KEEPALIVESEND, 0);
-            printf("keepalive ret = %d\r\n", ret);
-            keepalive_start_time = time_us_32();
-        }
-
-        if(hash_start_flag == HASH_END)
-          break;
-        
-        if(!(memcmp(expected_hash_arry, core0_hashArray, 20)))
-        {
-            hash_start_flag = HASH_END;
-            duco_numeric_result = hash_number;
-            printf("Core0 Find Hash %d\r\n", duco_numeric_result);
-            break;
-        }
-    }
-    if (hash_number >= difficulty)
-    {
-      printf("Not Find Core0 wait hash_number = %d\r\n", hash_number);
-      while(1)
-      {
-          if (hash_start_flag == HASH_END)
-          {
-              printf("Find Hash from Core1\r\n");
-              break;
-          }
-          
-          if (core1_hash_find == HASH_NOT_FIND)
-          {
-              printf("Not find Hash Core1 too\r\n");
-              hash_start_flag = HASH_END;
-              break;
-          }
-      }
-
-    }
-    mbedtls_sha1_free(&core0_sha1_ctx_base);
-
-    end_time = time_us_32();
-//    if (start_time > end_time) end_time = end_time + (US_TIMER_MAX-start_time);
-
-    elapsed_time   = end_time- start_time;
-    elapsed_time_s = (elapsed_time * .000001f);
-
-    hashrate = (duco_numeric_result / elapsed_time_s);
-    printf("hashrate:%.2fKH/s (%.2fs)\r\n", hashrate/1000, elapsed_time_s);
-
-    return elapsed_time_s;
-}
-
-#else
 
 float calulate_hash(uint8_t socket_num)   //1 core full speed is about 36us per once hashing
 {
@@ -788,7 +699,6 @@ float calulate_hash(uint8_t socket_num)   //1 core full speed is about 36us per 
     float elapsed_time_s = 0;
     
     start_time = time_us_32();
-    //gpio_put(TEST_PIN, 1);
     str_to_array(expected_hash_str, expected_hash_arry);
     hash_start_flag = HASH_START;
     /* run hash */
@@ -809,14 +719,9 @@ float calulate_hash(uint8_t socket_num)   //1 core full speed is about 36us per 
     for (hash_number = 0; hash_number < difficulty; hash_number++)
 #endif
     {
-        //gpio_put(TEST_PIN, !gpio_get(TEST_PIN));
-
 #if HASH_RATE_DELAY_US
         sleep_us(HASH_RATE_DELAY_US);
 #endif
-
-        //if (recv_data_from_server(socket_num, g_ethernet_buf, ETHERNET_BUF_MAX_SIZE, 1) > 0)
-            //printf("!!!recv = %s\r\n", g_ethernet_buf);
         memcpy(&core0_sha1_ctx, &core0_sha1_ctx_base, sizeof(mbedtls_sha1_context));
         memset(duco_numeric_result_str, 0x00, 128);
         sprintf(duco_numeric_result_str, "%d", hash_number);
@@ -828,22 +733,6 @@ float calulate_hash(uint8_t socket_num)   //1 core full speed is about 36us per 
             printf("Failed mbedtls_sha1_finish_ret = %d\r\n", ret);
 
         keepalive_end_time = time_us_32();
-
-#if 0
-        if ((keepalive_end_time - keepalive_start_time) > US_TIMER_KEEPALIVE)
-        {
-            ret = send(socket_num, "PING", 4);
-            printf("send PING ret = %d\r\n", ret);
-            recv_data_from_server(socket_num, g_ethernet_buf, ETHERNET_BUF_MAX_SIZE, 1000);
-            printf("recv PING = %s\r\n", g_ethernet_buf);
-            keepalive_start_time = time_us_32();
-#if 0
-            ret = setsockopt(socket_num, SO_KEEPALIVESEND, 0);
-            printf("keepalive ret = %d\r\n", ret);
-            keepalive_start_time = time_us_32();
-#endif
-        }
-#endif
 
         if(hash_start_flag == HASH_END)
           break;
@@ -879,7 +768,6 @@ float calulate_hash(uint8_t socket_num)   //1 core full speed is about 36us per 
     mbedtls_sha1_free(&core0_sha1_ctx_base);
 
     end_time = time_us_32();
-    //gpio_put(TEST_PIN, 0);
     elapsed_time   = end_time- start_time;
     elapsed_time_s = (elapsed_time * .000001f);
 
@@ -888,7 +776,6 @@ float calulate_hash(uint8_t socket_num)   //1 core full speed is about 36us per 
 
     return elapsed_time_s;
 }
-#endif
 
 void send_hash_result_to_server(uint8_t socket_num)
 {
@@ -897,4 +784,79 @@ void send_hash_result_to_server(uint8_t socket_num)
     send(socket_num, g_ethernet_buf, strlen(g_ethernet_buf));
 }
 
+void rp2040_get_board_id(void)
+{
+    pico_get_unique_board_id_string(rp2040_id, 8);
+}
 
+void set_lcd_print_info(int8_t mem_index, int8_t slave_indnex, float elapsed_time_s, float hashrate, uint32_t difficulty, char* result)
+{
+    if (mem_index>LCD_DUINO_INFO_MEM_ARR_SIZE || mem_index<0) 
+    {
+        printf("\r\n invalid memory index :%d", mem_index);
+        return ;
+    }
+    if (slave_indnex<=0) 
+    {
+        printf("\r\n invalid slave index :%d", slave_indnex);
+        return ;
+    }
+    if (difficulty<=0)
+    {
+        printf("\r\n invalid difficulty :%d", difficulty);
+        return ;
+    }    
+    if (elapsed_time_s<=0)
+    {
+        printf("\r\n invalid elapsed time :%.2f", elapsed_time_s);
+        return ;
+    }    
+    if (hashrate<=0)
+    {
+        printf("\r\n invalid memory index :%.2f", hashrate/1000);
+        return ;
+    }    
+    if (0 !=strcmp(result,"GOOD") && 0 !=strcmp(result,"BAD "))   
+        {
+        printf("\r\n invalid result :%s", result);
+        return ;
+    }
+    
+    memset(&g_duino_lcd_info[mem_index], 0x00, sizeof(Duino_lcd_info));
+
+    itoa(slave_indnex, g_duino_lcd_info[mem_index].slave_index, 10);
+    itoa(difficulty  , g_duino_lcd_info[mem_index].difficulty , 10);
+    sprintf(g_duino_lcd_info[mem_index].elapsed_time_s, "%.2f", elapsed_time_s);
+    sprintf(g_duino_lcd_info[mem_index].hashrate,"%.2f", hashrate);
+    strncpy(g_duino_lcd_info[mem_index].result, result, LCD_STRING_SIZE_RESULT);
+
+}
+
+void set_lcd_print_log(void)
+{
+    int8_t start_mem_cnt;
+    char    temp[2]; //replace slave index
+    
+    if (g_lcd_newest_mem_index == LCD_DUINO_INFO_MEM_CNT_MAX|| g_lcd_printed_line_cnt < LCD_DUINO_INFO_PRINT_CNT_MAX )
+        start_mem_cnt=0;
+    else
+        start_mem_cnt= g_lcd_newest_mem_index+1;
+    
+    for(int8_t i=0; g_lcd_printed_line_cnt > i; i++)
+    { 
+        itoa(start_mem_cnt, temp, 10);
+        ILI9340_Write_Mining_State( i, temp //g_duino_lcd_info[start_mem_cnt].slave_index
+                                     , g_duino_lcd_info[start_mem_cnt].result       , g_duino_lcd_info[start_mem_cnt].difficulty                    
+                                     , g_duino_lcd_info[start_mem_cnt].hashrate     , g_duino_lcd_info[start_mem_cnt].elapsed_time_s);
+
+        if (start_mem_cnt == LCD_DUINO_INFO_MEM_CNT_MAX)         
+            start_mem_cnt=0;
+        else 
+            start_mem_cnt++;
+    }
+
+    g_lcd_newest_mem_index= start_mem_cnt;
+    
+    if(g_lcd_printed_line_cnt < LCD_DUINO_INFO_PRINT_CNT_MAX )
+        g_lcd_printed_line_cnt++;
+}
