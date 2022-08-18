@@ -190,6 +190,9 @@ int32_t http_send_request(TransportInterface_t *pTransportInterface, uint8_t *bu
     }
     else if (httpStatus == HTTPSuccess)
     {    
+        http_config->bodyDataPtr= response.pBody;
+        http_config->bodyLen    = response.bodyLen;
+
         printf("Response Content Length: %d\n", response.contentLength);
         printf("Response Body:\n%.*s\n", response.bodyLen, response.pBody);
     }
@@ -291,7 +294,7 @@ int32_t http_read(NetworkContext_t *pNetworkContext, void *pBuffer, size_t bytes
     return size;
 }
 
-int32_t http_get(uint8_t sock, uint8_t *buffer, char *http_url, tlsContext_t *tls_context)
+int32_t http_get(uint8_t sock, uint8_t *buffer, char *http_url, tlsContext_t *tls_context, char** pResBody, size_t* resBodyLen)
 {
     int32_t ret = -1;
     uint8_t *pPath, *pDomain;
@@ -386,6 +389,10 @@ int32_t http_get(uint8_t sock, uint8_t *buffer, char *http_url, tlsContext_t *tl
                             buffer,
                             HTTP_METHOD_GET,
                             &g_http_config);
+
+     
+    *pResBody  = g_http_config.bodyDataPtr;
+    *resBodyLen= g_http_config.bodyLen;
 
     http_close(sock, &g_http_config);
     if (ret != HTTPSuccess)

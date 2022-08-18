@@ -93,7 +93,6 @@
 #define HASH_NOT_FIND 1
 
 #define HASH_RATE_DELAY_US 0
-//#define TEST_PIN 15
 
 /**
  * ----------------------------------------------------------------------------------------------------
@@ -317,9 +316,11 @@ int main()
                 }
                 else
                 {
+#if 0                    
                     printf("difficulty: %d\r\n", difficulty);
                     printf("last_block_hash_str = %s\r\n", last_block_hash_str);
                     printf("expected_hash_str = %s\r\n", expected_hash_str);
+#endif
                     fail_count = 0;
                     loop_state = CalHash;
                 }
@@ -469,13 +470,12 @@ static uint8_t get_duino_hash_data (char* data, char* separator, char* last_bloc
     uint32_t temp_num= 0;
     char* cursor=NULL, ret;
 
-    strncpy(last_block_hash, data, DUINO_MSG_LEN_HASH);
+    memcpy(last_block_hash, data, DUINO_MSG_LEN_HASH);
 
     cursor= strchr(data, *separator)+1;
-    strncpy(expected_hash, cursor, DUINO_MSG_LEN_HASH);
+    memcpy(expected_hash, cursor, DUINO_MSG_LEN_HASH);
 
     cursor= strchr(cursor, *separator)+1;
-
     temp_num= atol(cursor);
     *difficulty= temp_num*100+1;
 
@@ -521,7 +521,7 @@ void core1_entry(void)
     {
         if (hash_start_flag == HASH_START)
         {
-            printf("core1 hash_start_flag == HASH_START\r\n");
+            //printf("core1 hash_start_flag == HASH_START\r\n");
             /* run hash */
             core1_hash_find = HASH_FINDING;
             mbedtls_sha1_init(&core1_sha1_ctx_base);
@@ -558,7 +558,7 @@ void core1_entry(void)
                 }
             }
             mbedtls_sha1_free(&core1_sha1_ctx_base);
-            printf("core1 calu end hash_number = %d\r\n", hash_number);
+            //printf("core1 calu end hash_number = %d\r\n", hash_number);
             
             if (hash_number >= difficulty)
             {
@@ -574,7 +574,7 @@ void core1_entry(void)
 void update_pool(void)
 {
 
-    char* pBody;
+    char* pBody=NULL;
     size_t bodyLen;
     uint32_t port= 0;
 
@@ -588,13 +588,9 @@ void update_pool(void)
     g_http_tls_context.clica_option = 0;                        // not used Root CA verify
 
     memset(g_ethernet_buf, 0x00, ETHERNET_BUF_MAX_SIZE);
-    http_get(SOCKET_HTTP, g_ethernet_buf, DUINO_HTTP_GET_URL, &g_http_tls_context);
+    http_get(SOCKET_HTTP, g_ethernet_buf, DUINO_HTTP_GET_URL, &g_http_tls_context, &pBody, &bodyLen);
 
-    pBody= strchr(g_ethernet_buf, '{');
-    bodyLen= strcspn(pBody, "}") +1;
-
-    result = JSON_Validate( ( const char * ) pBody, bodyLen );
-
+    result = JSON_Validate( pBody, bodyLen );
     if( result == JSONSuccess )
     {
         JSON_Search( ( char * )pBody, bodyLen, "ip", sizeof("ip")-1, &pOutValue, (size_t *)&outValueLength);
@@ -639,7 +635,6 @@ void connect_to_server(uint8_t socket_num, uint32_t close_flag)
     
     recv_data_from_server(socket_num, g_ethernet_buf, ETHERNET_BUF_MAX_SIZE, 0);
     printf("Connected to the server. Server version: %s\r\n", g_ethernet_buf);
-    
 }
 
 int recv_data_from_server(uint8_t socket_num, uint8_t *recv_buf, uint32_t buf_size, uint32_t timeout)
@@ -672,14 +667,15 @@ int recv_data_from_server(uint8_t socket_num, uint8_t *recv_buf, uint32_t buf_si
 int get_hash_data_from_server(uint8_t socket_num)
 {
     int ret;
-    
+#if 0    
     printf("Asking for a new job for user: %s\r\n", DUINO_USER_NAME);
     printf("Send Data = %s, len = %d\r\n", send_req_str, strlen(send_req_str));
     printf("send socket_num = %d\r\n", socket_num);
+#endif
     ret = send(socket_num, send_req_str, strlen(send_req_str));
-    printf("send_ret = %d\r\n", ret);
+    //printf("send_ret = %d\r\n", ret);
     ret = recv_data_from_server(socket_num, g_ethernet_buf, ETHERNET_BUF_MAX_SIZE, US_TIMER_WAIT_TIMEOUT);
-    printf("recv ret = %d, data = %s\r\n", ret, g_ethernet_buf);
+    //printf("recv ret = %d, data = %s\r\n", ret, g_ethernet_buf);
 
     return ret;
 }
@@ -698,7 +694,7 @@ float calulate_hash(uint8_t socket_num)   //1 core full speed is about 36us per 
     unsigned long elapsed_time = 0; 
     float elapsed_time_s = 0;
     
-    start_time = time_us_32();
+    start_time = time_us_32();  
     str_to_array(expected_hash_str, expected_hash_arry);
     hash_start_flag = HASH_START;
     /* run hash */

@@ -75,7 +75,7 @@ int8_t http_connect(uint8_t sock, http_config_t *http_config);
 int8_t http_close(uint8_t sock, http_config_t *http_config);
 int32_t http_write(NetworkContext_t *pNetworkContext, const void *pBuffer, size_t bytesToSend);
 int32_t http_read(NetworkContext_t *pNetworkContext, void *pBuffer, size_t bytesToRecv);
-int32_t http_get(uint8_t sock, uint8_t *buffer, char *http_url, tlsContext_t *tls_context);
+int32_t http_get(uint8_t sock, uint8_t *buffer, char *http_url, tlsContext_t *tls_context, char** pResBody, size_t* resBodyLen);
 int32_t http_post(uint8_t sock, uint8_t *buffer, char *http_url, tlsContext_t *tls_context);
 
 /* HTTPS */
