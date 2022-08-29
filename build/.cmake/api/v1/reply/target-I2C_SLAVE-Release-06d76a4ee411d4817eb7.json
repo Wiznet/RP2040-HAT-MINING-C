@@ -1,0 +1,2393 @@
+{
+	"archive" : {},
+	"artifacts" : 
+	[
+		{
+			"path" : "port/libI2C_SLAVE.a"
+		}
+	],
+	"backtrace" : 1,
+	"backtraceGraph" : 
+	{
+		"commands" : 
+		[
+			"add_library",
+			"target_link_libraries",
+			"add_definitions",
+			"target_include_directories",
+			"target_sources"
+		],
+		"files" : 
+		[
+			"port/CMakeLists.txt",
+			"CMakeLists.txt"
+		],
+		"nodes" : 
+		[
+			{
+				"file" : 0
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 97,
+				"parent" : 0
+			},
+			{
+				"command" : 1,
+				"file" : 0,
+				"line" : 109,
+				"parent" : 0
+			},
+			{
+				"file" : 1
+			},
+			{
+				"command" : 2,
+				"file" : 1,
+				"line" : 72,
+				"parent" : 3
+			},
+			{
+				"command" : 2,
+				"file" : 1,
+				"line" : 73,
+				"parent" : 3
+			},
+			{
+				"command" : 2,
+				"file" : 1,
+				"line" : 37,
+				"parent" : 3
+			},
+			{
+				"command" : 3,
+				"file" : 0,
+				"line" : 103,
+				"parent" : 0
+			},
+			{
+				"command" : 4,
+				"file" : 0,
+				"line" : 99,
+				"parent" : 0
+			}
+		]
+	},
+	"compileGroups" : 
+	[
+		{
+			"compileCommandFragments" : 
+			[
+				{
+					"fragment" : "-mcpu=cortex-m0plus -mthumb -O3 -DNDEBUG"
+				},
+				{
+					"backtrace" : 2,
+					"fragment" : "-ffunction-sections"
+				},
+				{
+					"backtrace" : 2,
+					"fragment" : "-fdata-sections"
+				},
+				{
+					"fragment" : "-std=gnu11"
+				}
+			],
+			"defines" : 
+			[
+				{
+					"backtrace" : 2,
+					"define" : "LIB_PICO_BIT_OPS=1"
+				},
+				{
+					"backtrace" : 2,
+					"define" : "LIB_PICO_BIT_OPS_PICO=1"
+				},
+				{
+					"backtrace" : 2,
+					"define" : "LIB_PICO_DIVIDER=1"
+				},
+				{
+					"backtrace" : 2,
+					"define" : "LIB_PICO_DIVIDER_HARDWARE=1"
+				},
+				{
+					"backtrace" : 2,
+					"define" : "LIB_PICO_DOUBLE=1"
+				},
+				{
+					"backtrace" : 2,
+					"define" : "LIB_PICO_DOUBLE_PICO=1"
+				},
+				{
+					"backtrace" : 2,
+					"define" : "LIB_PICO_FLOAT=1"
+				},
+				{
+					"backtrace" : 2,
+					"define" : "LIB_PICO_FLOAT_PICO=1"
+				},
+				{
+					"backtrace" : 2,
+					"define" : "LIB_PICO_INT64_OPS=1"
+				},
+				{
+					"backtrace" : 2,
+					"define" : "LIB_PICO_INT64_OPS_PICO=1"
+				},
+				{
+					"backtrace" : 2,
+					"define" : "LIB_PICO_MALLOC=1"
+				},
+				{
+					"backtrace" : 2,
+					"define" : "LIB_PICO_MEM_OPS=1"
+				},
+				{
+					"backtrace" : 2,
+					"define" : "LIB_PICO_MEM_OPS_PICO=1"
+				},
+				{
+					"backtrace" : 2,
+					"define" : "LIB_PICO_PLATFORM=1"
+				},
+				{
+					"backtrace" : 2,
+					"define" : "LIB_PICO_PRINTF=1"
+				},
+				{
+					"backtrace" : 2,
+					"define" : "LIB_PICO_PRINTF_PICO=1"
+				},
+				{
+					"backtrace" : 2,
+					"define" : "LIB_PICO_RUNTIME=1"
+				},
+				{
+					"backtrace" : 2,
+					"define" : "LIB_PICO_STANDARD_LINK=1"
+				},
+				{
+					"backtrace" : 2,
+					"define" : "LIB_PICO_STDIO=1"
+				},
+				{
+					"backtrace" : 2,
+					"define" : "LIB_PICO_STDIO_UART=1"
+				},
+				{
+					"backtrace" : 2,
+					"define" : "LIB_PICO_STDLIB=1"
+				},
+				{
+					"backtrace" : 2,
+					"define" : "LIB_PICO_SYNC=1"
+				},
+				{
+					"backtrace" : 2,
+					"define" : "LIB_PICO_SYNC_CORE=1"
+				},
+				{
+					"backtrace" : 2,
+					"define" : "LIB_PICO_SYNC_CRITICAL_SECTION=1"
+				},
+				{
+					"backtrace" : 2,
+					"define" : "LIB_PICO_SYNC_MUTEX=1"
+				},
+				{
+					"backtrace" : 2,
+					"define" : "LIB_PICO_SYNC_SEM=1"
+				},
+				{
+					"backtrace" : 2,
+					"define" : "LIB_PICO_TIME=1"
+				},
+				{
+					"backtrace" : 2,
+					"define" : "LIB_PICO_UNIQUE_ID=1"
+				},
+				{
+					"backtrace" : 2,
+					"define" : "LIB_PICO_UTIL=1"
+				},
+				{
+					"backtrace" : 4,
+					"define" : "MBEDTLS_CONFIG_FILE=\"/Volumes/ExtSSD/workspace/rpi-pico/RP2040-HAT-MINING-C/port/mbedtls/inc/ssl_config.h\""
+				},
+				{
+					"backtrace" : 2,
+					"define" : "PICO_BOARD=\"pico\""
+				},
+				{
+					"backtrace" : 2,
+					"define" : "PICO_BUILD=1"
+				},
+				{
+					"backtrace" : 2,
+					"define" : "PICO_CMAKE_BUILD_TYPE=\"Release\""
+				},
+				{
+					"backtrace" : 2,
+					"define" : "PICO_COPY_TO_RAM=0"
+				},
+				{
+					"backtrace" : 2,
+					"define" : "PICO_CXX_ENABLE_EXCEPTIONS=0"
+				},
+				{
+					"backtrace" : 2,
+					"define" : "PICO_EXTRAS=1"
+				},
+				{
+					"backtrace" : 2,
+					"define" : "PICO_NO_FLASH=0"
+				},
+				{
+					"backtrace" : 2,
+					"define" : "PICO_NO_HARDWARE=0"
+				},
+				{
+					"backtrace" : 2,
+					"define" : "PICO_ON_DEVICE=1"
+				},
+				{
+					"backtrace" : 2,
+					"define" : "PICO_USE_BLOCKED_RAM=0"
+				},
+				{
+					"backtrace" : 5,
+					"define" : "SET_TRUSTED_CERT_IN_SAMPLES"
+				},
+				{
+					"backtrace" : 6,
+					"define" : "_WIZCHIP_=W5100S"
+				}
+			],
+			"includes" : 
+			[
+				{
+					"backtrace" : 7,
+					"path" : "/Volumes/ExtSSD/workspace/rpi-pico/RP2040-HAT-MINING-C/port"
+				},
+				{
+					"backtrace" : 7,
+					"path" : "/Volumes/ExtSSD/workspace/rpi-pico/RP2040-HAT-MINING-C/port/i2c_slave/inc"
+				},
+				{
+					"backtrace" : 7,
+					"path" : "/Volumes/ExtSSD/workspace/rpi-pico/RP2040-HAT-MINING-C/port/utils/inc"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "/Volumes/ExtSSD/workspace/rpi-pico/RP2040-HAT-MINING-C/port/timer"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "/Volumes/ExtSSD/workspace/rpi-pico/RP2040-HAT-MINING-C/libraries/pico-sdk/src/rp2_common/pico_unique_id/include"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "/Volumes/ExtSSD/workspace/rpi-pico/RP2040-HAT-MINING-C/libraries/pico-sdk/src/rp2_common/hardware_flash/include"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "/Volumes/ExtSSD/workspace/rpi-pico/RP2040-HAT-MINING-C/libraries/pico-sdk/src/common/pico_base/include"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "/Volumes/ExtSSD/workspace/rpi-pico/RP2040-HAT-MINING-C/build/generated/pico_base"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "/Volumes/ExtSSD/workspace/rpi-pico/RP2040-HAT-MINING-C/libraries/pico-sdk/src/boards/include"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "/Volumes/ExtSSD/workspace/rpi-pico/RP2040-HAT-MINING-C/libraries/pico-sdk/src/rp2_common/pico_platform/include"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "/Volumes/ExtSSD/workspace/rpi-pico/RP2040-HAT-MINING-C/libraries/pico-sdk/src/rp2040/hardware_regs/include"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "/Volumes/ExtSSD/workspace/rpi-pico/RP2040-HAT-MINING-C/libraries/pico-sdk/src/rp2_common/hardware_base/include"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "/Volumes/ExtSSD/workspace/rpi-pico/RP2040-HAT-MINING-C/libraries/pico-sdk/src/rp2040/hardware_structs/include"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "/Volumes/ExtSSD/workspace/rpi-pico/RP2040-HAT-MINING-C/libraries/pico-sdk/src/rp2_common/hardware_claim/include"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "/Volumes/ExtSSD/workspace/rpi-pico/RP2040-HAT-MINING-C/libraries/pico-sdk/src/rp2_common/hardware_sync/include"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "/Volumes/ExtSSD/workspace/rpi-pico/RP2040-HAT-MINING-C/libraries/pico-sdk/src/rp2_common/pico_bootrom/include"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "/Volumes/ExtSSD/workspace/rpi-pico/RP2040-HAT-MINING-C/libraries/pico-sdk/src/rp2_common/hardware_resets/include"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "/Volumes/ExtSSD/workspace/rpi-pico/RP2040-HAT-MINING-C/libraries/pico-sdk/src/rp2_common/hardware_i2c/include"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "/Volumes/ExtSSD/workspace/rpi-pico/RP2040-HAT-MINING-C/libraries/pico-sdk/src/rp2_common/hardware_irq/include"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "/Volumes/ExtSSD/workspace/rpi-pico/RP2040-HAT-MINING-C/libraries/pico-sdk/src/common/pico_sync/include"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "/Volumes/ExtSSD/workspace/rpi-pico/RP2040-HAT-MINING-C/libraries/pico-sdk/src/common/pico_time/include"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "/Volumes/ExtSSD/workspace/rpi-pico/RP2040-HAT-MINING-C/libraries/pico-sdk/src/rp2_common/hardware_timer/include"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "/Volumes/ExtSSD/workspace/rpi-pico/RP2040-HAT-MINING-C/libraries/pico-sdk/src/common/pico_util/include"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "/Volumes/ExtSSD/workspace/rpi-pico/RP2040-HAT-MINING-C/libraries/pico-sdk/src/rp2_common/hardware_clocks/include"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "/Volumes/ExtSSD/workspace/rpi-pico/RP2040-HAT-MINING-C/libraries/pico-sdk/src/rp2_common/hardware_gpio/include"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "/Volumes/ExtSSD/workspace/rpi-pico/RP2040-HAT-MINING-C/libraries/pico-sdk/src/rp2_common/hardware_pll/include"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "/Volumes/ExtSSD/workspace/rpi-pico/RP2040-HAT-MINING-C/libraries/pico-sdk/src/rp2_common/hardware_vreg/include"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "/Volumes/ExtSSD/workspace/rpi-pico/RP2040-HAT-MINING-C/libraries/pico-sdk/src/rp2_common/hardware_watchdog/include"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "/Volumes/ExtSSD/workspace/rpi-pico/RP2040-HAT-MINING-C/libraries/pico-sdk/src/rp2_common/hardware_xosc/include"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "/Volumes/ExtSSD/workspace/rpi-pico/RP2040-HAT-MINING-C/libraries/ioLibrary_Driver/Ethernet"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "/Volumes/ExtSSD/workspace/rpi-pico/RP2040-HAT-MINING-C/port/ioLibrary_Driver/inc"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "/Volumes/ExtSSD/workspace/rpi-pico/RP2040-HAT-MINING-C/port/aws-iot-device-sdk-embedded-C/inc"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "/Volumes/ExtSSD/workspace/rpi-pico/RP2040-HAT-MINING-C/libraries/mbedtls/include"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "/Volumes/ExtSSD/workspace/rpi-pico/RP2040-HAT-MINING-C/libraries/pico-sdk/src/common/pico_stdlib/include"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "/Volumes/ExtSSD/workspace/rpi-pico/RP2040-HAT-MINING-C/libraries/pico-sdk/src/rp2_common/hardware_uart/include"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "/Volumes/ExtSSD/workspace/rpi-pico/RP2040-HAT-MINING-C/libraries/pico-sdk/src/rp2_common/hardware_divider/include"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "/Volumes/ExtSSD/workspace/rpi-pico/RP2040-HAT-MINING-C/libraries/pico-sdk/src/rp2_common/pico_runtime/include"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "/Volumes/ExtSSD/workspace/rpi-pico/RP2040-HAT-MINING-C/libraries/pico-sdk/src/rp2_common/pico_printf/include"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "/Volumes/ExtSSD/workspace/rpi-pico/RP2040-HAT-MINING-C/libraries/pico-sdk/src/common/pico_bit_ops/include"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "/Volumes/ExtSSD/workspace/rpi-pico/RP2040-HAT-MINING-C/libraries/pico-sdk/src/common/pico_divider/include"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "/Volumes/ExtSSD/workspace/rpi-pico/RP2040-HAT-MINING-C/libraries/pico-sdk/src/rp2_common/pico_double/include"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "/Volumes/ExtSSD/workspace/rpi-pico/RP2040-HAT-MINING-C/libraries/pico-sdk/src/rp2_common/pico_int64_ops/include"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "/Volumes/ExtSSD/workspace/rpi-pico/RP2040-HAT-MINING-C/libraries/pico-sdk/src/rp2_common/pico_float/include"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "/Volumes/ExtSSD/workspace/rpi-pico/RP2040-HAT-MINING-C/libraries/pico-sdk/src/rp2_common/pico_malloc/include"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "/Volumes/ExtSSD/workspace/rpi-pico/RP2040-HAT-MINING-C/libraries/pico-sdk/src/rp2_common/boot_stage2/include"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "/Volumes/ExtSSD/workspace/rpi-pico/RP2040-HAT-MINING-C/libraries/pico-sdk/src/common/pico_binary_info/include"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "/Volumes/ExtSSD/workspace/rpi-pico/RP2040-HAT-MINING-C/libraries/pico-sdk/src/rp2_common/pico_stdio/include"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "/Volumes/ExtSSD/workspace/rpi-pico/RP2040-HAT-MINING-C/libraries/pico-sdk/src/rp2_common/pico_stdio_uart/include"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "/Volumes/ExtSSD/workspace/rpi-pico/RP2040-HAT-MINING-C/libraries/ioLibrary_Driver/Ethernet/W5100S"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "/Volumes/ExtSSD/workspace/rpi-pico/RP2040-HAT-MINING-C/libraries/ioLibrary_Driver/Internet/DHCP"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "/Volumes/ExtSSD/workspace/rpi-pico/RP2040-HAT-MINING-C/libraries/ioLibrary_Driver/Internet/DNS"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "/Volumes/ExtSSD/workspace/rpi-pico/RP2040-HAT-MINING-C/libraries/aws-iot-device-sdk-embedded-C/libraries/standard/coreHTTP/source/include"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "/Volumes/ExtSSD/workspace/rpi-pico/RP2040-HAT-MINING-C/libraries/aws-iot-device-sdk-embedded-C/libraries/standard/coreHTTP/source/interface"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "/Volumes/ExtSSD/workspace/rpi-pico/RP2040-HAT-MINING-C/libraries/aws-iot-device-sdk-embedded-C/libraries/standard/coreHTTP/source/dependency/3rdparty/http_parser"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "/Volumes/ExtSSD/workspace/rpi-pico/RP2040-HAT-MINING-C/libraries/aws-iot-device-sdk-embedded-C/libraries/standard/coreMQTT/source/include"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "/Volumes/ExtSSD/workspace/rpi-pico/RP2040-HAT-MINING-C/libraries/aws-iot-device-sdk-embedded-C/libraries/standard/coreMQTT/source/interface"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "/Volumes/ExtSSD/workspace/rpi-pico/RP2040-HAT-MINING-C/libraries/aws-iot-device-sdk-embedded-C/libraries/standard/coreJSON/source/include"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "/Volumes/ExtSSD/workspace/rpi-pico/RP2040-HAT-MINING-C/libraries/pico-extras/lib/lwip"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "/Volumes/ExtSSD/workspace/rpi-pico/RP2040-HAT-MINING-C/port/lwip/inc"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "/Volumes/ExtSSD/workspace/rpi-pico/RP2040-HAT-MINING-C/libraries/pico-sdk/src/rp2_common/hardware_dma/include"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "/Volumes/ExtSSD/workspace/rpi-pico/RP2040-HAT-MINING-C/libraries/pico-sdk/src/rp2_common/hardware_spi/include"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "/Volumes/ExtSSD/workspace/rpi-pico/RP2040-HAT-MINING-C/libraries/pico-extras/src/rp2_common/lwip/include"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "/Volumes/ExtSSD/workspace/rpi-pico/RP2040-HAT-MINING-C/libraries/pico-extras/lib/lwip/src/include"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "/Volumes/ExtSSD/workspace/rpi-pico/RP2040-HAT-MINING-C/libraries/pico-extras/lib/lwip/src/include/ipv4"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "/Volumes/ExtSSD/workspace/rpi-pico/RP2040-HAT-MINING-C/libraries/pico-extras/lib/lwip/src/include/lwip/apps"
+				}
+			],
+			"language" : "C",
+			"languageStandard" : 
+			{
+				"backtraces" : 
+				[
+					1
+				],
+				"standard" : "11"
+			},
+			"sourceIndexes" : 
+			[
+				0,
+				3,
+				5,
+				6,
+				7,
+				8,
+				9,
+				10,
+				11,
+				12,
+				14,
+				15,
+				16,
+				17,
+				18,
+				19,
+				20,
+				21,
+				22,
+				23,
+				24,
+				25,
+				26,
+				27,
+				28,
+				29,
+				30,
+				31,
+				32,
+				33,
+				34,
+				35,
+				36,
+				37,
+				38,
+				39,
+				40,
+				42,
+				43,
+				47,
+				48,
+				52,
+				53,
+				55,
+				59,
+				60,
+				61,
+				62,
+				63,
+				64,
+				65,
+				66,
+				67,
+				68,
+				69,
+				70,
+				71,
+				72,
+				73,
+				74,
+				75,
+				76,
+				77,
+				78,
+				79,
+				80,
+				81,
+				82,
+				83,
+				84,
+				85,
+				86,
+				87,
+				88,
+				89,
+				90,
+				91,
+				92,
+				93,
+				94,
+				95,
+				96,
+				97,
+				98,
+				99,
+				100,
+				101,
+				102,
+				103,
+				104,
+				105,
+				106,
+				107,
+				108,
+				109
+			]
+		},
+		{
+			"compileCommandFragments" : 
+			[
+				{
+					"fragment" : "-mcpu=cortex-m0plus -mthumb -O3 -DNDEBUG"
+				},
+				{
+					"backtrace" : 2,
+					"fragment" : "-ffunction-sections"
+				},
+				{
+					"backtrace" : 2,
+					"fragment" : "-fdata-sections"
+				},
+				{
+					"backtrace" : 2,
+					"fragment" : "-fno-exceptions"
+				},
+				{
+					"backtrace" : 2,
+					"fragment" : "-fno-unwind-tables"
+				},
+				{
+					"backtrace" : 2,
+					"fragment" : "-fno-rtti"
+				},
+				{
+					"backtrace" : 2,
+					"fragment" : "-fno-use-cxa-atexit"
+				},
+				{
+					"fragment" : "-std=gnu++17"
+				}
+			],
+			"defines" : 
+			[
+				{
+					"backtrace" : 2,
+					"define" : "LIB_PICO_BIT_OPS=1"
+				},
+				{
+					"backtrace" : 2,
+					"define" : "LIB_PICO_BIT_OPS_PICO=1"
+				},
+				{
+					"backtrace" : 2,
+					"define" : "LIB_PICO_DIVIDER=1"
+				},
+				{
+					"backtrace" : 2,
+					"define" : "LIB_PICO_DIVIDER_HARDWARE=1"
+				},
+				{
+					"backtrace" : 2,
+					"define" : "LIB_PICO_DOUBLE=1"
+				},
+				{
+					"backtrace" : 2,
+					"define" : "LIB_PICO_DOUBLE_PICO=1"
+				},
+				{
+					"backtrace" : 2,
+					"define" : "LIB_PICO_FLOAT=1"
+				},
+				{
+					"backtrace" : 2,
+					"define" : "LIB_PICO_FLOAT_PICO=1"
+				},
+				{
+					"backtrace" : 2,
+					"define" : "LIB_PICO_INT64_OPS=1"
+				},
+				{
+					"backtrace" : 2,
+					"define" : "LIB_PICO_INT64_OPS_PICO=1"
+				},
+				{
+					"backtrace" : 2,
+					"define" : "LIB_PICO_MALLOC=1"
+				},
+				{
+					"backtrace" : 2,
+					"define" : "LIB_PICO_MEM_OPS=1"
+				},
+				{
+					"backtrace" : 2,
+					"define" : "LIB_PICO_MEM_OPS_PICO=1"
+				},
+				{
+					"backtrace" : 2,
+					"define" : "LIB_PICO_PLATFORM=1"
+				},
+				{
+					"backtrace" : 2,
+					"define" : "LIB_PICO_PRINTF=1"
+				},
+				{
+					"backtrace" : 2,
+					"define" : "LIB_PICO_PRINTF_PICO=1"
+				},
+				{
+					"backtrace" : 2,
+					"define" : "LIB_PICO_RUNTIME=1"
+				},
+				{
+					"backtrace" : 2,
+					"define" : "LIB_PICO_STANDARD_LINK=1"
+				},
+				{
+					"backtrace" : 2,
+					"define" : "LIB_PICO_STDIO=1"
+				},
+				{
+					"backtrace" : 2,
+					"define" : "LIB_PICO_STDIO_UART=1"
+				},
+				{
+					"backtrace" : 2,
+					"define" : "LIB_PICO_STDLIB=1"
+				},
+				{
+					"backtrace" : 2,
+					"define" : "LIB_PICO_SYNC=1"
+				},
+				{
+					"backtrace" : 2,
+					"define" : "LIB_PICO_SYNC_CORE=1"
+				},
+				{
+					"backtrace" : 2,
+					"define" : "LIB_PICO_SYNC_CRITICAL_SECTION=1"
+				},
+				{
+					"backtrace" : 2,
+					"define" : "LIB_PICO_SYNC_MUTEX=1"
+				},
+				{
+					"backtrace" : 2,
+					"define" : "LIB_PICO_SYNC_SEM=1"
+				},
+				{
+					"backtrace" : 2,
+					"define" : "LIB_PICO_TIME=1"
+				},
+				{
+					"backtrace" : 2,
+					"define" : "LIB_PICO_UNIQUE_ID=1"
+				},
+				{
+					"backtrace" : 2,
+					"define" : "LIB_PICO_UTIL=1"
+				},
+				{
+					"backtrace" : 4,
+					"define" : "MBEDTLS_CONFIG_FILE=\"/Volumes/ExtSSD/workspace/rpi-pico/RP2040-HAT-MINING-C/port/mbedtls/inc/ssl_config.h\""
+				},
+				{
+					"backtrace" : 2,
+					"define" : "PICO_BOARD=\"pico\""
+				},
+				{
+					"backtrace" : 2,
+					"define" : "PICO_BUILD=1"
+				},
+				{
+					"backtrace" : 2,
+					"define" : "PICO_CMAKE_BUILD_TYPE=\"Release\""
+				},
+				{
+					"backtrace" : 2,
+					"define" : "PICO_COPY_TO_RAM=0"
+				},
+				{
+					"backtrace" : 2,
+					"define" : "PICO_CXX_ENABLE_EXCEPTIONS=0"
+				},
+				{
+					"backtrace" : 2,
+					"define" : "PICO_EXTRAS=1"
+				},
+				{
+					"backtrace" : 2,
+					"define" : "PICO_NO_FLASH=0"
+				},
+				{
+					"backtrace" : 2,
+					"define" : "PICO_NO_HARDWARE=0"
+				},
+				{
+					"backtrace" : 2,
+					"define" : "PICO_ON_DEVICE=1"
+				},
+				{
+					"backtrace" : 2,
+					"define" : "PICO_USE_BLOCKED_RAM=0"
+				},
+				{
+					"backtrace" : 5,
+					"define" : "SET_TRUSTED_CERT_IN_SAMPLES"
+				},
+				{
+					"backtrace" : 6,
+					"define" : "_WIZCHIP_=W5100S"
+				}
+			],
+			"includes" : 
+			[
+				{
+					"backtrace" : 7,
+					"path" : "/Volumes/ExtSSD/workspace/rpi-pico/RP2040-HAT-MINING-C/port"
+				},
+				{
+					"backtrace" : 7,
+					"path" : "/Volumes/ExtSSD/workspace/rpi-pico/RP2040-HAT-MINING-C/port/i2c_slave/inc"
+				},
+				{
+					"backtrace" : 7,
+					"path" : "/Volumes/ExtSSD/workspace/rpi-pico/RP2040-HAT-MINING-C/port/utils/inc"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "/Volumes/ExtSSD/workspace/rpi-pico/RP2040-HAT-MINING-C/port/timer"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "/Volumes/ExtSSD/workspace/rpi-pico/RP2040-HAT-MINING-C/libraries/pico-sdk/src/rp2_common/pico_unique_id/include"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "/Volumes/ExtSSD/workspace/rpi-pico/RP2040-HAT-MINING-C/libraries/pico-sdk/src/rp2_common/hardware_flash/include"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "/Volumes/ExtSSD/workspace/rpi-pico/RP2040-HAT-MINING-C/libraries/pico-sdk/src/common/pico_base/include"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "/Volumes/ExtSSD/workspace/rpi-pico/RP2040-HAT-MINING-C/build/generated/pico_base"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "/Volumes/ExtSSD/workspace/rpi-pico/RP2040-HAT-MINING-C/libraries/pico-sdk/src/boards/include"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "/Volumes/ExtSSD/workspace/rpi-pico/RP2040-HAT-MINING-C/libraries/pico-sdk/src/rp2_common/pico_platform/include"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "/Volumes/ExtSSD/workspace/rpi-pico/RP2040-HAT-MINING-C/libraries/pico-sdk/src/rp2040/hardware_regs/include"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "/Volumes/ExtSSD/workspace/rpi-pico/RP2040-HAT-MINING-C/libraries/pico-sdk/src/rp2_common/hardware_base/include"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "/Volumes/ExtSSD/workspace/rpi-pico/RP2040-HAT-MINING-C/libraries/pico-sdk/src/rp2040/hardware_structs/include"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "/Volumes/ExtSSD/workspace/rpi-pico/RP2040-HAT-MINING-C/libraries/pico-sdk/src/rp2_common/hardware_claim/include"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "/Volumes/ExtSSD/workspace/rpi-pico/RP2040-HAT-MINING-C/libraries/pico-sdk/src/rp2_common/hardware_sync/include"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "/Volumes/ExtSSD/workspace/rpi-pico/RP2040-HAT-MINING-C/libraries/pico-sdk/src/rp2_common/pico_bootrom/include"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "/Volumes/ExtSSD/workspace/rpi-pico/RP2040-HAT-MINING-C/libraries/pico-sdk/src/rp2_common/hardware_resets/include"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "/Volumes/ExtSSD/workspace/rpi-pico/RP2040-HAT-MINING-C/libraries/pico-sdk/src/rp2_common/hardware_i2c/include"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "/Volumes/ExtSSD/workspace/rpi-pico/RP2040-HAT-MINING-C/libraries/pico-sdk/src/rp2_common/hardware_irq/include"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "/Volumes/ExtSSD/workspace/rpi-pico/RP2040-HAT-MINING-C/libraries/pico-sdk/src/common/pico_sync/include"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "/Volumes/ExtSSD/workspace/rpi-pico/RP2040-HAT-MINING-C/libraries/pico-sdk/src/common/pico_time/include"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "/Volumes/ExtSSD/workspace/rpi-pico/RP2040-HAT-MINING-C/libraries/pico-sdk/src/rp2_common/hardware_timer/include"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "/Volumes/ExtSSD/workspace/rpi-pico/RP2040-HAT-MINING-C/libraries/pico-sdk/src/common/pico_util/include"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "/Volumes/ExtSSD/workspace/rpi-pico/RP2040-HAT-MINING-C/libraries/pico-sdk/src/rp2_common/hardware_clocks/include"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "/Volumes/ExtSSD/workspace/rpi-pico/RP2040-HAT-MINING-C/libraries/pico-sdk/src/rp2_common/hardware_gpio/include"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "/Volumes/ExtSSD/workspace/rpi-pico/RP2040-HAT-MINING-C/libraries/pico-sdk/src/rp2_common/hardware_pll/include"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "/Volumes/ExtSSD/workspace/rpi-pico/RP2040-HAT-MINING-C/libraries/pico-sdk/src/rp2_common/hardware_vreg/include"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "/Volumes/ExtSSD/workspace/rpi-pico/RP2040-HAT-MINING-C/libraries/pico-sdk/src/rp2_common/hardware_watchdog/include"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "/Volumes/ExtSSD/workspace/rpi-pico/RP2040-HAT-MINING-C/libraries/pico-sdk/src/rp2_common/hardware_xosc/include"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "/Volumes/ExtSSD/workspace/rpi-pico/RP2040-HAT-MINING-C/libraries/ioLibrary_Driver/Ethernet"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "/Volumes/ExtSSD/workspace/rpi-pico/RP2040-HAT-MINING-C/port/ioLibrary_Driver/inc"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "/Volumes/ExtSSD/workspace/rpi-pico/RP2040-HAT-MINING-C/port/aws-iot-device-sdk-embedded-C/inc"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "/Volumes/ExtSSD/workspace/rpi-pico/RP2040-HAT-MINING-C/libraries/mbedtls/include"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "/Volumes/ExtSSD/workspace/rpi-pico/RP2040-HAT-MINING-C/libraries/pico-sdk/src/common/pico_stdlib/include"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "/Volumes/ExtSSD/workspace/rpi-pico/RP2040-HAT-MINING-C/libraries/pico-sdk/src/rp2_common/hardware_uart/include"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "/Volumes/ExtSSD/workspace/rpi-pico/RP2040-HAT-MINING-C/libraries/pico-sdk/src/rp2_common/hardware_divider/include"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "/Volumes/ExtSSD/workspace/rpi-pico/RP2040-HAT-MINING-C/libraries/pico-sdk/src/rp2_common/pico_runtime/include"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "/Volumes/ExtSSD/workspace/rpi-pico/RP2040-HAT-MINING-C/libraries/pico-sdk/src/rp2_common/pico_printf/include"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "/Volumes/ExtSSD/workspace/rpi-pico/RP2040-HAT-MINING-C/libraries/pico-sdk/src/common/pico_bit_ops/include"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "/Volumes/ExtSSD/workspace/rpi-pico/RP2040-HAT-MINING-C/libraries/pico-sdk/src/common/pico_divider/include"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "/Volumes/ExtSSD/workspace/rpi-pico/RP2040-HAT-MINING-C/libraries/pico-sdk/src/rp2_common/pico_double/include"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "/Volumes/ExtSSD/workspace/rpi-pico/RP2040-HAT-MINING-C/libraries/pico-sdk/src/rp2_common/pico_int64_ops/include"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "/Volumes/ExtSSD/workspace/rpi-pico/RP2040-HAT-MINING-C/libraries/pico-sdk/src/rp2_common/pico_float/include"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "/Volumes/ExtSSD/workspace/rpi-pico/RP2040-HAT-MINING-C/libraries/pico-sdk/src/rp2_common/pico_malloc/include"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "/Volumes/ExtSSD/workspace/rpi-pico/RP2040-HAT-MINING-C/libraries/pico-sdk/src/rp2_common/boot_stage2/include"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "/Volumes/ExtSSD/workspace/rpi-pico/RP2040-HAT-MINING-C/libraries/pico-sdk/src/common/pico_binary_info/include"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "/Volumes/ExtSSD/workspace/rpi-pico/RP2040-HAT-MINING-C/libraries/pico-sdk/src/rp2_common/pico_stdio/include"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "/Volumes/ExtSSD/workspace/rpi-pico/RP2040-HAT-MINING-C/libraries/pico-sdk/src/rp2_common/pico_stdio_uart/include"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "/Volumes/ExtSSD/workspace/rpi-pico/RP2040-HAT-MINING-C/libraries/ioLibrary_Driver/Ethernet/W5100S"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "/Volumes/ExtSSD/workspace/rpi-pico/RP2040-HAT-MINING-C/libraries/ioLibrary_Driver/Internet/DHCP"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "/Volumes/ExtSSD/workspace/rpi-pico/RP2040-HAT-MINING-C/libraries/ioLibrary_Driver/Internet/DNS"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "/Volumes/ExtSSD/workspace/rpi-pico/RP2040-HAT-MINING-C/libraries/aws-iot-device-sdk-embedded-C/libraries/standard/coreHTTP/source/include"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "/Volumes/ExtSSD/workspace/rpi-pico/RP2040-HAT-MINING-C/libraries/aws-iot-device-sdk-embedded-C/libraries/standard/coreHTTP/source/interface"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "/Volumes/ExtSSD/workspace/rpi-pico/RP2040-HAT-MINING-C/libraries/aws-iot-device-sdk-embedded-C/libraries/standard/coreHTTP/source/dependency/3rdparty/http_parser"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "/Volumes/ExtSSD/workspace/rpi-pico/RP2040-HAT-MINING-C/libraries/aws-iot-device-sdk-embedded-C/libraries/standard/coreMQTT/source/include"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "/Volumes/ExtSSD/workspace/rpi-pico/RP2040-HAT-MINING-C/libraries/aws-iot-device-sdk-embedded-C/libraries/standard/coreMQTT/source/interface"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "/Volumes/ExtSSD/workspace/rpi-pico/RP2040-HAT-MINING-C/libraries/aws-iot-device-sdk-embedded-C/libraries/standard/coreJSON/source/include"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "/Volumes/ExtSSD/workspace/rpi-pico/RP2040-HAT-MINING-C/libraries/pico-extras/lib/lwip"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "/Volumes/ExtSSD/workspace/rpi-pico/RP2040-HAT-MINING-C/port/lwip/inc"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "/Volumes/ExtSSD/workspace/rpi-pico/RP2040-HAT-MINING-C/libraries/pico-sdk/src/rp2_common/hardware_dma/include"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "/Volumes/ExtSSD/workspace/rpi-pico/RP2040-HAT-MINING-C/libraries/pico-sdk/src/rp2_common/hardware_spi/include"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "/Volumes/ExtSSD/workspace/rpi-pico/RP2040-HAT-MINING-C/libraries/pico-extras/src/rp2_common/lwip/include"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "/Volumes/ExtSSD/workspace/rpi-pico/RP2040-HAT-MINING-C/libraries/pico-extras/lib/lwip/src/include"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "/Volumes/ExtSSD/workspace/rpi-pico/RP2040-HAT-MINING-C/libraries/pico-extras/lib/lwip/src/include/ipv4"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "/Volumes/ExtSSD/workspace/rpi-pico/RP2040-HAT-MINING-C/libraries/pico-extras/lib/lwip/src/include/lwip/apps"
+				}
+			],
+			"language" : "CXX",
+			"languageStandard" : 
+			{
+				"backtraces" : 
+				[
+					1
+				],
+				"standard" : "17"
+			},
+			"sourceIndexes" : 
+			[
+				1,
+				2,
+				4,
+				58
+			]
+		},
+		{
+			"compileCommandFragments" : 
+			[
+				{
+					"fragment" : "-mcpu=cortex-m0plus -mthumb -O3 -DNDEBUG"
+				},
+				{
+					"backtrace" : 2,
+					"fragment" : "-ffunction-sections"
+				},
+				{
+					"backtrace" : 2,
+					"fragment" : "-fdata-sections"
+				}
+			],
+			"defines" : 
+			[
+				{
+					"backtrace" : 2,
+					"define" : "LIB_PICO_BIT_OPS=1"
+				},
+				{
+					"backtrace" : 2,
+					"define" : "LIB_PICO_BIT_OPS_PICO=1"
+				},
+				{
+					"backtrace" : 2,
+					"define" : "LIB_PICO_DIVIDER=1"
+				},
+				{
+					"backtrace" : 2,
+					"define" : "LIB_PICO_DIVIDER_HARDWARE=1"
+				},
+				{
+					"backtrace" : 2,
+					"define" : "LIB_PICO_DOUBLE=1"
+				},
+				{
+					"backtrace" : 2,
+					"define" : "LIB_PICO_DOUBLE_PICO=1"
+				},
+				{
+					"backtrace" : 2,
+					"define" : "LIB_PICO_FLOAT=1"
+				},
+				{
+					"backtrace" : 2,
+					"define" : "LIB_PICO_FLOAT_PICO=1"
+				},
+				{
+					"backtrace" : 2,
+					"define" : "LIB_PICO_INT64_OPS=1"
+				},
+				{
+					"backtrace" : 2,
+					"define" : "LIB_PICO_INT64_OPS_PICO=1"
+				},
+				{
+					"backtrace" : 2,
+					"define" : "LIB_PICO_MALLOC=1"
+				},
+				{
+					"backtrace" : 2,
+					"define" : "LIB_PICO_MEM_OPS=1"
+				},
+				{
+					"backtrace" : 2,
+					"define" : "LIB_PICO_MEM_OPS_PICO=1"
+				},
+				{
+					"backtrace" : 2,
+					"define" : "LIB_PICO_PLATFORM=1"
+				},
+				{
+					"backtrace" : 2,
+					"define" : "LIB_PICO_PRINTF=1"
+				},
+				{
+					"backtrace" : 2,
+					"define" : "LIB_PICO_PRINTF_PICO=1"
+				},
+				{
+					"backtrace" : 2,
+					"define" : "LIB_PICO_RUNTIME=1"
+				},
+				{
+					"backtrace" : 2,
+					"define" : "LIB_PICO_STANDARD_LINK=1"
+				},
+				{
+					"backtrace" : 2,
+					"define" : "LIB_PICO_STDIO=1"
+				},
+				{
+					"backtrace" : 2,
+					"define" : "LIB_PICO_STDIO_UART=1"
+				},
+				{
+					"backtrace" : 2,
+					"define" : "LIB_PICO_STDLIB=1"
+				},
+				{
+					"backtrace" : 2,
+					"define" : "LIB_PICO_SYNC=1"
+				},
+				{
+					"backtrace" : 2,
+					"define" : "LIB_PICO_SYNC_CORE=1"
+				},
+				{
+					"backtrace" : 2,
+					"define" : "LIB_PICO_SYNC_CRITICAL_SECTION=1"
+				},
+				{
+					"backtrace" : 2,
+					"define" : "LIB_PICO_SYNC_MUTEX=1"
+				},
+				{
+					"backtrace" : 2,
+					"define" : "LIB_PICO_SYNC_SEM=1"
+				},
+				{
+					"backtrace" : 2,
+					"define" : "LIB_PICO_TIME=1"
+				},
+				{
+					"backtrace" : 2,
+					"define" : "LIB_PICO_UNIQUE_ID=1"
+				},
+				{
+					"backtrace" : 2,
+					"define" : "LIB_PICO_UTIL=1"
+				},
+				{
+					"backtrace" : 4,
+					"define" : "MBEDTLS_CONFIG_FILE=\"/Volumes/ExtSSD/workspace/rpi-pico/RP2040-HAT-MINING-C/port/mbedtls/inc/ssl_config.h\""
+				},
+				{
+					"backtrace" : 2,
+					"define" : "PICO_BOARD=\"pico\""
+				},
+				{
+					"backtrace" : 2,
+					"define" : "PICO_BUILD=1"
+				},
+				{
+					"backtrace" : 2,
+					"define" : "PICO_CMAKE_BUILD_TYPE=\"Release\""
+				},
+				{
+					"backtrace" : 2,
+					"define" : "PICO_COPY_TO_RAM=0"
+				},
+				{
+					"backtrace" : 2,
+					"define" : "PICO_CXX_ENABLE_EXCEPTIONS=0"
+				},
+				{
+					"backtrace" : 2,
+					"define" : "PICO_EXTRAS=1"
+				},
+				{
+					"backtrace" : 2,
+					"define" : "PICO_NO_FLASH=0"
+				},
+				{
+					"backtrace" : 2,
+					"define" : "PICO_NO_HARDWARE=0"
+				},
+				{
+					"backtrace" : 2,
+					"define" : "PICO_ON_DEVICE=1"
+				},
+				{
+					"backtrace" : 2,
+					"define" : "PICO_USE_BLOCKED_RAM=0"
+				},
+				{
+					"backtrace" : 5,
+					"define" : "SET_TRUSTED_CERT_IN_SAMPLES"
+				},
+				{
+					"backtrace" : 6,
+					"define" : "_WIZCHIP_=W5100S"
+				}
+			],
+			"includes" : 
+			[
+				{
+					"backtrace" : 7,
+					"path" : "/Volumes/ExtSSD/workspace/rpi-pico/RP2040-HAT-MINING-C/port"
+				},
+				{
+					"backtrace" : 7,
+					"path" : "/Volumes/ExtSSD/workspace/rpi-pico/RP2040-HAT-MINING-C/port/i2c_slave/inc"
+				},
+				{
+					"backtrace" : 7,
+					"path" : "/Volumes/ExtSSD/workspace/rpi-pico/RP2040-HAT-MINING-C/port/utils/inc"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "/Volumes/ExtSSD/workspace/rpi-pico/RP2040-HAT-MINING-C/port/timer"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "/Volumes/ExtSSD/workspace/rpi-pico/RP2040-HAT-MINING-C/libraries/pico-sdk/src/rp2_common/pico_unique_id/include"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "/Volumes/ExtSSD/workspace/rpi-pico/RP2040-HAT-MINING-C/libraries/pico-sdk/src/rp2_common/hardware_flash/include"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "/Volumes/ExtSSD/workspace/rpi-pico/RP2040-HAT-MINING-C/libraries/pico-sdk/src/common/pico_base/include"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "/Volumes/ExtSSD/workspace/rpi-pico/RP2040-HAT-MINING-C/build/generated/pico_base"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "/Volumes/ExtSSD/workspace/rpi-pico/RP2040-HAT-MINING-C/libraries/pico-sdk/src/boards/include"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "/Volumes/ExtSSD/workspace/rpi-pico/RP2040-HAT-MINING-C/libraries/pico-sdk/src/rp2_common/pico_platform/include"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "/Volumes/ExtSSD/workspace/rpi-pico/RP2040-HAT-MINING-C/libraries/pico-sdk/src/rp2040/hardware_regs/include"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "/Volumes/ExtSSD/workspace/rpi-pico/RP2040-HAT-MINING-C/libraries/pico-sdk/src/rp2_common/hardware_base/include"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "/Volumes/ExtSSD/workspace/rpi-pico/RP2040-HAT-MINING-C/libraries/pico-sdk/src/rp2040/hardware_structs/include"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "/Volumes/ExtSSD/workspace/rpi-pico/RP2040-HAT-MINING-C/libraries/pico-sdk/src/rp2_common/hardware_claim/include"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "/Volumes/ExtSSD/workspace/rpi-pico/RP2040-HAT-MINING-C/libraries/pico-sdk/src/rp2_common/hardware_sync/include"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "/Volumes/ExtSSD/workspace/rpi-pico/RP2040-HAT-MINING-C/libraries/pico-sdk/src/rp2_common/pico_bootrom/include"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "/Volumes/ExtSSD/workspace/rpi-pico/RP2040-HAT-MINING-C/libraries/pico-sdk/src/rp2_common/hardware_resets/include"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "/Volumes/ExtSSD/workspace/rpi-pico/RP2040-HAT-MINING-C/libraries/pico-sdk/src/rp2_common/hardware_i2c/include"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "/Volumes/ExtSSD/workspace/rpi-pico/RP2040-HAT-MINING-C/libraries/pico-sdk/src/rp2_common/hardware_irq/include"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "/Volumes/ExtSSD/workspace/rpi-pico/RP2040-HAT-MINING-C/libraries/pico-sdk/src/common/pico_sync/include"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "/Volumes/ExtSSD/workspace/rpi-pico/RP2040-HAT-MINING-C/libraries/pico-sdk/src/common/pico_time/include"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "/Volumes/ExtSSD/workspace/rpi-pico/RP2040-HAT-MINING-C/libraries/pico-sdk/src/rp2_common/hardware_timer/include"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "/Volumes/ExtSSD/workspace/rpi-pico/RP2040-HAT-MINING-C/libraries/pico-sdk/src/common/pico_util/include"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "/Volumes/ExtSSD/workspace/rpi-pico/RP2040-HAT-MINING-C/libraries/pico-sdk/src/rp2_common/hardware_clocks/include"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "/Volumes/ExtSSD/workspace/rpi-pico/RP2040-HAT-MINING-C/libraries/pico-sdk/src/rp2_common/hardware_gpio/include"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "/Volumes/ExtSSD/workspace/rpi-pico/RP2040-HAT-MINING-C/libraries/pico-sdk/src/rp2_common/hardware_pll/include"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "/Volumes/ExtSSD/workspace/rpi-pico/RP2040-HAT-MINING-C/libraries/pico-sdk/src/rp2_common/hardware_vreg/include"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "/Volumes/ExtSSD/workspace/rpi-pico/RP2040-HAT-MINING-C/libraries/pico-sdk/src/rp2_common/hardware_watchdog/include"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "/Volumes/ExtSSD/workspace/rpi-pico/RP2040-HAT-MINING-C/libraries/pico-sdk/src/rp2_common/hardware_xosc/include"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "/Volumes/ExtSSD/workspace/rpi-pico/RP2040-HAT-MINING-C/libraries/ioLibrary_Driver/Ethernet"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "/Volumes/ExtSSD/workspace/rpi-pico/RP2040-HAT-MINING-C/port/ioLibrary_Driver/inc"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "/Volumes/ExtSSD/workspace/rpi-pico/RP2040-HAT-MINING-C/port/aws-iot-device-sdk-embedded-C/inc"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "/Volumes/ExtSSD/workspace/rpi-pico/RP2040-HAT-MINING-C/libraries/mbedtls/include"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "/Volumes/ExtSSD/workspace/rpi-pico/RP2040-HAT-MINING-C/libraries/pico-sdk/src/common/pico_stdlib/include"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "/Volumes/ExtSSD/workspace/rpi-pico/RP2040-HAT-MINING-C/libraries/pico-sdk/src/rp2_common/hardware_uart/include"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "/Volumes/ExtSSD/workspace/rpi-pico/RP2040-HAT-MINING-C/libraries/pico-sdk/src/rp2_common/hardware_divider/include"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "/Volumes/ExtSSD/workspace/rpi-pico/RP2040-HAT-MINING-C/libraries/pico-sdk/src/rp2_common/pico_runtime/include"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "/Volumes/ExtSSD/workspace/rpi-pico/RP2040-HAT-MINING-C/libraries/pico-sdk/src/rp2_common/pico_printf/include"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "/Volumes/ExtSSD/workspace/rpi-pico/RP2040-HAT-MINING-C/libraries/pico-sdk/src/common/pico_bit_ops/include"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "/Volumes/ExtSSD/workspace/rpi-pico/RP2040-HAT-MINING-C/libraries/pico-sdk/src/common/pico_divider/include"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "/Volumes/ExtSSD/workspace/rpi-pico/RP2040-HAT-MINING-C/libraries/pico-sdk/src/rp2_common/pico_double/include"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "/Volumes/ExtSSD/workspace/rpi-pico/RP2040-HAT-MINING-C/libraries/pico-sdk/src/rp2_common/pico_int64_ops/include"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "/Volumes/ExtSSD/workspace/rpi-pico/RP2040-HAT-MINING-C/libraries/pico-sdk/src/rp2_common/pico_float/include"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "/Volumes/ExtSSD/workspace/rpi-pico/RP2040-HAT-MINING-C/libraries/pico-sdk/src/rp2_common/pico_malloc/include"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "/Volumes/ExtSSD/workspace/rpi-pico/RP2040-HAT-MINING-C/libraries/pico-sdk/src/rp2_common/boot_stage2/include"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "/Volumes/ExtSSD/workspace/rpi-pico/RP2040-HAT-MINING-C/libraries/pico-sdk/src/common/pico_binary_info/include"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "/Volumes/ExtSSD/workspace/rpi-pico/RP2040-HAT-MINING-C/libraries/pico-sdk/src/rp2_common/pico_stdio/include"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "/Volumes/ExtSSD/workspace/rpi-pico/RP2040-HAT-MINING-C/libraries/pico-sdk/src/rp2_common/pico_stdio_uart/include"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "/Volumes/ExtSSD/workspace/rpi-pico/RP2040-HAT-MINING-C/libraries/ioLibrary_Driver/Ethernet/W5100S"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "/Volumes/ExtSSD/workspace/rpi-pico/RP2040-HAT-MINING-C/libraries/ioLibrary_Driver/Internet/DHCP"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "/Volumes/ExtSSD/workspace/rpi-pico/RP2040-HAT-MINING-C/libraries/ioLibrary_Driver/Internet/DNS"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "/Volumes/ExtSSD/workspace/rpi-pico/RP2040-HAT-MINING-C/libraries/aws-iot-device-sdk-embedded-C/libraries/standard/coreHTTP/source/include"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "/Volumes/ExtSSD/workspace/rpi-pico/RP2040-HAT-MINING-C/libraries/aws-iot-device-sdk-embedded-C/libraries/standard/coreHTTP/source/interface"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "/Volumes/ExtSSD/workspace/rpi-pico/RP2040-HAT-MINING-C/libraries/aws-iot-device-sdk-embedded-C/libraries/standard/coreHTTP/source/dependency/3rdparty/http_parser"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "/Volumes/ExtSSD/workspace/rpi-pico/RP2040-HAT-MINING-C/libraries/aws-iot-device-sdk-embedded-C/libraries/standard/coreMQTT/source/include"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "/Volumes/ExtSSD/workspace/rpi-pico/RP2040-HAT-MINING-C/libraries/aws-iot-device-sdk-embedded-C/libraries/standard/coreMQTT/source/interface"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "/Volumes/ExtSSD/workspace/rpi-pico/RP2040-HAT-MINING-C/libraries/aws-iot-device-sdk-embedded-C/libraries/standard/coreJSON/source/include"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "/Volumes/ExtSSD/workspace/rpi-pico/RP2040-HAT-MINING-C/libraries/pico-extras/lib/lwip"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "/Volumes/ExtSSD/workspace/rpi-pico/RP2040-HAT-MINING-C/port/lwip/inc"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "/Volumes/ExtSSD/workspace/rpi-pico/RP2040-HAT-MINING-C/libraries/pico-sdk/src/rp2_common/hardware_dma/include"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "/Volumes/ExtSSD/workspace/rpi-pico/RP2040-HAT-MINING-C/libraries/pico-sdk/src/rp2_common/hardware_spi/include"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "/Volumes/ExtSSD/workspace/rpi-pico/RP2040-HAT-MINING-C/libraries/pico-extras/src/rp2_common/lwip/include"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "/Volumes/ExtSSD/workspace/rpi-pico/RP2040-HAT-MINING-C/libraries/pico-extras/lib/lwip/src/include"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "/Volumes/ExtSSD/workspace/rpi-pico/RP2040-HAT-MINING-C/libraries/pico-extras/lib/lwip/src/include/ipv4"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "/Volumes/ExtSSD/workspace/rpi-pico/RP2040-HAT-MINING-C/libraries/pico-extras/lib/lwip/src/include/lwip/apps"
+				}
+			],
+			"language" : "ASM",
+			"sourceIndexes" : 
+			[
+				13,
+				41,
+				44,
+				45,
+				46,
+				49,
+				50,
+				51,
+				54,
+				56,
+				57
+			]
+		}
+	],
+	"dependencies" : 
+	[
+		{
+			"id" : "UTILS_FILE::@5a6e59fc4828463ce5ae"
+		}
+	],
+	"id" : "I2C_SLAVE::@5a6e59fc4828463ce5ae",
+	"name" : "I2C_SLAVE",
+	"nameOnDisk" : "libI2C_SLAVE.a",
+	"paths" : 
+	{
+		"build" : "port",
+		"source" : "port"
+	},
+	"sourceGroups" : 
+	[
+		{
+			"name" : "Source Files",
+			"sourceIndexes" : 
+			[
+				0,
+				1,
+				2,
+				3,
+				4,
+				5,
+				6,
+				7,
+				8,
+				9,
+				10,
+				11,
+				12,
+				14,
+				15,
+				16,
+				17,
+				18,
+				19,
+				20,
+				21,
+				22,
+				23,
+				24,
+				25,
+				26,
+				27,
+				28,
+				29,
+				30,
+				31,
+				32,
+				33,
+				34,
+				35,
+				36,
+				37,
+				38,
+				39,
+				40,
+				42,
+				43,
+				47,
+				48,
+				52,
+				53,
+				55,
+				58,
+				59,
+				60,
+				61,
+				62,
+				63,
+				64,
+				65,
+				66,
+				67,
+				68,
+				69,
+				70,
+				71,
+				72,
+				73,
+				74,
+				75,
+				76,
+				77,
+				78,
+				79,
+				80,
+				81,
+				82,
+				83,
+				84,
+				85,
+				86,
+				87,
+				88,
+				89,
+				90,
+				91,
+				92,
+				93,
+				94,
+				95,
+				96,
+				97,
+				98,
+				99,
+				100,
+				101,
+				102,
+				103,
+				104,
+				105,
+				106,
+				107,
+				108,
+				109
+			]
+		},
+		{
+			"name" : "",
+			"sourceIndexes" : 
+			[
+				13,
+				41,
+				44,
+				45,
+				46,
+				49,
+				50,
+				51,
+				54,
+				56,
+				57
+			]
+		}
+	],
+	"sources" : 
+	[
+		{
+			"backtrace" : 8,
+			"compileGroupIndex" : 0,
+			"path" : "port/i2c_slave/i2c_slave.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"compileGroupIndex" : 1,
+			"path" : "port/utils/src/charbuffer.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"compileGroupIndex" : 1,
+			"path" : "port/utils/src/duinoCoinUtils.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"compileGroupIndex" : 0,
+			"path" : "port/utils/src/hwSetupUtils.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"compileGroupIndex" : 1,
+			"path" : "port/utils/src/Wire.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"compileGroupIndex" : 0,
+			"path" : "libraries/pico-sdk/src/rp2_common/pico_unique_id/unique_id.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"compileGroupIndex" : 0,
+			"path" : "libraries/pico-sdk/src/rp2_common/hardware_flash/flash.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"compileGroupIndex" : 0,
+			"path" : "libraries/pico-sdk/src/rp2_common/hardware_claim/claim.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"compileGroupIndex" : 0,
+			"path" : "libraries/pico-sdk/src/rp2_common/pico_platform/platform.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"compileGroupIndex" : 0,
+			"path" : "libraries/pico-sdk/src/rp2_common/hardware_sync/sync.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"compileGroupIndex" : 0,
+			"path" : "libraries/pico-sdk/src/rp2_common/pico_bootrom/bootrom.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"compileGroupIndex" : 0,
+			"path" : "libraries/pico-sdk/src/rp2_common/hardware_i2c/i2c.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"compileGroupIndex" : 0,
+			"path" : "libraries/pico-sdk/src/rp2_common/hardware_irq/irq.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"compileGroupIndex" : 2,
+			"path" : "libraries/pico-sdk/src/rp2_common/hardware_irq/irq_handler_chain.S",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 2,
+			"compileGroupIndex" : 0,
+			"path" : "libraries/pico-sdk/src/common/pico_sync/sem.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"compileGroupIndex" : 0,
+			"path" : "libraries/pico-sdk/src/common/pico_sync/lock_core.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"compileGroupIndex" : 0,
+			"path" : "libraries/pico-sdk/src/common/pico_time/time.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"compileGroupIndex" : 0,
+			"path" : "libraries/pico-sdk/src/common/pico_time/timeout_helper.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"compileGroupIndex" : 0,
+			"path" : "libraries/pico-sdk/src/rp2_common/hardware_timer/timer.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"compileGroupIndex" : 0,
+			"path" : "libraries/pico-sdk/src/common/pico_util/datetime.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"compileGroupIndex" : 0,
+			"path" : "libraries/pico-sdk/src/common/pico_util/pheap.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"compileGroupIndex" : 0,
+			"path" : "libraries/pico-sdk/src/common/pico_util/queue.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"compileGroupIndex" : 0,
+			"path" : "libraries/pico-sdk/src/common/pico_sync/mutex.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"compileGroupIndex" : 0,
+			"path" : "libraries/pico-sdk/src/common/pico_sync/critical_section.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"compileGroupIndex" : 0,
+			"path" : "libraries/pico-sdk/src/rp2_common/hardware_clocks/clocks.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"compileGroupIndex" : 0,
+			"path" : "libraries/pico-sdk/src/rp2_common/hardware_gpio/gpio.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"compileGroupIndex" : 0,
+			"path" : "libraries/pico-sdk/src/rp2_common/hardware_pll/pll.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"compileGroupIndex" : 0,
+			"path" : "libraries/pico-sdk/src/rp2_common/hardware_vreg/vreg.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"compileGroupIndex" : 0,
+			"path" : "libraries/pico-sdk/src/rp2_common/hardware_watchdog/watchdog.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"compileGroupIndex" : 0,
+			"path" : "libraries/pico-sdk/src/rp2_common/hardware_xosc/xosc.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"compileGroupIndex" : 0,
+			"path" : "port/timer/timer.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"compileGroupIndex" : 0,
+			"path" : "port/ioLibrary_Driver/src/w5x00_spi.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"compileGroupIndex" : 0,
+			"path" : "port/ioLibrary_Driver/src/w5x00_gpio_irq.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"compileGroupIndex" : 0,
+			"path" : "port/aws-iot-device-sdk-embedded-C/src/dns_interface.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"compileGroupIndex" : 0,
+			"path" : "port/aws-iot-device-sdk-embedded-C/src/http_transport_interface.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"compileGroupIndex" : 0,
+			"path" : "port/aws-iot-device-sdk-embedded-C/src/mqtt_transport_interface.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"compileGroupIndex" : 0,
+			"path" : "port/aws-iot-device-sdk-embedded-C/src/ssl_transport_interface.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"compileGroupIndex" : 0,
+			"path" : "port/aws-iot-device-sdk-embedded-C/src/timer_interface.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"compileGroupIndex" : 0,
+			"path" : "port/aws-iot-device-sdk-embedded-C/src/util.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"compileGroupIndex" : 0,
+			"path" : "libraries/pico-sdk/src/rp2_common/pico_stdlib/stdlib.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"compileGroupIndex" : 0,
+			"path" : "libraries/pico-sdk/src/rp2_common/hardware_uart/uart.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"compileGroupIndex" : 2,
+			"path" : "libraries/pico-sdk/src/rp2_common/hardware_divider/divider.S",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 2,
+			"compileGroupIndex" : 0,
+			"path" : "libraries/pico-sdk/src/rp2_common/pico_runtime/runtime.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"compileGroupIndex" : 0,
+			"path" : "libraries/pico-sdk/src/rp2_common/pico_printf/printf.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"compileGroupIndex" : 2,
+			"path" : "libraries/pico-sdk/src/rp2_common/pico_bit_ops/bit_ops_aeabi.S",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 2,
+			"compileGroupIndex" : 2,
+			"path" : "libraries/pico-sdk/src/rp2_common/pico_divider/divider.S",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 2,
+			"compileGroupIndex" : 2,
+			"path" : "libraries/pico-sdk/src/rp2_common/pico_double/double_aeabi.S",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 2,
+			"compileGroupIndex" : 0,
+			"path" : "libraries/pico-sdk/src/rp2_common/pico_double/double_init_rom.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"compileGroupIndex" : 0,
+			"path" : "libraries/pico-sdk/src/rp2_common/pico_double/double_math.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"compileGroupIndex" : 2,
+			"path" : "libraries/pico-sdk/src/rp2_common/pico_double/double_v1_rom_shim.S",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 2,
+			"compileGroupIndex" : 2,
+			"path" : "libraries/pico-sdk/src/rp2_common/pico_int64_ops/pico_int64_ops_aeabi.S",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 2,
+			"compileGroupIndex" : 2,
+			"path" : "libraries/pico-sdk/src/rp2_common/pico_float/float_aeabi.S",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 2,
+			"compileGroupIndex" : 0,
+			"path" : "libraries/pico-sdk/src/rp2_common/pico_float/float_init_rom.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"compileGroupIndex" : 0,
+			"path" : "libraries/pico-sdk/src/rp2_common/pico_float/float_math.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"compileGroupIndex" : 2,
+			"path" : "libraries/pico-sdk/src/rp2_common/pico_float/float_v1_rom_shim.S",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 2,
+			"compileGroupIndex" : 0,
+			"path" : "libraries/pico-sdk/src/rp2_common/pico_malloc/pico_malloc.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"compileGroupIndex" : 2,
+			"path" : "libraries/pico-sdk/src/rp2_common/pico_mem_ops/mem_ops_aeabi.S",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 2,
+			"compileGroupIndex" : 2,
+			"path" : "libraries/pico-sdk/src/rp2_common/pico_standard_link/crt0.S",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 2,
+			"compileGroupIndex" : 1,
+			"path" : "libraries/pico-sdk/src/rp2_common/pico_standard_link/new_delete.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"compileGroupIndex" : 0,
+			"path" : "libraries/pico-sdk/src/rp2_common/pico_standard_link/binary_info.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"compileGroupIndex" : 0,
+			"path" : "libraries/pico-sdk/src/rp2_common/pico_stdio/stdio.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"compileGroupIndex" : 0,
+			"path" : "libraries/pico-sdk/src/rp2_common/pico_stdio_uart/stdio_uart.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"compileGroupIndex" : 0,
+			"path" : "libraries/ioLibrary_Driver/Ethernet/socket.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"compileGroupIndex" : 0,
+			"path" : "libraries/ioLibrary_Driver/Ethernet/wizchip_conf.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"compileGroupIndex" : 0,
+			"path" : "libraries/ioLibrary_Driver/Ethernet/W5100S/w5100s.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"compileGroupIndex" : 0,
+			"path" : "libraries/ioLibrary_Driver/Internet/DHCP/dhcp.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"compileGroupIndex" : 0,
+			"path" : "libraries/ioLibrary_Driver/Internet/DNS/dns.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"compileGroupIndex" : 0,
+			"path" : "libraries/aws-iot-device-sdk-embedded-C/libraries/standard/coreHTTP/source/core_http_client.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"compileGroupIndex" : 0,
+			"path" : "libraries/aws-iot-device-sdk-embedded-C/libraries/standard/coreHTTP/source/dependency/3rdparty/http_parser/http_parser.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"compileGroupIndex" : 0,
+			"path" : "libraries/aws-iot-device-sdk-embedded-C/libraries/standard/coreMQTT/source/core_mqtt.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"compileGroupIndex" : 0,
+			"path" : "libraries/aws-iot-device-sdk-embedded-C/libraries/standard/coreMQTT/source/core_mqtt_state.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"compileGroupIndex" : 0,
+			"path" : "libraries/aws-iot-device-sdk-embedded-C/libraries/standard/coreJSON/source/core_json.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"compileGroupIndex" : 0,
+			"path" : "libraries/aws-iot-device-sdk-embedded-C/libraries/standard/coreMQTT/source/core_mqtt_serializer.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"compileGroupIndex" : 0,
+			"path" : "port/lwip/src/w5x00_lwip.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"compileGroupIndex" : 0,
+			"path" : "port/lwip/src/tcp_client.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"compileGroupIndex" : 0,
+			"path" : "libraries/pico-sdk/src/rp2_common/hardware_dma/dma.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"compileGroupIndex" : 0,
+			"path" : "libraries/pico-sdk/src/rp2_common/hardware_spi/spi.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"compileGroupIndex" : 0,
+			"path" : "libraries/pico-extras/lib/lwip/src/core/altcp.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"compileGroupIndex" : 0,
+			"path" : "libraries/pico-extras/lib/lwip/src/core/altcp_alloc.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"compileGroupIndex" : 0,
+			"path" : "libraries/pico-extras/lib/lwip/src/core/altcp_tcp.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"compileGroupIndex" : 0,
+			"path" : "libraries/pico-extras/lib/lwip/src/core/def.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"compileGroupIndex" : 0,
+			"path" : "libraries/pico-extras/lib/lwip/src/core/dns.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"compileGroupIndex" : 0,
+			"path" : "libraries/pico-extras/lib/lwip/src/core/inet_chksum.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"compileGroupIndex" : 0,
+			"path" : "libraries/pico-extras/lib/lwip/src/core/init.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"compileGroupIndex" : 0,
+			"path" : "libraries/pico-extras/lib/lwip/src/core/ip.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"compileGroupIndex" : 0,
+			"path" : "libraries/pico-extras/lib/lwip/src/core/mem.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"compileGroupIndex" : 0,
+			"path" : "libraries/pico-extras/lib/lwip/src/core/memp.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"compileGroupIndex" : 0,
+			"path" : "libraries/pico-extras/lib/lwip/src/core/netif.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"compileGroupIndex" : 0,
+			"path" : "libraries/pico-extras/lib/lwip/src/core/pbuf.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"compileGroupIndex" : 0,
+			"path" : "libraries/pico-extras/lib/lwip/src/core/raw.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"compileGroupIndex" : 0,
+			"path" : "libraries/pico-extras/lib/lwip/src/core/stats.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"compileGroupIndex" : 0,
+			"path" : "libraries/pico-extras/lib/lwip/src/core/sys.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"compileGroupIndex" : 0,
+			"path" : "libraries/pico-extras/lib/lwip/src/core/tcp.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"compileGroupIndex" : 0,
+			"path" : "libraries/pico-extras/lib/lwip/src/core/tcp_in.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"compileGroupIndex" : 0,
+			"path" : "libraries/pico-extras/lib/lwip/src/core/tcp_out.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"compileGroupIndex" : 0,
+			"path" : "libraries/pico-extras/lib/lwip/src/core/timeouts.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"compileGroupIndex" : 0,
+			"path" : "libraries/pico-extras/lib/lwip/src/core/udp.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"compileGroupIndex" : 0,
+			"path" : "libraries/pico-extras/lib/lwip/src/core/ipv4/autoip.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"compileGroupIndex" : 0,
+			"path" : "libraries/pico-extras/lib/lwip/src/core/ipv4/dhcp.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"compileGroupIndex" : 0,
+			"path" : "libraries/pico-extras/lib/lwip/src/core/ipv4/etharp.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"compileGroupIndex" : 0,
+			"path" : "libraries/pico-extras/lib/lwip/src/core/ipv4/icmp.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"compileGroupIndex" : 0,
+			"path" : "libraries/pico-extras/lib/lwip/src/core/ipv4/igmp.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"compileGroupIndex" : 0,
+			"path" : "libraries/pico-extras/lib/lwip/src/core/ipv4/ip4.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"compileGroupIndex" : 0,
+			"path" : "libraries/pico-extras/lib/lwip/src/core/ipv4/ip4_addr.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"compileGroupIndex" : 0,
+			"path" : "libraries/pico-extras/lib/lwip/src/core/ipv4/ip4_frag.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"compileGroupIndex" : 0,
+			"path" : "libraries/pico-extras/lib/lwip/src/netif/ethernet.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"compileGroupIndex" : 0,
+			"path" : "libraries/pico-extras/lib/lwip/src/netif/slipif.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"compileGroupIndex" : 0,
+			"path" : "libraries/pico-extras/lib/lwip/src/apps/http/httpd.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"compileGroupIndex" : 0,
+			"path" : "libraries/pico-extras/lib/lwip/src/apps/http/fs.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"compileGroupIndex" : 0,
+			"path" : "libraries/pico-extras/src/rp2_common/lwip/lwip_arch.c",
+			"sourceGroupIndex" : 0
+		}
+	],
+	"type" : "STATIC_LIBRARY"
+}

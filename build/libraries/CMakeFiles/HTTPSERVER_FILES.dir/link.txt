@@ -1,0 +1,2 @@
+/Applications/ARM/bin/arm-none-eabi-ar qc libHTTPSERVER_FILES.a CMakeFiles/HTTPSERVER_FILES.dir/ioLibrary_Driver/Internet/httpServer/httpParser.c.obj CMakeFiles/HTTPSERVER_FILES.dir/ioLibrary_Driver/Internet/httpServer/httpServer.c.obj CMakeFiles/HTTPSERVER_FILES.dir/ioLibrary_Driver/Internet/httpServer/httpUtil.c.obj
+/Applications/ARM/bin/arm-none-eabi-ranlib libHTTPSERVER_FILES.a

@@ -1,0 +1,3 @@
+file(REMOVE_RECURSE
+  "libUTILS_FILE.a"
+)

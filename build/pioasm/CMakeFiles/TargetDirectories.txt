@@ -1,0 +1,3 @@
+/Volumes/ExtSSD/workspace/rpi-pico/RP2040-HAT-MINING-C/build/pioasm/CMakeFiles/pioasm.dir
+/Volumes/ExtSSD/workspace/rpi-pico/RP2040-HAT-MINING-C/build/pioasm/CMakeFiles/edit_cache.dir
+/Volumes/ExtSSD/workspace/rpi-pico/RP2040-HAT-MINING-C/build/pioasm/CMakeFiles/rebuild_cache.dir

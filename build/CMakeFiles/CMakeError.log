@@ -1,0 +1,44 @@
+Compiling the C compiler identification source file "CMakeCCompilerId.c" failed.
+Compiler: /Applications/ARM/bin/arm-none-eabi-gcc 
+Build flags: ;-mcpu=cortex-m0plus;-mthumb
+Id flags:  
+
+The output was:
+1
+/Applications/ARM/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/bin/ld: /Applications/ARM/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp/libc.a(lib_a-exit.o): in function `exit':
+exit.c:(.text.exit+0x18): undefined reference to `_exit'
+collect2: error: ld returned 1 exit status
+
+
+Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" failed.
+Compiler: /Applications/ARM/bin/arm-none-eabi-g++ 
+Build flags: ;-mcpu=cortex-m0plus;-mthumb
+Id flags:  
+
+The output was:
+1
+/Applications/ARM/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/bin/ld: /Applications/ARM/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp/libc.a(lib_a-exit.o): in function `exit':
+exit.c:(.text.exit+0x18): undefined reference to `_exit'
+collect2: error: ld returned 1 exit status
+
+
+Performing C SOURCE FILE Test C_COMPILER_SUPPORTS_WFORMAT_SIGNEDNESS failed with the following output:
+Change Dir: /Volumes/ExtSSD/workspace/rpi-pico/RP2040-HAT-MINING-C/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/opt/homebrew/bin/gmake -f Makefile cmTC_741d5/fast && /opt/homebrew/bin/gmake  -f CMakeFiles/cmTC_741d5.dir/build.make CMakeFiles/cmTC_741d5.dir/build
+gmake[1]: Entering directory '/Volumes/ExtSSD/workspace/rpi-pico/RP2040-HAT-MINING-C/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_741d5.dir/src.c.obj
+/Applications/ARM/bin/arm-none-eabi-gcc -DC_COMPILER_SUPPORTS_WFORMAT_SIGNEDNESS  -mcpu=cortex-m0plus -mthumb -Wall -Wextra -Wwrite-strings -Wvla -Wlogical-op -Wshadow    -Wformat-signedness -o CMakeFiles/cmTC_741d5.dir/src.c.obj -c /Volumes/ExtSSD/workspace/rpi-pico/RP2040-HAT-MINING-C/build/CMakeFiles/CMakeTmp/src.c
+Linking C executable cmTC_741d5.elf
+/opt/homebrew/Cellar/cmake/3.24.0/bin/cmake -E cmake_link_script CMakeFiles/cmTC_741d5.dir/link.txt --verbose=1
+/Applications/ARM/bin/arm-none-eabi-gcc -mcpu=cortex-m0plus -mthumb -Wall -Wextra -Wwrite-strings -Wvla -Wlogical-op -Wshadow  -Wl,--build-id=none CMakeFiles/cmTC_741d5.dir/src.c.obj -o cmTC_741d5.elf 
+/Applications/ARM/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/bin/ld: /Applications/ARM/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp/libc.a(lib_a-exit.o): in function `exit':
+exit.c:(.text.exit+0x18): undefined reference to `_exit'
+collect2: error: ld returned 1 exit status
+gmake[1]: *** [CMakeFiles/cmTC_741d5.dir/build.make:99: cmTC_741d5.elf] Error 1
+gmake[1]: Leaving directory '/Volumes/ExtSSD/workspace/rpi-pico/RP2040-HAT-MINING-C/build/CMakeFiles/CMakeTmp'
+gmake: *** [Makefile:127: cmTC_741d5/fast] Error 2
+
+
+Source file was:
+int main(void) { return 0; }

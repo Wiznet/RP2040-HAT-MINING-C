@@ -1,0 +1,2 @@
+/Applications/ARM/bin/arm-none-eabi-ar qc libSNTP_FILES.a CMakeFiles/SNTP_FILES.dir/ioLibrary_Driver/Internet/SNTP/sntp.c.obj
+/Applications/ARM/bin/arm-none-eabi-ranlib libSNTP_FILES.a

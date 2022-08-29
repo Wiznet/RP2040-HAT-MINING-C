@@ -1,0 +1,2 @@
+/Applications/ARM/bin/arm-none-eabi-ar qc libETHERNET_FILES.a CMakeFiles/ETHERNET_FILES.dir/ioLibrary_Driver/Ethernet/socket.c.obj CMakeFiles/ETHERNET_FILES.dir/ioLibrary_Driver/Ethernet/wizchip_conf.c.obj CMakeFiles/ETHERNET_FILES.dir/ioLibrary_Driver/Ethernet/W5100S/w5100s.c.obj
+/Applications/ARM/bin/arm-none-eabi-ranlib libETHERNET_FILES.a

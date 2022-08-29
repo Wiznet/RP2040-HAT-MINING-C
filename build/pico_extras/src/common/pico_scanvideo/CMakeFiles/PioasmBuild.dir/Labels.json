@@ -1,0 +1,43 @@
+{
+	"sources" : 
+	[
+		{
+			"file" : "/Volumes/ExtSSD/workspace/rpi-pico/RP2040-HAT-MINING-C/build/pico_extras/src/common/pico_scanvideo/CMakeFiles/PioasmBuild"
+		},
+		{
+			"file" : "/Volumes/ExtSSD/workspace/rpi-pico/RP2040-HAT-MINING-C/build/pico_extras/src/common/pico_scanvideo/CMakeFiles/PioasmBuild.rule"
+		},
+		{
+			"file" : "/Volumes/ExtSSD/workspace/rpi-pico/RP2040-HAT-MINING-C/build/pico_extras/src/common/pico_scanvideo/CMakeFiles/PioasmBuild-complete.rule"
+		},
+		{
+			"file" : "/Volumes/ExtSSD/workspace/rpi-pico/RP2040-HAT-MINING-C/build/pico_extras/src/common/pico_scanvideo/pioasm/src/PioasmBuild-stamp/PioasmBuild-build.rule"
+		},
+		{
+			"file" : "/Volumes/ExtSSD/workspace/rpi-pico/RP2040-HAT-MINING-C/build/pico_extras/src/common/pico_scanvideo/pioasm/src/PioasmBuild-stamp/PioasmBuild-configure.rule"
+		},
+		{
+			"file" : "/Volumes/ExtSSD/workspace/rpi-pico/RP2040-HAT-MINING-C/build/pico_extras/src/common/pico_scanvideo/pioasm/src/PioasmBuild-stamp/PioasmBuild-download.rule"
+		},
+		{
+			"file" : "/Volumes/ExtSSD/workspace/rpi-pico/RP2040-HAT-MINING-C/build/pico_extras/src/common/pico_scanvideo/pioasm/src/PioasmBuild-stamp/PioasmBuild-install.rule"
+		},
+		{
+			"file" : "/Volumes/ExtSSD/workspace/rpi-pico/RP2040-HAT-MINING-C/build/pico_extras/src/common/pico_scanvideo/pioasm/src/PioasmBuild-stamp/PioasmBuild-mkdir.rule"
+		},
+		{
+			"file" : "/Volumes/ExtSSD/workspace/rpi-pico/RP2040-HAT-MINING-C/build/pico_extras/src/common/pico_scanvideo/pioasm/src/PioasmBuild-stamp/PioasmBuild-patch.rule"
+		},
+		{
+			"file" : "/Volumes/ExtSSD/workspace/rpi-pico/RP2040-HAT-MINING-C/build/pico_extras/src/common/pico_scanvideo/pioasm/src/PioasmBuild-stamp/PioasmBuild-update.rule"
+		}
+	],
+	"target" : 
+	{
+		"labels" : 
+		[
+			"PioasmBuild"
+		],
+		"name" : "PioasmBuild"
+	}
+}

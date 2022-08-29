@@ -1,0 +1,2 @@
+/Applications/ARM/bin/arm-none-eabi-ar qc libLOOPBACK_FILES.a CMakeFiles/LOOPBACK_FILES.dir/ioLibrary_Driver/Application/loopback/loopback.c.obj
+/Applications/ARM/bin/arm-none-eabi-ranlib libLOOPBACK_FILES.a

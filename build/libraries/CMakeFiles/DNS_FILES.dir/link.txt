@@ -1,0 +1,2 @@
+/Applications/ARM/bin/arm-none-eabi-ar qc libDNS_FILES.a CMakeFiles/DNS_FILES.dir/ioLibrary_Driver/Internet/DNS/dns.c.obj
+/Applications/ARM/bin/arm-none-eabi-ranlib libDNS_FILES.a

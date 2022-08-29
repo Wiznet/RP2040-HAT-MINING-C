@@ -1,0 +1,28 @@
+{
+  "files.associations": {
+    "multicore.h": "c",
+    "ili9340.h": "c",
+    "stdlib.h": "c",
+    "gpio.h": "c",
+    "binary_info.h": "c",
+    "unique_id.h": "c",
+    "timer.h": "c",
+    "resets.h": "c",
+    "i2c.h": "c",
+    "hwsetuputils.h": "c",
+    "timer_interface.h": "c",
+    "timeouts.h": "c",
+    "limits.h": "c",
+    "lwiperf.h": "c",
+    "http_transport_interface.h": "c",
+    "core_json.h": "c",
+    "http_parser.h": "c",
+    "*.tcc": "cpp",
+    "deque": "cpp",
+    "string": "cpp",
+    "unordered_map": "cpp",
+    "vector": "cpp",
+    "system_error": "cpp",
+    "string_view": "cpp"
+  }
+}

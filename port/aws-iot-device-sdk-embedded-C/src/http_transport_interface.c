@@ -15,9 +15,6 @@
 #include "pico/stdlib.h"
 #include "pico/binary_info.h"
 
-/* JSON API header. */
-#include "core_json.h"
-
 #include "http_transport_interface.h"
 #include "http_parser.h"
 #include "core_http_client_private.h"
@@ -46,13 +43,12 @@ http_config_t g_http_config;
 /* SSL context */
 tlsContext_t *g_http_tls_context_ptr;
 
-void inet_addr_(uint8_t * addr, uint8_t * ip);
-
 /**
  * ----------------------------------------------------------------------------------------------------
  * Functions
  * ----------------------------------------------------------------------------------------------------
  */
+
 /* Common */
 int32_t http_send_request(TransportInterface_t *pTransportInterface, uint8_t *buffer, char *pMethod, http_config_t *http_config)
 {
@@ -651,66 +647,3 @@ int is_https(const char *pUrl)
         return -1;
 }
 
-
-
-
-
-
-/**
-@brief	CONVERT CHAR INTO HEX
-@return	HEX
-
-This function converts HEX(0-F) to a character
-*/
-static uint8_t C2D(
-		uint8_t c	/**< is a character('0'-'F') to convert to HEX */
-	)
-{
-	if (c >= '0' && c <= '9')
-		return c - '0';
-	if (c >= 'a' && c <= 'f')
-		return 10 + c -'a';
-	if (c >= 'A' && c <= 'F')
-		return 10 + c -'A';
-
-	return (char)c;
-}
-
-
-/**
-@brief	CONVERT STRING INTO INTEGER
-@return	a integer number
-*/
-uint16_t ATOI(
-	uint8_t * str,	/**< is a pointer to convert */
-	uint8_t base	/**< is a base value (must be in the range 2 - 16) */
-	)
-{
-        unsigned int num = 0;
-// debug_2013_11_25
-//        while (*str !=0)
-        while ((*str !=0) && (*str != 0x20)) // not include the space(0x020)
-                num = num * base + C2D(*str++);
-	return num;
-}
-
-
-void inet_addr_(uint8_t * addr, uint8_t *ip)
-{
-	uint8_t i;
-	uint8_t taddr[30];
-	uint8_t * nexttok;
-	uint8_t num;
-
-	strcpy((char *)taddr, (char *)addr);
-
-	nexttok = taddr;
-	for(i = 0; i < 4 ; i++)
-	{
-		nexttok = (uint8_t *)strtok((char *)nexttok, ".");
-		if(nexttok[0] == '0' && nexttok[1] == 'x') num = ATOI(nexttok+2,0x10);
-		else num = ATOI(nexttok,10);
-		ip[i] = num;
-		nexttok = NULL;
-	}
-}

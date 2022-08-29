@@ -23,6 +23,9 @@
 #include "core_http_client.h"
 #include "core_http_config.h"
 
+#ifdef __cplusplus
+extern "C" {
+#endif
 
 /**
  * ----------------------------------------------------------------------------------------------------
@@ -89,4 +92,7 @@ HTTPStatus_t getUrlAddress(const char *pUrl, size_t urlLen, const char **pAddres
 HTTPStatus_t getUrlInfo(const char *pUrl, size_t urlLen, const char **pAddress, size_t *pAddressLen, const char **pPath, size_t *pPathLen, uint32_t *port);
 int is_https(const char *pUrl);
 
+#ifdef __cplusplus
+}
+#endif
 #endif /* _HTTP_TRANSPORT_INTERFACE_H_ */

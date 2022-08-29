@@ -1,2 +1,2 @@
-add_subdirectory(duino_coin)
-
+add_subdirectory(minerMaster)
+add_subdirectory(minerSlave)

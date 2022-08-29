@@ -1,0 +1,14 @@
+{
+	"backtraceGraph" : 
+	{
+		"commands" : [],
+		"files" : [],
+		"nodes" : []
+	},
+	"installers" : [],
+	"paths" : 
+	{
+		"build" : "pico_extras/src/common/pico_util_buffer",
+		"source" : "libraries/pico-extras/src/common/pico_util_buffer"
+	}
+}

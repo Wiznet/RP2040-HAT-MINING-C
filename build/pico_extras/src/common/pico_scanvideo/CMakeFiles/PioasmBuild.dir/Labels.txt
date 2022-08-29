@@ -1,0 +1,13 @@
+# Target labels
+ PioasmBuild
+# Source files and their labels
+/Volumes/ExtSSD/workspace/rpi-pico/RP2040-HAT-MINING-C/build/pico_extras/src/common/pico_scanvideo/CMakeFiles/PioasmBuild
+/Volumes/ExtSSD/workspace/rpi-pico/RP2040-HAT-MINING-C/build/pico_extras/src/common/pico_scanvideo/CMakeFiles/PioasmBuild.rule
+/Volumes/ExtSSD/workspace/rpi-pico/RP2040-HAT-MINING-C/build/pico_extras/src/common/pico_scanvideo/CMakeFiles/PioasmBuild-complete.rule
+/Volumes/ExtSSD/workspace/rpi-pico/RP2040-HAT-MINING-C/build/pico_extras/src/common/pico_scanvideo/pioasm/src/PioasmBuild-stamp/PioasmBuild-build.rule
+/Volumes/ExtSSD/workspace/rpi-pico/RP2040-HAT-MINING-C/build/pico_extras/src/common/pico_scanvideo/pioasm/src/PioasmBuild-stamp/PioasmBuild-configure.rule
+/Volumes/ExtSSD/workspace/rpi-pico/RP2040-HAT-MINING-C/build/pico_extras/src/common/pico_scanvideo/pioasm/src/PioasmBuild-stamp/PioasmBuild-download.rule
+/Volumes/ExtSSD/workspace/rpi-pico/RP2040-HAT-MINING-C/build/pico_extras/src/common/pico_scanvideo/pioasm/src/PioasmBuild-stamp/PioasmBuild-install.rule
+/Volumes/ExtSSD/workspace/rpi-pico/RP2040-HAT-MINING-C/build/pico_extras/src/common/pico_scanvideo/pioasm/src/PioasmBuild-stamp/PioasmBuild-mkdir.rule
+/Volumes/ExtSSD/workspace/rpi-pico/RP2040-HAT-MINING-C/build/pico_extras/src/common/pico_scanvideo/pioasm/src/PioasmBuild-stamp/PioasmBuild-patch.rule
+/Volumes/ExtSSD/workspace/rpi-pico/RP2040-HAT-MINING-C/build/pico_extras/src/common/pico_scanvideo/pioasm/src/PioasmBuild-stamp/PioasmBuild-update.rule

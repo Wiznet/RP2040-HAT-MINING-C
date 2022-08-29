@@ -1,0 +1,14 @@
+{
+	"backtraceGraph" : 
+	{
+		"commands" : [],
+		"files" : [],
+		"nodes" : []
+	},
+	"installers" : [],
+	"paths" : 
+	{
+		"build" : "pico_extras/src/rp2_common/pico_audio_i2s",
+		"source" : "libraries/pico-extras/src/rp2_common/pico_audio_i2s"
+	}
+}

@@ -13,7 +13,9 @@
  * ----------------------------------------------------------------------------------------------------
  */
 #include <stdio.h>
-
+#ifdef __cplusplus
+extern "C" {
+#endif
 /**
  * ----------------------------------------------------------------------------------------------------
  * Macros
@@ -33,5 +35,7 @@
  */
 void repeating_timer_callback(void);
 time_t millis(void);
-
+#ifdef __cplusplus
+}
+#endif
 #endif /* _TIMER_INTERFACE_H_ */

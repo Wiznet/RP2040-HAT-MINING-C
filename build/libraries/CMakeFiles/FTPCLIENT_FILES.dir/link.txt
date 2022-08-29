@@ -1,0 +1,2 @@
+/Applications/ARM/bin/arm-none-eabi-ar qc libFTPCLIENT_FILES.a CMakeFiles/FTPCLIENT_FILES.dir/ioLibrary_Driver/Internet/FTPClient/ftpc.c.obj
+/Applications/ARM/bin/arm-none-eabi-ranlib libFTPCLIENT_FILES.a

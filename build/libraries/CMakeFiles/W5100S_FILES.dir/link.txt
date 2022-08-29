@@ -1,0 +1,2 @@
+/Applications/ARM/bin/arm-none-eabi-ar qc libW5100S_FILES.a CMakeFiles/W5100S_FILES.dir/ioLibrary_Driver/Ethernet/W5100S/w5100s.c.obj CMakeFiles/W5100S_FILES.dir/ioLibrary_Driver/Ethernet/socket.c.obj CMakeFiles/W5100S_FILES.dir/ioLibrary_Driver/Ethernet/wizchip_conf.c.obj
+/Applications/ARM/bin/arm-none-eabi-ranlib libW5100S_FILES.a

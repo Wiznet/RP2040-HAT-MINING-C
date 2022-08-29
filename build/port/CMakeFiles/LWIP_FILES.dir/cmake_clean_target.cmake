@@ -1,0 +1,3 @@
+file(REMOVE_RECURSE
+  "libLWIP_FILES.a"
+)

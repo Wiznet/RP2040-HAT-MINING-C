@@ -1,0 +1,2 @@
+/Applications/ARM/bin/arm-none-eabi-ar qc libFTPSERVER_FILES.a CMakeFiles/FTPSERVER_FILES.dir/ioLibrary_Driver/Internet/FTPServer/ftpd.c.obj
+/Applications/ARM/bin/arm-none-eabi-ranlib libFTPSERVER_FILES.a

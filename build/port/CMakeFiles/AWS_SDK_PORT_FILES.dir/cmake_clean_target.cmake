@@ -1,0 +1,3 @@
+file(REMOVE_RECURSE
+  "libAWS_SDK_PORT_FILES.a"
+)
