@@ -5831,6 +5831,9 @@ examples/minerSlave/CMakeFiles/minerSlave.dir/minerSlave.cpp.obj: /Volumes/ExtSS
   /Volumes/ExtSSD/workspace/rpi-pico/RP2040-HAT-MINING-C/libraries/pico-sdk/src/rp2_common/hardware_sync/include/hardware/sync.h \
   /Volumes/ExtSSD/workspace/rpi-pico/RP2040-HAT-MINING-C/libraries/pico-sdk/src/common/pico_sync/include/pico/mutex.h \
   /Volumes/ExtSSD/workspace/rpi-pico/RP2040-HAT-MINING-C/libraries/pico-sdk/src/common/pico_sync/include/pico/critical_section.h \
+  /Volumes/ExtSSD/workspace/rpi-pico/RP2040-HAT-MINING-C/libraries/pico-sdk/src/rp2_common/hardware_watchdog/include/hardware/watchdog.h \
+  /Volumes/ExtSSD/workspace/rpi-pico/RP2040-HAT-MINING-C/libraries/pico-sdk/src/rp2040/hardware_structs/include/hardware/structs/watchdog.h \
+  /Volumes/ExtSSD/workspace/rpi-pico/RP2040-HAT-MINING-C/libraries/pico-sdk/src/rp2040/hardware_regs/include/hardware/regs/watchdog.h \
   /Volumes/ExtSSD/workspace/rpi-pico/RP2040-HAT-MINING-C/port/utils/inc/Wire.h \
   /Volumes/ExtSSD/workspace/rpi-pico/RP2040-HAT-MINING-C/port/i2c_slave/inc/i2c_slave.h \
   /Volumes/ExtSSD/workspace/rpi-pico/RP2040-HAT-MINING-C/libraries/pico-sdk/src/rp2_common/hardware_i2c/include/hardware/i2c.h \

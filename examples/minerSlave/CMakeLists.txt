@@ -19,4 +19,4 @@ target_include_directories( ${TARGET_NAME} PUBLIC
 target_compile_options(${TARGET_NAME}  PRIVATE -Wall)
 
 target_link_libraries(${TARGET_NAME}  PRIVATE 
-UTILS_FILE TIMER_FILES pico_multicore hardware_i2c hardware_irq pico_stdlib mbedcrypto mbedx509 mbedtls)
+UTILS_FILE TIMER_FILES pico_multicore hardware_watchdog hardware_i2c hardware_irq pico_stdlib mbedcrypto mbedx509 mbedtls)

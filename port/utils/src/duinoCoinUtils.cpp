@@ -15,8 +15,9 @@
 #include "duinoCoinUtils.h"
 #include "hwSetupUtils.h"
 
+static uint32_t hashDelayUs = 50;
 
-#define HASH_DELAY() sleep_us(100)
+#define HASH_DELAY() sleep_us(hashDelayUs)
 #define LED_TOGGLE_SPEED 1000
 
 typedef enum _DucoState{
@@ -27,6 +28,10 @@ typedef enum _DucoState{
 
 static mbedtls_sha1_context core0_sha1_ctx, core0_sha1_ctx_base;
 static mbedtls_sha1_context core1_sha1_ctx, core1_sha1_ctx_base;
+
+void setHashDelay(uint32_t us){
+    hashDelayUs = us;
+}
 
 uint32_t calculateHashCore0(uint8_t * last_block_hash_str, uint8_t * expected_hash_str, uint32_t difficulty){
 

@@ -1,0 +1,78 @@
+{
+	"backtrace" : 1,
+	"backtraceGraph" : 
+	{
+		"commands" : 
+		[
+			"add_custom_target"
+		],
+		"files" : 
+		[
+			"libraries/mbedtls/library/CMakeLists.txt"
+		],
+		"nodes" : 
+		[
+			{
+				"file" : 0
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 228,
+				"parent" : 0
+			}
+		]
+	},
+	"dependencies" : 
+	[
+		{
+			"id" : "mbedcrypto::@5057db8c34de054eb6c6"
+		},
+		{
+			"id" : "mbedx509::@5057db8c34de054eb6c6"
+		},
+		{
+			"id" : "mbedtls::@5057db8c34de054eb6c6"
+		}
+	],
+	"id" : "lib::@5057db8c34de054eb6c6",
+	"name" : "lib",
+	"paths" : 
+	{
+		"build" : "libraries/mbedtls/library",
+		"source" : "libraries/mbedtls/library"
+	},
+	"sourceGroups" : 
+	[
+		{
+			"name" : "",
+			"sourceIndexes" : 
+			[
+				0
+			]
+		},
+		{
+			"name" : "CMake Rules",
+			"sourceIndexes" : 
+			[
+				1
+			]
+		}
+	],
+	"sources" : 
+	[
+		{
+			"backtrace" : 1,
+			"isGenerated" : true,
+			"path" : "build/libraries/mbedtls/library/CMakeFiles/lib",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 0,
+			"isGenerated" : true,
+			"path" : "build/libraries/mbedtls/library/CMakeFiles/lib.rule",
+			"sourceGroupIndex" : 1
+		}
+	],
+	"type" : "UTILITY"
+}

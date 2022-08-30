@@ -5,6 +5,7 @@
 #include "pico/stdlib.h"
 #include "pico/binary_info.h"
 #include "pico/multicore.h"
+#include "hardware/watchdog.h"
 
 #include "Wire.h"
 #include "charbuffer.h"
@@ -12,6 +13,7 @@
 #include "duinoCoinUtils.h"
 
 CharBuffer receiveBuffer0, receiveBuffer1, requestBuffer;
+CharBuffer configBuffer;
 
 typedef enum _HashCalStatus {
     HASH_IDLE = '0',
@@ -24,6 +26,12 @@ static HashCalStatus HashCalStatusCore1 = HASH_IDLE;
 
 uint8_t TempBufferCore0[256];
 uint8_t TempBufferCore1[256];
+
+void software_reset()
+{
+    watchdog_enable(1, 1);
+    while(1);
+}
 
 void slaveLoopCore1() {
     while(1){
@@ -93,9 +101,10 @@ static void slave_on_receive(int count) {
     
     uint8_t command;
     uint8_t coreNumber;
+    uint8_t hashDelayUs[8];
     hard_assert(Wire1.available());
     command = (uint8_t)Wire1.read();//first byte is command.
-    // printf("command:%02x\n",command);
+    printf("command:%02x\n",command);
     switch (command){
     case 0x00: //read if it's available?
         /* code */
@@ -110,7 +119,7 @@ static void slave_on_receive(int count) {
     
     case 0x01: //job allocation
         coreNumber = Wire1.read();
-        // printf("coreNumber:%c",coreNumber);
+        printf("coreNumber:%c",coreNumber);
         if(coreNumber == '0'){
             while (Wire1.available()){
                 receiveBuffer0.write((uint8_t)Wire1.read());
@@ -148,12 +157,17 @@ static void slave_on_receive(int count) {
         else {}//do nothing!}
         break;
 
-        case 0x03: // Read Done
-        while (Wire1.available()) { //clear i2c receive buffer
-            Wire1.read();
+    case 0x03: //Read result
+        software_reset();
+
+    case 0x10: //Hash Delay
+        while (Wire1.available()){
+            configBuffer.write((uint8_t)Wire1.read());
         }
-        //do nothing yet...
-        //todo
+        // printf("HASH DELAY:%s\n",configBuffer.buf());
+        configBuffer.readStringUntil('\n',(char*)hashDelayUs);
+        // printf("%s",hashDelayUs);
+        setHashDelay(atoi((char*)hashDelayUs));
         break;
 
     default:
@@ -190,8 +204,9 @@ static void slaveLoop() {
             difficulty = atoi((char *)tempDifficulty);
             // jobNumber = atoi((char *)jobnumber);
 
-            if(difficulty == 0 || strlen((char *)lastblockhash) == 0 || strlen((char *)newblockhash) == 0){
+            if(difficulty == 0  || strlen((char *)lastblockhash) == 0 || strlen((char *)newblockhash) == 0){
                 printf("From Core0: Something wrong with the data from the master.\n");
+                onBoardLedOff();
                 HashCalStatusCore0 = HASH_IDLE;
                 return;
             }
@@ -209,12 +224,15 @@ static void slaveLoop() {
             //hash rate needs to be calculated.
             //Update Buffer
             //만들자,
-            sprintf((char *)TempBufferCore0,"%d,%d\n", result, elapsed_time);
-            // sprintf((char *)TempBufferCore0,"%s,%s,%s\n", jobnumber, result, elapsed_time);
-            // uint32_t result = 0;
-            printf("Form Core0: The hash result is %s\n",TempBufferCore0);
-            HashCalStatusCore0 = HASH_DONE;
-            onBoardLedOn();
+            if(result >= difficulty){
+                onBoardLedOff();
+                HashCalStatusCore0 = HASH_IDLE;
+            } else {
+                sprintf((char *)TempBufferCore0,"%d,%d\n", result, elapsed_time);
+                printf("Form Core0: The hash result is %s\n",TempBufferCore0);
+                HashCalStatusCore0 = HASH_DONE;
+                onBoardLedOn();
+            }
         }
 }
 

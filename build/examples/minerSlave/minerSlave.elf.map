@@ -130,7 +130,7 @@ Discarded input sections
  .data          0x0000000000000000        0x0 CMakeFiles/minerSlave.dir/minerSlave.cpp.obj
  .bss           0x0000000000000000        0x0 CMakeFiles/minerSlave.dir/minerSlave.cpp.obj
  .text.exit._GLOBAL__sub_D_receiveBuffer0
-                0x0000000000000000       0x24 CMakeFiles/minerSlave.dir/minerSlave.cpp.obj
+                0x0000000000000000       0x2c CMakeFiles/minerSlave.dir/minerSlave.cpp.obj
  .fini_array    0x0000000000000000        0x4 CMakeFiles/minerSlave.dir/minerSlave.cpp.obj
  .text          0x0000000000000000        0x0 CMakeFiles/minerSlave.dir/__/__/port/utils/src/charbuffer.cpp.obj
  .data          0x0000000000000000        0x0 CMakeFiles/minerSlave.dir/__/__/port/utils/src/charbuffer.cpp.obj
@@ -526,16 +526,12 @@ Discarded input sections
                 0x0000000000000000       0x10 CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/hardware_watchdog/watchdog.c.obj
  .text._watchdog_enable
                 0x0000000000000000       0x78 CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/hardware_watchdog/watchdog.c.obj
- .text.watchdog_enable
-                0x0000000000000000       0x84 CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/hardware_watchdog/watchdog.c.obj
  .text.watchdog_reboot
                 0x0000000000000000       0x98 CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/hardware_watchdog/watchdog.c.obj
  .text.watchdog_caused_reboot
                 0x0000000000000000       0x10 CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/hardware_watchdog/watchdog.c.obj
  .text.watchdog_enable_caused_reboot
                 0x0000000000000000       0x24 CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/hardware_watchdog/watchdog.c.obj
- .bss.load_value
-                0x0000000000000000        0x4 CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/hardware_watchdog/watchdog.c.obj
  .text          0x0000000000000000        0x0 CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/hardware_xosc/xosc.c.obj
  .data          0x0000000000000000        0x0 CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/hardware_xosc/xosc.c.obj
  .bss           0x0000000000000000        0x0 CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/hardware_xosc/xosc.c.obj
@@ -3250,9 +3246,9 @@ Discarded input sections
  .comment       0x0000000000000000       0x4a ../../libraries/mbedtls/library/libmbedcrypto.a(gcm.c.obj)
  .ARM.attributes
                 0x0000000000000000       0x2c ../../libraries/mbedtls/library/libmbedcrypto.a(gcm.c.obj)
- .text          0x0000000000000000        0x0 /var/folders/7z/r4r2qbgd4bb_p1x_wcg8qx4c0000gn/T//ccRx97b1.o
- .data          0x0000000000000000        0x0 /var/folders/7z/r4r2qbgd4bb_p1x_wcg8qx4c0000gn/T//ccRx97b1.o
- .bss           0x0000000000000000        0x0 /var/folders/7z/r4r2qbgd4bb_p1x_wcg8qx4c0000gn/T//ccRx97b1.o
+ .text          0x0000000000000000        0x0 /var/folders/7z/r4r2qbgd4bb_p1x_wcg8qx4c0000gn/T//ccjOXbiG.o
+ .data          0x0000000000000000        0x0 /var/folders/7z/r4r2qbgd4bb_p1x_wcg8qx4c0000gn/T//ccjOXbiG.o
+ .bss           0x0000000000000000        0x0 /var/folders/7z/r4r2qbgd4bb_p1x_wcg8qx4c0000gn/T//ccjOXbiG.o
  .data          0x0000000000000000        0x0 /Applications/ARM/bin/../lib/gcc/arm-none-eabi/10.3.1/thumb/v6-m/nofp/libgcc.a(_dvmd_tls.o)
  .bss           0x0000000000000000        0x0 /Applications/ARM/bin/../lib/gcc/arm-none-eabi/10.3.1/thumb/v6-m/nofp/libgcc.a(_dvmd_tls.o)
  .text          0x0000000000000000        0x0 /Applications/ARM/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp/libc.a(lib_a-atoi.o)
@@ -3513,11 +3509,11 @@ LOAD /Applications/ARM/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-
 .boot2          0x0000000010000000      0x100
                 0x0000000010000000                __boot2_start__ = .
  *(.boot2)
- .boot2         0x0000000010000000      0x100 /var/folders/7z/r4r2qbgd4bb_p1x_wcg8qx4c0000gn/T//ccRx97b1.o
+ .boot2         0x0000000010000000      0x100 /var/folders/7z/r4r2qbgd4bb_p1x_wcg8qx4c0000gn/T//ccjOXbiG.o
                 0x0000000010000100                __boot2_end__ = .
                 0x0000000000000001                ASSERT (((__boot2_end__ - __boot2_start__) == 0x100), ERROR: Pico second stage bootloader must be 256 bytes in size)
 
-.text           0x0000000010000100     0x6a48
+.text           0x0000000010000100     0x6ba0
                 0x0000000010000100                __logical_binary_start = .
  *(.vectors)
  .vectors       0x0000000010000100       0xd4 CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/pico_standard_link/crt0.S.obj
@@ -3584,479 +3580,487 @@ LOAD /Applications/ARM/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-
                 0x000000001000030c                slaveLoopCore1()
  .text._ZL16slave_on_requestv
                 0x000000001000044c       0x1c CMakeFiles/minerSlave.dir/minerSlave.cpp.obj
+ .text._Z14software_resetv
+                0x0000000010000468        0xc CMakeFiles/minerSlave.dir/minerSlave.cpp.obj
+                0x0000000010000468                software_reset()
  .text._ZL16slave_on_receivei
-                0x0000000010000468      0x1c0 CMakeFiles/minerSlave.dir/minerSlave.cpp.obj
+                0x0000000010000474      0x244 CMakeFiles/minerSlave.dir/minerSlave.cpp.obj
  .text.startup.main
-                0x0000000010000628      0x194 CMakeFiles/minerSlave.dir/minerSlave.cpp.obj
-                0x0000000010000628                main
+                0x00000000100006b8      0x1a8 CMakeFiles/minerSlave.dir/minerSlave.cpp.obj
+                0x00000000100006b8                main
  .text.startup._GLOBAL__sub_I_receiveBuffer0
-                0x00000000100007bc       0x24 CMakeFiles/minerSlave.dir/minerSlave.cpp.obj
+                0x0000000010000860       0x2c CMakeFiles/minerSlave.dir/minerSlave.cpp.obj
  .text._ZN10CharBufferC2Ev
-                0x00000000100007e0        0xc CMakeFiles/minerSlave.dir/__/__/port/utils/src/charbuffer.cpp.obj
-                0x00000000100007e0                CharBuffer::CharBuffer()
-                0x00000000100007e0                CharBuffer::CharBuffer()
+                0x000000001000088c        0xc CMakeFiles/minerSlave.dir/__/__/port/utils/src/charbuffer.cpp.obj
+                0x000000001000088c                CharBuffer::CharBuffer()
+                0x000000001000088c                CharBuffer::CharBuffer()
  .text._ZN10CharBuffer3bufEv
-                0x00000000100007ec        0x4 CMakeFiles/minerSlave.dir/__/__/port/utils/src/charbuffer.cpp.obj
-                0x00000000100007ec                CharBuffer::buf()
+                0x0000000010000898        0x4 CMakeFiles/minerSlave.dir/__/__/port/utils/src/charbuffer.cpp.obj
+                0x0000000010000898                CharBuffer::buf()
  .text._ZN10CharBuffer7isEmptyEv
-                0x00000000100007f0       0x10 CMakeFiles/minerSlave.dir/__/__/port/utils/src/charbuffer.cpp.obj
-                0x00000000100007f0                CharBuffer::isEmpty()
+                0x000000001000089c       0x10 CMakeFiles/minerSlave.dir/__/__/port/utils/src/charbuffer.cpp.obj
+                0x000000001000089c                CharBuffer::isEmpty()
  .text._ZN10CharBuffer6lengthEv
-                0x0000000010000800        0x8 CMakeFiles/minerSlave.dir/__/__/port/utils/src/charbuffer.cpp.obj
-                0x0000000010000800                CharBuffer::length()
+                0x00000000100008ac        0x8 CMakeFiles/minerSlave.dir/__/__/port/utils/src/charbuffer.cpp.obj
+                0x00000000100008ac                CharBuffer::length()
  .text._ZN10CharBuffer5writeEc
-                0x0000000010000808       0x2c CMakeFiles/minerSlave.dir/__/__/port/utils/src/charbuffer.cpp.obj
-                0x0000000010000808                CharBuffer::write(char)
+                0x00000000100008b4       0x2c CMakeFiles/minerSlave.dir/__/__/port/utils/src/charbuffer.cpp.obj
+                0x00000000100008b4                CharBuffer::write(char)
  .text._ZN10CharBuffer4readEv
-                0x0000000010000834       0x28 CMakeFiles/minerSlave.dir/__/__/port/utils/src/charbuffer.cpp.obj
-                0x0000000010000834                CharBuffer::read()
+                0x00000000100008e0       0x28 CMakeFiles/minerSlave.dir/__/__/port/utils/src/charbuffer.cpp.obj
+                0x00000000100008e0                CharBuffer::read()
  .text._ZN10CharBuffer7indexOfEi
-                0x000000001000085c       0x18 CMakeFiles/minerSlave.dir/__/__/port/utils/src/charbuffer.cpp.obj
-                0x000000001000085c                CharBuffer::indexOf(int)
+                0x0000000010000908       0x18 CMakeFiles/minerSlave.dir/__/__/port/utils/src/charbuffer.cpp.obj
+                0x0000000010000908                CharBuffer::indexOf(int)
  .text._ZN10CharBuffer15readStringUntilEiPc
-                0x0000000010000874       0x54 CMakeFiles/minerSlave.dir/__/__/port/utils/src/charbuffer.cpp.obj
-                0x0000000010000874                CharBuffer::readStringUntil(int, char*)
+                0x0000000010000920       0x54 CMakeFiles/minerSlave.dir/__/__/port/utils/src/charbuffer.cpp.obj
+                0x0000000010000920                CharBuffer::readStringUntil(int, char*)
  .text._ZN10CharBuffer9setBufferEPci
-                0x00000000100008c8       0x20 CMakeFiles/minerSlave.dir/__/__/port/utils/src/charbuffer.cpp.obj
-                0x00000000100008c8                CharBuffer::setBuffer(char*, int)
+                0x0000000010000974       0x20 CMakeFiles/minerSlave.dir/__/__/port/utils/src/charbuffer.cpp.obj
+                0x0000000010000974                CharBuffer::setBuffer(char*, int)
  .text._ZN10CharBuffer5clearEv
-                0x00000000100008e8       0x14 CMakeFiles/minerSlave.dir/__/__/port/utils/src/charbuffer.cpp.obj
-                0x00000000100008e8                CharBuffer::clear()
+                0x0000000010000994       0x14 CMakeFiles/minerSlave.dir/__/__/port/utils/src/charbuffer.cpp.obj
+                0x0000000010000994                CharBuffer::clear()
  .text.str_to_array.isra.0
-                0x00000000100008fc       0x74 CMakeFiles/minerSlave.dir/__/__/port/utils/src/duinoCoinUtils.cpp.obj
+                0x00000000100009a8       0x74 CMakeFiles/minerSlave.dir/__/__/port/utils/src/duinoCoinUtils.cpp.obj
+ .text.setHashDelay
+                0x0000000010000a1c        0xc CMakeFiles/minerSlave.dir/__/__/port/utils/src/duinoCoinUtils.cpp.obj
+                0x0000000010000a1c                setHashDelay
  .text.calculateHashCore0
-                0x0000000010000970      0x1ac CMakeFiles/minerSlave.dir/__/__/port/utils/src/duinoCoinUtils.cpp.obj
-                0x0000000010000970                calculateHashCore0
+                0x0000000010000a28      0x1bc CMakeFiles/minerSlave.dir/__/__/port/utils/src/duinoCoinUtils.cpp.obj
+                0x0000000010000a28                calculateHashCore0
  .text.calculateHashCore1
-                0x0000000010000b1c      0x1ac CMakeFiles/minerSlave.dir/__/__/port/utils/src/duinoCoinUtils.cpp.obj
-                0x0000000010000b1c                calculateHashCore1
+                0x0000000010000be4      0x1bc CMakeFiles/minerSlave.dir/__/__/port/utils/src/duinoCoinUtils.cpp.obj
+                0x0000000010000be4                calculateHashCore1
  .text.hardwareInit
-                0x0000000010000cc8       0x90 CMakeFiles/minerSlave.dir/__/__/port/utils/src/hwSetupUtils.c.obj
-                0x0000000010000cc8                hardwareInit
+                0x0000000010000da0       0x90 CMakeFiles/minerSlave.dir/__/__/port/utils/src/hwSetupUtils.c.obj
+                0x0000000010000da0                hardwareInit
  .text.getAddress
-                0x0000000010000d58       0x38 CMakeFiles/minerSlave.dir/__/__/port/utils/src/hwSetupUtils.c.obj
-                0x0000000010000d58                getAddress
+                0x0000000010000e30       0x38 CMakeFiles/minerSlave.dir/__/__/port/utils/src/hwSetupUtils.c.obj
+                0x0000000010000e30                getAddress
  .text.onBoardLedToggle
-                0x0000000010000d90       0x1c CMakeFiles/minerSlave.dir/__/__/port/utils/src/hwSetupUtils.c.obj
-                0x0000000010000d90                onBoardLedToggle
+                0x0000000010000e68       0x1c CMakeFiles/minerSlave.dir/__/__/port/utils/src/hwSetupUtils.c.obj
+                0x0000000010000e68                onBoardLedToggle
  .text.onBoardLedOff
-                0x0000000010000dac        0xc CMakeFiles/minerSlave.dir/__/__/port/utils/src/hwSetupUtils.c.obj
-                0x0000000010000dac                onBoardLedOff
+                0x0000000010000e84        0xc CMakeFiles/minerSlave.dir/__/__/port/utils/src/hwSetupUtils.c.obj
+                0x0000000010000e84                onBoardLedOff
  .text.onBoardLedOn
-                0x0000000010000db8        0xc CMakeFiles/minerSlave.dir/__/__/port/utils/src/hwSetupUtils.c.obj
-                0x0000000010000db8                onBoardLedOn
+                0x0000000010000e90        0xc CMakeFiles/minerSlave.dir/__/__/port/utils/src/hwSetupUtils.c.obj
+                0x0000000010000e90                onBoardLedOn
  .text.outsideLedToggle
-                0x0000000010000dc4       0x1c CMakeFiles/minerSlave.dir/__/__/port/utils/src/hwSetupUtils.c.obj
-                0x0000000010000dc4                outsideLedToggle
+                0x0000000010000e9c       0x1c CMakeFiles/minerSlave.dir/__/__/port/utils/src/hwSetupUtils.c.obj
+                0x0000000010000e9c                outsideLedToggle
  .text.outsideLedOn
-                0x0000000010000de0        0xc CMakeFiles/minerSlave.dir/__/__/port/utils/src/hwSetupUtils.c.obj
-                0x0000000010000de0                outsideLedOn
+                0x0000000010000eb8        0xc CMakeFiles/minerSlave.dir/__/__/port/utils/src/hwSetupUtils.c.obj
+                0x0000000010000eb8                outsideLedOn
  .text.outsideLedOff
-                0x0000000010000dec        0xc CMakeFiles/minerSlave.dir/__/__/port/utils/src/hwSetupUtils.c.obj
-                0x0000000010000dec                outsideLedOff
+                0x0000000010000ec4        0xc CMakeFiles/minerSlave.dir/__/__/port/utils/src/hwSetupUtils.c.obj
+                0x0000000010000ec4                outsideLedOff
  .text._ZN7TwoWire5beginEh
-                0x0000000010000df8       0x4c CMakeFiles/minerSlave.dir/__/__/port/utils/src/Wire.cpp.obj
-                0x0000000010000df8                TwoWire::begin(unsigned char)
+                0x0000000010000ed0       0x4c CMakeFiles/minerSlave.dir/__/__/port/utils/src/Wire.cpp.obj
+                0x0000000010000ed0                TwoWire::begin(unsigned char)
  .text._ZN7TwoWire5writeEh
-                0x0000000010000e44       0x40 CMakeFiles/minerSlave.dir/__/__/port/utils/src/Wire.cpp.obj
-                0x0000000010000e44                TwoWire::write(unsigned char)
+                0x0000000010000f1c       0x40 CMakeFiles/minerSlave.dir/__/__/port/utils/src/Wire.cpp.obj
+                0x0000000010000f1c                TwoWire::write(unsigned char)
  .text._ZN7TwoWire9onReceiveEPFviE
-                0x0000000010000e84        0x4 CMakeFiles/minerSlave.dir/__/__/port/utils/src/Wire.cpp.obj
-                0x0000000010000e84                TwoWire::onReceive(void (*)(int))
+                0x0000000010000f5c        0x4 CMakeFiles/minerSlave.dir/__/__/port/utils/src/Wire.cpp.obj
+                0x0000000010000f5c                TwoWire::onReceive(void (*)(int))
  .text._ZN7TwoWire9onRequestEPFvvE
-                0x0000000010000e88        0x4 CMakeFiles/minerSlave.dir/__/__/port/utils/src/Wire.cpp.obj
-                0x0000000010000e88                TwoWire::onRequest(void (*)())
+                0x0000000010000f60        0x4 CMakeFiles/minerSlave.dir/__/__/port/utils/src/Wire.cpp.obj
+                0x0000000010000f60                TwoWire::onRequest(void (*)())
  .text.startup._GLOBAL__sub_I_Wire
-                0x0000000010000e8c       0x2c CMakeFiles/minerSlave.dir/__/__/port/utils/src/Wire.cpp.obj
+                0x0000000010000f64       0x2c CMakeFiles/minerSlave.dir/__/__/port/utils/src/Wire.cpp.obj
  .text.i2c_slave_init
-                0x0000000010000eb8       0x5c CMakeFiles/minerSlave.dir/__/__/port/i2c_slave/i2c_slave.c.obj
-                0x0000000010000eb8                i2c_slave_init
+                0x0000000010000f90       0x5c CMakeFiles/minerSlave.dir/__/__/port/i2c_slave/i2c_slave.c.obj
+                0x0000000010000f90                i2c_slave_init
  .text.i2c_slave_deinit
-                0x0000000010000f14       0x60 CMakeFiles/minerSlave.dir/__/__/port/i2c_slave/i2c_slave.c.obj
-                0x0000000010000f14                i2c_slave_deinit
+                0x0000000010000fec       0x60 CMakeFiles/minerSlave.dir/__/__/port/i2c_slave/i2c_slave.c.obj
+                0x0000000010000fec                i2c_slave_deinit
  .text.startup._retrieve_unique_id_on_boot
-                0x0000000010000f74       0x10 CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/pico_unique_id/unique_id.c.obj
+                0x000000001000104c       0x10 CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/pico_unique_id/unique_id.c.obj
  .text.flash_get_unique_id
-                0x0000000010000f84       0x40 CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/hardware_flash/flash.c.obj
-                0x0000000010000f84                flash_get_unique_id
+                0x000000001000105c       0x40 CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/hardware_flash/flash.c.obj
+                0x000000001000105c                flash_get_unique_id
  .text.hw_claim_or_assert
-                0x0000000010000fc4       0x44 CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/hardware_claim/claim.c.obj
-                0x0000000010000fc4                hw_claim_or_assert
+                0x000000001000109c       0x44 CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/hardware_claim/claim.c.obj
+                0x000000001000109c                hw_claim_or_assert
  .text.running_on_fpga
-                0x0000000010001008       0x10 CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/pico_platform/platform.c.obj
-                0x0000000010001008                running_on_fpga
+                0x00000000100010e0       0x10 CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/pico_platform/platform.c.obj
+                0x00000000100010e0                running_on_fpga
  .text.spin_locks_reset
-                0x0000000010001018       0x1c CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/hardware_sync/sync.c.obj
-                0x0000000010001018                spin_locks_reset
+                0x00000000100010f0       0x1c CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/hardware_sync/sync.c.obj
+                0x00000000100010f0                spin_locks_reset
  .text.next_striped_spin_lock_num
-                0x0000000010001034       0x18 CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/hardware_sync/sync.c.obj
-                0x0000000010001034                next_striped_spin_lock_num
+                0x000000001000110c       0x18 CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/hardware_sync/sync.c.obj
+                0x000000001000110c                next_striped_spin_lock_num
  .text.rom_func_lookup
-                0x000000001000104c       0x10 CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/pico_bootrom/bootrom.c.obj
-                0x000000001000104c                rom_func_lookup
+                0x0000000010001124       0x10 CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/pico_bootrom/bootrom.c.obj
+                0x0000000010001124                rom_func_lookup
  .text.rom_data_lookup
-                0x000000001000105c       0x10 CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/pico_bootrom/bootrom.c.obj
-                0x000000001000105c                rom_data_lookup
+                0x0000000010001134       0x10 CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/pico_bootrom/bootrom.c.obj
+                0x0000000010001134                rom_data_lookup
  .text.rom_funcs_lookup
-                0x000000001000106c       0x44 CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/pico_bootrom/bootrom.c.obj
-                0x000000001000106c                rom_funcs_lookup
+                0x0000000010001144       0x44 CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/pico_bootrom/bootrom.c.obj
+                0x0000000010001144                rom_funcs_lookup
  .text.i2c_set_baudrate
-                0x00000000100010b0       0xc4 CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/hardware_i2c/i2c.c.obj
-                0x00000000100010b0                i2c_set_baudrate
+                0x0000000010001188       0xc4 CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/hardware_i2c/i2c.c.obj
+                0x0000000010001188                i2c_set_baudrate
  .text.i2c_init
-                0x0000000010001174       0x54 CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/hardware_i2c/i2c.c.obj
-                0x0000000010001174                i2c_init
+                0x000000001000124c       0x54 CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/hardware_i2c/i2c.c.obj
+                0x000000001000124c                i2c_init
  .text.i2c_set_slave_mode
-                0x00000000100011c8       0x40 CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/hardware_i2c/i2c.c.obj
-                0x00000000100011c8                i2c_set_slave_mode
+                0x00000000100012a0       0x40 CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/hardware_i2c/i2c.c.obj
+                0x00000000100012a0                i2c_set_slave_mode
  .text.irq_set_enabled
-                0x0000000010001208       0x24 CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/hardware_irq/irq.c.obj
-                0x0000000010001208                irq_set_enabled
+                0x00000000100012e0       0x24 CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/hardware_irq/irq.c.obj
+                0x00000000100012e0                irq_set_enabled
  .text.irq_is_enabled
-                0x000000001000122c       0x18 CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/hardware_irq/irq.c.obj
-                0x000000001000122c                irq_is_enabled
+                0x0000000010001304       0x18 CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/hardware_irq/irq.c.obj
+                0x0000000010001304                irq_is_enabled
  .text.irq_get_vtable_handler
-                0x0000000010001244       0x10 CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/hardware_irq/irq.c.obj
-                0x0000000010001244                irq_get_vtable_handler
+                0x000000001000131c       0x10 CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/hardware_irq/irq.c.obj
+                0x000000001000131c                irq_get_vtable_handler
  .text.irq_set_exclusive_handler
-                0x0000000010001254       0x54 CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/hardware_irq/irq.c.obj
-                0x0000000010001254                irq_set_exclusive_handler
+                0x000000001000132c       0x54 CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/hardware_irq/irq.c.obj
+                0x000000001000132c                irq_set_exclusive_handler
  .text.irq_remove_handler
-                0x00000000100012a8      0x1b4 CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/hardware_irq/irq.c.obj
-                0x00000000100012a8                irq_remove_handler
+                0x0000000010001380      0x1b4 CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/hardware_irq/irq.c.obj
+                0x0000000010001380                irq_remove_handler
  .text.irq_add_tail_to_free_list
-                0x000000001000145c       0xb4 CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/hardware_irq/irq.c.obj
-                0x000000001000145c                irq_add_tail_to_free_list
+                0x0000000010001534       0xb4 CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/hardware_irq/irq.c.obj
+                0x0000000010001534                irq_add_tail_to_free_list
  .text.irq_init_priorities
-                0x0000000010001510       0x24 CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/hardware_irq/irq.c.obj
-                0x0000000010001510                irq_init_priorities
+                0x00000000100015e8       0x24 CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/hardware_irq/irq.c.obj
+                0x00000000100015e8                irq_init_priorities
  .text.lock_init
-                0x0000000010001534       0x10 CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/common/pico_sync/lock_core.c.obj
-                0x0000000010001534                lock_init
+                0x000000001000160c       0x10 CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/common/pico_sync/lock_core.c.obj
+                0x000000001000160c                lock_init
  .text.timer_pool_entry_comparator
-                0x0000000010001544       0x34 CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/common/pico_time/time.c.obj
-                0x0000000010001544                timer_pool_entry_comparator
+                0x000000001000161c       0x34 CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/common/pico_time/time.c.obj
+                0x000000001000161c                timer_pool_entry_comparator
  .text.sleep_until_callback
-                0x0000000010001578       0x30 CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/common/pico_time/time.c.obj
+                0x0000000010001650       0x30 CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/common/pico_time/time.c.obj
  .text.add_alarm_under_lock.isra.0
-                0x00000000100015a8      0x100 CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/common/pico_time/time.c.obj
+                0x0000000010001680      0x100 CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/common/pico_time/time.c.obj
  .text.alarm_pool_alarm_callback
-                0x00000000100016a8      0x1c8 CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/common/pico_time/time.c.obj
+                0x0000000010001780      0x1c8 CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/common/pico_time/time.c.obj
  .text.alarm_pool_add_alarm_at.constprop.0
-                0x0000000010001870      0x11c CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/common/pico_time/time.c.obj
+                0x0000000010001948      0x11c CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/common/pico_time/time.c.obj
  .text.alarm_pool_init_default
-                0x000000001000198c       0x64 CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/common/pico_time/time.c.obj
-                0x000000001000198c                alarm_pool_init_default
+                0x0000000010001a64       0x64 CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/common/pico_time/time.c.obj
+                0x0000000010001a64                alarm_pool_init_default
  .text.sleep_until
-                0x00000000100019f0       0xac CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/common/pico_time/time.c.obj
-                0x00000000100019f0                sleep_until
+                0x0000000010001ac8       0xac CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/common/pico_time/time.c.obj
+                0x0000000010001ac8                sleep_until
  .text.sleep_us
-                0x0000000010001a9c       0x30 CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/common/pico_time/time.c.obj
-                0x0000000010001a9c                sleep_us
+                0x0000000010001b74       0x30 CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/common/pico_time/time.c.obj
+                0x0000000010001b74                sleep_us
  .text.sleep_ms
-                0x0000000010001acc       0x38 CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/common/pico_time/time.c.obj
-                0x0000000010001acc                sleep_ms
+                0x0000000010001ba4       0x38 CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/common/pico_time/time.c.obj
+                0x0000000010001ba4                sleep_ms
  .text.hardware_alarm_irq_handler
-                0x0000000010001b04       0xb8 CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/hardware_timer/timer.c.obj
+                0x0000000010001bdc       0xb8 CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/hardware_timer/timer.c.obj
  .text.hardware_alarm_claim
-                0x0000000010001bbc       0x18 CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/hardware_timer/timer.c.obj
-                0x0000000010001bbc                hardware_alarm_claim
+                0x0000000010001c94       0x18 CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/hardware_timer/timer.c.obj
+                0x0000000010001c94                hardware_alarm_claim
  .text.time_us_64
-                0x0000000010001bd4       0x14 CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/hardware_timer/timer.c.obj
-                0x0000000010001bd4                time_us_64
+                0x0000000010001cac       0x14 CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/hardware_timer/timer.c.obj
+                0x0000000010001cac                time_us_64
  .text.busy_wait_until
-                0x0000000010001be8       0x20 CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/hardware_timer/timer.c.obj
-                0x0000000010001be8                busy_wait_until
+                0x0000000010001cc0       0x20 CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/hardware_timer/timer.c.obj
+                0x0000000010001cc0                busy_wait_until
  .text.hardware_alarm_set_callback
-                0x0000000010001c08       0x8c CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/hardware_timer/timer.c.obj
-                0x0000000010001c08                hardware_alarm_set_callback
+                0x0000000010001ce0       0x8c CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/hardware_timer/timer.c.obj
+                0x0000000010001ce0                hardware_alarm_set_callback
  .text.hardware_alarm_set_target
-                0x0000000010001c94       0xe0 CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/hardware_timer/timer.c.obj
-                0x0000000010001c94                hardware_alarm_set_target
+                0x0000000010001d6c       0xe0 CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/hardware_timer/timer.c.obj
+                0x0000000010001d6c                hardware_alarm_set_target
  .text.hardware_alarm_cancel
-                0x0000000010001d74       0x3c CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/hardware_timer/timer.c.obj
-                0x0000000010001d74                hardware_alarm_cancel
+                0x0000000010001e4c       0x3c CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/hardware_timer/timer.c.obj
+                0x0000000010001e4c                hardware_alarm_cancel
  .text.ph_merge_nodes
-                0x0000000010001db0       0x68 CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/common/pico_util/pheap.c.obj
+                0x0000000010001e88       0x68 CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/common/pico_util/pheap.c.obj
  .text.ph_post_alloc_init
-                0x0000000010001e18       0x3c CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/common/pico_util/pheap.c.obj
-                0x0000000010001e18                ph_post_alloc_init
+                0x0000000010001ef0       0x3c CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/common/pico_util/pheap.c.obj
+                0x0000000010001ef0                ph_post_alloc_init
  .text.ph_merge_two_pass
-                0x0000000010001e54       0x90 CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/common/pico_util/pheap.c.obj
-                0x0000000010001e54                ph_merge_two_pass
+                0x0000000010001f2c       0x90 CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/common/pico_util/pheap.c.obj
+                0x0000000010001f2c                ph_merge_two_pass
  .text.ph_remove_any_head
-                0x0000000010001ee4       0xf8 CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/common/pico_util/pheap.c.obj
+                0x0000000010001fbc       0xf8 CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/common/pico_util/pheap.c.obj
  .text.ph_remove_head
-                0x0000000010001fdc       0xfc CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/common/pico_util/pheap.c.obj
-                0x0000000010001fdc                ph_remove_head
+                0x00000000100020b4       0xfc CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/common/pico_util/pheap.c.obj
+                0x00000000100020b4                ph_remove_head
  .text.ph_remove_and_free_node
-                0x00000000100020d8       0x7c CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/common/pico_util/pheap.c.obj
-                0x00000000100020d8                ph_remove_and_free_node
+                0x00000000100021b0       0x7c CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/common/pico_util/pheap.c.obj
+                0x00000000100021b0                ph_remove_and_free_node
  .text.mutex_init
-                0x0000000010002154       0x1c CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/common/pico_sync/mutex.c.obj
-                0x0000000010002154                mutex_init
+                0x000000001000222c       0x1c CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/common/pico_sync/mutex.c.obj
+                0x000000001000222c                mutex_init
  .text.recursive_mutex_init
-                0x0000000010002170       0x1c CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/common/pico_sync/mutex.c.obj
-                0x0000000010002170                recursive_mutex_init
+                0x0000000010002248       0x1c CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/common/pico_sync/mutex.c.obj
+                0x0000000010002248                recursive_mutex_init
  .text.clocks_init
-                0x000000001000218c      0x2bc CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/hardware_clocks/clocks.c.obj
-                0x000000001000218c                clocks_init
+                0x0000000010002264      0x2bc CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/hardware_clocks/clocks.c.obj
+                0x0000000010002264                clocks_init
  .text.clock_get_hz
-                0x0000000010002448        0xc CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/hardware_clocks/clocks.c.obj
-                0x0000000010002448                clock_get_hz
+                0x0000000010002520        0xc CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/hardware_clocks/clocks.c.obj
+                0x0000000010002520                clock_get_hz
  .text.gpio_set_function
-                0x0000000010002454       0x30 CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/hardware_gpio/gpio.c.obj
-                0x0000000010002454                gpio_set_function
+                0x000000001000252c       0x30 CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/hardware_gpio/gpio.c.obj
+                0x000000001000252c                gpio_set_function
  .text.gpio_set_pulls
-                0x0000000010002484       0x30 CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/hardware_gpio/gpio.c.obj
-                0x0000000010002484                gpio_set_pulls
+                0x000000001000255c       0x30 CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/hardware_gpio/gpio.c.obj
+                0x000000001000255c                gpio_set_pulls
  .text.gpio_init
-                0x00000000100024b4       0x3c CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/hardware_gpio/gpio.c.obj
-                0x00000000100024b4                gpio_init
+                0x000000001000258c       0x3c CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/hardware_gpio/gpio.c.obj
+                0x000000001000258c                gpio_init
  .text.pll_init
-                0x00000000100024f0       0xa8 CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/hardware_pll/pll.c.obj
-                0x00000000100024f0                pll_init
+                0x00000000100025c8       0xa8 CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/hardware_pll/pll.c.obj
+                0x00000000100025c8                pll_init
  .text.watchdog_start_tick
-                0x0000000010002598       0x10 CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/hardware_watchdog/watchdog.c.obj
-                0x0000000010002598                watchdog_start_tick
+                0x0000000010002670       0x10 CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/hardware_watchdog/watchdog.c.obj
+                0x0000000010002670                watchdog_start_tick
+ .text.watchdog_enable
+                0x0000000010002680       0x84 CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/hardware_watchdog/watchdog.c.obj
+                0x0000000010002680                watchdog_enable
  .text.xosc_init
-                0x00000000100025a8       0x28 CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/hardware_xosc/xosc.c.obj
-                0x00000000100025a8                xosc_init
+                0x0000000010002704       0x28 CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/hardware_xosc/xosc.c.obj
+                0x0000000010002704                xosc_init
  .text.uart_init
-                0x00000000100025d0       0xe0 CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/hardware_uart/uart.c.obj
-                0x00000000100025d0                uart_init
+                0x000000001000272c       0xe0 CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/hardware_uart/uart.c.obj
+                0x000000001000272c                uart_init
  .text.runtime_init
-                0x00000000100026b0       0xf0 CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/pico_runtime/runtime.c.obj
-                0x00000000100026b0                runtime_init
- .text.exit     0x00000000100027a0        0x4 CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/pico_runtime/runtime.c.obj
-                0x00000000100027a0                exit
- .text.panic    0x00000000100027a4       0x30 CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/pico_runtime/runtime.c.obj
-                0x00000000100027a4                panic
+                0x000000001000280c       0xf0 CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/pico_runtime/runtime.c.obj
+                0x000000001000280c                runtime_init
+ .text.exit     0x00000000100028fc        0x4 CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/pico_runtime/runtime.c.obj
+                0x00000000100028fc                exit
+ .text.panic    0x0000000010002900       0x30 CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/pico_runtime/runtime.c.obj
+                0x0000000010002900                panic
  .text.hard_assertion_failure
-                0x00000000100027d4        0xc CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/pico_runtime/runtime.c.obj
-                0x00000000100027d4                hard_assertion_failure
+                0x0000000010002930        0xc CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/pico_runtime/runtime.c.obj
+                0x0000000010002930                hard_assertion_failure
  .text._out_buffer
-                0x00000000100027e0        0x8 CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/pico_printf/printf.c.obj
+                0x000000001000293c        0x8 CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/pico_printf/printf.c.obj
  .text._out_null
-                0x00000000100027e8        0x4 CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/pico_printf/printf.c.obj
+                0x0000000010002944        0x4 CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/pico_printf/printf.c.obj
  .text._out_rev
-                0x00000000100027ec       0x9c CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/pico_printf/printf.c.obj
+                0x0000000010002948       0x9c CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/pico_printf/printf.c.obj
  .text._ntoa_format
-                0x0000000010002888      0x1cc CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/pico_printf/printf.c.obj
+                0x00000000100029e4      0x1cc CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/pico_printf/printf.c.obj
  .text._out_char
-                0x0000000010002a54       0x10 CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/pico_printf/printf.c.obj
+                0x0000000010002bb0       0x10 CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/pico_printf/printf.c.obj
  .text._out_fct
-                0x0000000010002a64       0x10 CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/pico_printf/printf.c.obj
- .text._etoa    0x0000000010002a74      0x44c CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/pico_printf/printf.c.obj
- .text._ftoa    0x0000000010002ec0      0x398 CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/pico_printf/printf.c.obj
+                0x0000000010002bc0       0x10 CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/pico_printf/printf.c.obj
+ .text._etoa    0x0000000010002bd0      0x44c CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/pico_printf/printf.c.obj
+ .text._ftoa    0x000000001000301c      0x398 CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/pico_printf/printf.c.obj
  .text._vsnprintf
-                0x0000000010003258      0xb04 CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/pico_printf/printf.c.obj
+                0x00000000100033b4      0xb04 CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/pico_printf/printf.c.obj
  .text.__wrap_sprintf
-                0x0000000010003d5c       0x28 CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/pico_printf/printf.c.obj
-                0x0000000010003d5c                __wrap_sprintf
+                0x0000000010003eb8       0x28 CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/pico_printf/printf.c.obj
+                0x0000000010003eb8                __wrap_sprintf
  .text.vfctprintf
-                0x0000000010003d84       0x20 CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/pico_printf/printf.c.obj
-                0x0000000010003d84                vfctprintf
+                0x0000000010003ee0       0x20 CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/pico_printf/printf.c.obj
+                0x0000000010003ee0                vfctprintf
  .text.weak_raw_vprintf
-                0x0000000010003da4       0x30 CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/pico_printf/printf.c.obj
-                0x0000000010003da4                weak_raw_vprintf
- .text          0x0000000010003dd4       0x10 CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/pico_bit_ops/bit_ops_aeabi.S.obj
+                0x0000000010003f00       0x30 CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/pico_printf/printf.c.obj
+                0x0000000010003f00                weak_raw_vprintf
+ .text          0x0000000010003f30       0x10 CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/pico_bit_ops/bit_ops_aeabi.S.obj
  .text.__wrap___aeabi_idiv
-                0x0000000010003de4       0x50 CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/pico_divider/divider.S.obj
-                0x0000000010003de4                __wrap___aeabi_idivmod
-                0x0000000010003de4                divmod_s32s32
-                0x0000000010003de4                div_s32s32
-                0x0000000010003de4                __wrap___aeabi_idiv
-                0x0000000010003dec                divmod_s32s32_unsafe
-                0x0000000010003e18                divmod_s32s32_savestate
+                0x0000000010003f40       0x50 CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/pico_divider/divider.S.obj
+                0x0000000010003f40                __wrap___aeabi_idivmod
+                0x0000000010003f40                divmod_s32s32
+                0x0000000010003f40                div_s32s32
+                0x0000000010003f40                __wrap___aeabi_idiv
+                0x0000000010003f48                divmod_s32s32_unsafe
+                0x0000000010003f74                divmod_s32s32_savestate
  .text.__wrap___aeabi_uidiv
-                0x0000000010003e34       0x4c CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/pico_divider/divider.S.obj
-                0x0000000010003e34                __wrap___aeabi_uidiv
-                0x0000000010003e34                __wrap___aeabi_uidivmod
-                0x0000000010003e34                div_u32u32
-                0x0000000010003e34                divmod_u32u32
-                0x0000000010003e3c                divmod_u32u32_unsafe
-                0x0000000010003e64                divmod_u32u32_savestate
+                0x0000000010003f90       0x4c CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/pico_divider/divider.S.obj
+                0x0000000010003f90                __wrap___aeabi_uidiv
+                0x0000000010003f90                __wrap___aeabi_uidivmod
+                0x0000000010003f90                div_u32u32
+                0x0000000010003f90                divmod_u32u32
+                0x0000000010003f98                divmod_u32u32_unsafe
+                0x0000000010003fc0                divmod_u32u32_savestate
  .text.__wrap___aeabi_ldiv
-                0x0000000010003e80      0x434 CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/pico_divider/divider.S.obj
-                0x0000000010003e80                __wrap___aeabi_ldivmod
-                0x0000000010003e80                div_s64s64
-                0x0000000010003e80                divmod_s64s64
-                0x0000000010003eb8                divmod_u64u64
-                0x0000000010003eb8                div_u64u64
-                0x0000000010003eb8                __wrap___aeabi_uldivmod
-                0x0000000010003ec8                divmod_u64u64_savestate
-                0x0000000010003ef0                divmod_s64s64_unsafe
-                0x0000000010003f78                divmod_u64u64_unsafe
+                0x0000000010003fdc      0x434 CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/pico_divider/divider.S.obj
+                0x0000000010003fdc                __wrap___aeabi_ldivmod
+                0x0000000010003fdc                div_s64s64
+                0x0000000010003fdc                divmod_s64s64
+                0x0000000010004014                divmod_u64u64
+                0x0000000010004014                div_u64u64
+                0x0000000010004014                __wrap___aeabi_uldivmod
+                0x0000000010004024                divmod_u64u64_savestate
+                0x000000001000404c                divmod_s64s64_unsafe
+                0x00000000100040d4                divmod_u64u64_unsafe
  .text.__wrap___aeabi_darithmetic
-                0x00000000100042b4       0x80 CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/pico_double/double_aeabi.S.obj
-                0x00000000100042b4                __wrap___aeabi_drsub
-                0x00000000100042ba                __wrap___aeabi_dsub
-                0x00000000100042cc                __wrap___aeabi_dadd
-                0x00000000100042de                __wrap___aeabi_ddiv
-                0x000000001000431a                __wrap___aeabi_dmul
+                0x0000000010004410       0x80 CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/pico_double/double_aeabi.S.obj
+                0x0000000010004410                __wrap___aeabi_drsub
+                0x0000000010004416                __wrap___aeabi_dsub
+                0x0000000010004428                __wrap___aeabi_dadd
+                0x000000001000443a                __wrap___aeabi_ddiv
+                0x0000000010004476                __wrap___aeabi_dmul
  .text.__wrap___aeabi_cdcmple
-                0x0000000010004334       0x6c CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/pico_double/double_aeabi.S.obj
-                0x0000000010004334                __wrap___aeabi_cdrcmple
-                0x0000000010004344                __wrap___aeabi_cdcmple
-                0x0000000010004344                __wrap___aeabi_cdcmpeq
+                0x0000000010004490       0x6c CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/pico_double/double_aeabi.S.obj
+                0x0000000010004490                __wrap___aeabi_cdrcmple
+                0x00000000100044a0                __wrap___aeabi_cdcmple
+                0x00000000100044a0                __wrap___aeabi_cdcmpeq
  .text.__wrap___aeabi_dcmplt
-                0x00000000100043a0        0xc CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/pico_double/double_aeabi.S.obj
-                0x00000000100043a0                __wrap___aeabi_dcmplt
+                0x00000000100044fc        0xc CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/pico_double/double_aeabi.S.obj
+                0x00000000100044fc                __wrap___aeabi_dcmplt
  .text.__wrap___aeabi_dcmple
-                0x00000000100043ac       0x10 CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/pico_double/double_aeabi.S.obj
-                0x00000000100043ac                __wrap___aeabi_dcmple
+                0x0000000010004508       0x10 CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/pico_double/double_aeabi.S.obj
+                0x0000000010004508                __wrap___aeabi_dcmple
  .text.__wrap___aeabi_dcmpge
-                0x00000000100043bc       0x10 CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/pico_double/double_aeabi.S.obj
-                0x00000000100043bc                __wrap___aeabi_dcmpge
+                0x0000000010004518       0x10 CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/pico_double/double_aeabi.S.obj
+                0x0000000010004518                __wrap___aeabi_dcmpge
  .text.__wrap___aeabi_dcmpgt
-                0x00000000100043cc        0xa CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/pico_double/double_aeabi.S.obj
-                0x00000000100043cc                __wrap___aeabi_dcmpgt
+                0x0000000010004528        0xa CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/pico_double/double_aeabi.S.obj
+                0x0000000010004528                __wrap___aeabi_dcmpgt
  .text.__wrap___aeabi_dcmpun
-                0x00000000100043d6       0x1c CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/pico_double/double_aeabi.S.obj
-                0x00000000100043d6                __wrap___aeabi_dcmpun
- *fill*         0x00000000100043f2        0x2 
+                0x0000000010004532       0x1c CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/pico_double/double_aeabi.S.obj
+                0x0000000010004532                __wrap___aeabi_dcmpun
+ *fill*         0x000000001000454e        0x2 
  .text.__wrap___aeabi_i2d
-                0x00000000100043f4       0x38 CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/pico_double/double_aeabi.S.obj
-                0x00000000100043f4                __wrap___aeabi_ui2d
-                0x00000000100043fc                __wrap___aeabi_i2d
+                0x0000000010004550       0x38 CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/pico_double/double_aeabi.S.obj
+                0x0000000010004550                __wrap___aeabi_ui2d
+                0x0000000010004558                __wrap___aeabi_i2d
  .text.__wrap___aeabi_d2iz
-                0x000000001000442c       0x48 CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/pico_double/double_aeabi.S.obj
-                0x000000001000442c                __wrap___aeabi_d2iz
-                0x000000001000442c                double2int_z
+                0x0000000010004588       0x48 CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/pico_double/double_aeabi.S.obj
+                0x0000000010004588                __wrap___aeabi_d2iz
+                0x0000000010004588                double2int_z
  .text.__wrap___aeabi_d2uiz
-                0x0000000010004474       0x18 CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/pico_double/double_aeabi.S.obj
-                0x0000000010004474                double2uint
-                0x0000000010004474                __wrap___aeabi_d2uiz
+                0x00000000100045d0       0x18 CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/pico_double/double_aeabi.S.obj
+                0x00000000100045d0                double2uint
+                0x00000000100045d0                __wrap___aeabi_d2uiz
  .text.__aeabi_double_init
-                0x000000001000448c       0x94 CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/pico_double/double_init_rom.c.obj
-                0x000000001000448c                __aeabi_double_init
+                0x00000000100045e8       0x94 CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/pico_double/double_init_rom.c.obj
+                0x00000000100045e8                __aeabi_double_init
  .text.double_table_shim_on_use_helper
-                0x0000000010004520       0x2c CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/pico_double/double_v1_rom_shim.S.obj
-                0x0000000010004520                double_table_shim_on_use_helper
+                0x000000001000467c       0x2c CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/pico_double/double_v1_rom_shim.S.obj
+                0x000000001000467c                double_table_shim_on_use_helper
  .text.__wrap___aeabi_dsub
-                0x000000001000454c       0x10 CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/pico_double/double_v1_rom_shim.S.obj
-                0x000000001000454c                drsub_shim
-                0x0000000010004552                dsub_shim
+                0x00000000100046a8       0x10 CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/pico_double/double_v1_rom_shim.S.obj
+                0x00000000100046a8                drsub_shim
+                0x00000000100046ae                dsub_shim
  .text.dadd_shim
-                0x000000001000455c      0x15c CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/pico_double/double_v1_rom_shim.S.obj
-                0x000000001000455c                dadd_shim
- .text.dmul_shim
                 0x00000000100046b8      0x15c CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/pico_double/double_v1_rom_shim.S.obj
-                0x00000000100046b8                dmul_shim
+                0x00000000100046b8                dadd_shim
+ .text.dmul_shim
+                0x0000000010004814      0x15c CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/pico_double/double_v1_rom_shim.S.obj
+                0x0000000010004814                dmul_shim
  .text.ddiv_shim
-                0x0000000010004814      0x1b0 CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/pico_double/double_v1_rom_shim.S.obj
-                0x0000000010004814                ddiv_shim
+                0x0000000010004970      0x1b0 CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/pico_double/double_v1_rom_shim.S.obj
+                0x0000000010004970                ddiv_shim
  .text.double2uint_shim
-                0x00000000100049c4        0xe CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/pico_double/double_v1_rom_shim.S.obj
-                0x00000000100049c4                double2uint_shim
-                0x00000000100049c6                double2ufix_shim
- *fill*         0x00000000100049d2        0x2 
+                0x0000000010004b20        0xe CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/pico_double/double_v1_rom_shim.S.obj
+                0x0000000010004b20                double2uint_shim
+                0x0000000010004b22                double2ufix_shim
+ *fill*         0x0000000010004b2e        0x2 
  .text.double2uint64_shim
-                0x00000000100049d4       0x70 CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/pico_double/double_v1_rom_shim.S.obj
-                0x00000000100049d4                double2uint64_shim
-                0x00000000100049d6                double2ufix64_shim
-                0x00000000100049f6                d2fix_a
+                0x0000000010004b30       0x70 CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/pico_double/double_v1_rom_shim.S.obj
+                0x0000000010004b30                double2uint64_shim
+                0x0000000010004b32                double2ufix64_shim
+                0x0000000010004b52                d2fix_a
  .text.dunpacks
-                0x0000000010004a44       0x3c CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/pico_double/double_v1_rom_shim.S.obj
-                0x0000000010004a44                dunpacks
+                0x0000000010004ba0       0x3c CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/pico_double/double_v1_rom_shim.S.obj
+                0x0000000010004ba0                dunpacks
  .text.__aeabi_lmul
-                0x0000000010004a80       0x32 CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/pico_int64_ops/pico_int64_ops_aeabi.S.obj
-                0x0000000010004a80                __wrap___aeabi_lmul
- *fill*         0x0000000010004ab2        0x2 
+                0x0000000010004bdc       0x32 CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/pico_int64_ops/pico_int64_ops_aeabi.S.obj
+                0x0000000010004bdc                __wrap___aeabi_lmul
+ *fill*         0x0000000010004c0e        0x2 
  .text.__aeabi_float_init
-                0x0000000010004ab4       0x64 CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/pico_float/float_init_rom.c.obj
-                0x0000000010004ab4                __aeabi_float_init
+                0x0000000010004c10       0x64 CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/pico_float/float_init_rom.c.obj
+                0x0000000010004c10                __aeabi_float_init
  .text.float_table_shim_on_use_helper
-                0x0000000010004b18       0x2c CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/pico_float/float_v1_rom_shim.S.obj
-                0x0000000010004b18                float_table_shim_on_use_helper
- .text          0x0000000010004b44       0x10 CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/pico_mem_ops/mem_ops_aeabi.S.obj
-                0x0000000010004b44                __aeabi_mem_init
- .text.memset   0x0000000010004b54        0xc CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/pico_mem_ops/mem_ops_aeabi.S.obj
-                0x0000000010004b54                __wrap_memset
- .text.memcpy   0x0000000010004b60        0xc CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/pico_mem_ops/mem_ops_aeabi.S.obj
-                0x0000000010004b60                __wrap___aeabi_memcpy
-                0x0000000010004b60                __wrap_memcpy
+                0x0000000010004c74       0x2c CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/pico_float/float_v1_rom_shim.S.obj
+                0x0000000010004c74                float_table_shim_on_use_helper
+ .text          0x0000000010004ca0       0x10 CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/pico_mem_ops/mem_ops_aeabi.S.obj
+                0x0000000010004ca0                __aeabi_mem_init
+ .text.memset   0x0000000010004cb0        0xc CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/pico_mem_ops/mem_ops_aeabi.S.obj
+                0x0000000010004cb0                __wrap_memset
+ .text.memcpy   0x0000000010004cbc        0xc CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/pico_mem_ops/mem_ops_aeabi.S.obj
+                0x0000000010004cbc                __wrap___aeabi_memcpy
+                0x0000000010004cbc                __wrap_memcpy
  .text.stdio_out_chars_no_crlf
-                0x0000000010004b6c       0x10 CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/pico_stdio/stdio.c.obj
+                0x0000000010004cc8       0x10 CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/pico_stdio/stdio.c.obj
  .text.stdio_out_chars_crlf
-                0x0000000010004b7c       0xb4 CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/pico_stdio/stdio.c.obj
+                0x0000000010004cd8       0xb4 CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/pico_stdio/stdio.c.obj
  .text.stdio_buffered_printer
-                0x0000000010004c30       0x64 CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/pico_stdio/stdio.c.obj
+                0x0000000010004d8c       0x64 CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/pico_stdio/stdio.c.obj
  .text.stdio_put_string.isra.0
-                0x0000000010004c94       0xfc CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/pico_stdio/stdio.c.obj
+                0x0000000010004df0       0xfc CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/pico_stdio/stdio.c.obj
  .text.__wrap_putchar
-                0x0000000010004d90       0xa0 CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/pico_stdio/stdio.c.obj
-                0x0000000010004d90                __wrap_putchar
+                0x0000000010004eec       0xa0 CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/pico_stdio/stdio.c.obj
+                0x0000000010004eec                __wrap_putchar
  .text.__wrap_puts
-                0x0000000010004e30       0x3c CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/pico_stdio/stdio.c.obj
-                0x0000000010004e30                __wrap_puts
+                0x0000000010004f8c       0x3c CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/pico_stdio/stdio.c.obj
+                0x0000000010004f8c                __wrap_puts
  .text.stdio_set_driver_enabled
-                0x0000000010004e6c       0x3c CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/pico_stdio/stdio.c.obj
-                0x0000000010004e6c                stdio_set_driver_enabled
+                0x0000000010004fc8       0x3c CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/pico_stdio/stdio.c.obj
+                0x0000000010004fc8                stdio_set_driver_enabled
  .text.__wrap_vprintf
-                0x0000000010004ea8       0xd8 CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/pico_stdio/stdio.c.obj
-                0x0000000010004ea8                __wrap_vprintf
+                0x0000000010005004       0xd8 CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/pico_stdio/stdio.c.obj
+                0x0000000010005004                __wrap_vprintf
  .text.__wrap_printf
-                0x0000000010004f80       0x18 CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/pico_stdio/stdio.c.obj
-                0x0000000010004f80                __wrap_printf
+                0x00000000100050dc       0x18 CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/pico_stdio/stdio.c.obj
+                0x00000000100050dc                __wrap_printf
  .text.stdio_init_all
-                0x0000000010004f98        0x8 CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/pico_stdio/stdio.c.obj
-                0x0000000010004f98                stdio_init_all
+                0x00000000100050f4        0x8 CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/pico_stdio/stdio.c.obj
+                0x00000000100050f4                stdio_init_all
  .text.stdio_uart_out_chars
-                0x0000000010004fa0       0x4c CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/pico_stdio_uart/stdio_uart.c.obj
+                0x00000000100050fc       0x4c CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/pico_stdio_uart/stdio_uart.c.obj
  .text.stdio_uart_in_chars
-                0x0000000010004fec       0x38 CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/pico_stdio_uart/stdio_uart.c.obj
-                0x0000000010004fec                stdio_uart_in_chars
+                0x0000000010005148       0x38 CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/pico_stdio_uart/stdio_uart.c.obj
+                0x0000000010005148                stdio_uart_in_chars
  .text.stdio_uart_init
-                0x0000000010005024       0x48 CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/pico_stdio_uart/stdio_uart.c.obj
-                0x0000000010005024                stdio_uart_init
+                0x0000000010005180       0x48 CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/pico_stdio_uart/stdio_uart.c.obj
+                0x0000000010005180                stdio_uart_init
  .text.core1_trampoline
-                0x000000001000506c        0x4 CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/pico_multicore/multicore.c.obj
+                0x00000000100051c8        0x4 CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/pico_multicore/multicore.c.obj
  .text.core1_wrapper
-                0x0000000010005070        0xc CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/pico_multicore/multicore.c.obj
-                0x0000000010005070                core1_wrapper
+                0x00000000100051cc        0xc CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/pico_multicore/multicore.c.obj
+                0x00000000100051cc                core1_wrapper
  .text.multicore_launch_core1_raw
-                0x000000001000507c       0x84 CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/pico_multicore/multicore.c.obj
-                0x000000001000507c                multicore_launch_core1_raw
+                0x00000000100051d8       0x84 CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/pico_multicore/multicore.c.obj
+                0x00000000100051d8                multicore_launch_core1_raw
  .text.multicore_launch_core1
-                0x0000000010005100       0x4c CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/pico_multicore/multicore.c.obj
-                0x0000000010005100                multicore_launch_core1
- .text          0x000000001000514c       0x18 ../../libraries/mbedtls/library/libmbedcrypto.a(platform_util.c.obj)
-                0x000000001000514c                mbedtls_platform_zeroize
- .text          0x0000000010005164     0x16a4 ../../libraries/mbedtls/library/libmbedcrypto.a(sha1.c.obj)
-                0x0000000010005164                mbedtls_sha1_init
-                0x0000000010005170                mbedtls_sha1_free
-                0x0000000010005180                mbedtls_sha1_clone
-                0x000000001000518c                mbedtls_sha1_starts_ret
-                0x00000000100051c0                mbedtls_sha1_starts
-                0x00000000100051f0                mbedtls_internal_sha1_process
-                0x00000000100066a4                mbedtls_sha1_process
-                0x00000000100066ac                mbedtls_sha1_update_ret
-                0x00000000100066bc                mbedtls_sha1_update
-                0x00000000100066c8                mbedtls_sha1_finish_ret
-                0x0000000010006790                mbedtls_sha1_finish
-                0x0000000010006798                mbedtls_sha1_ret
-                0x0000000010006800                mbedtls_sha1
- .text.atoi     0x0000000010006808        0xc /Applications/ARM/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp/libc.a(lib_a-atoi.o)
-                0x0000000010006808                atoi
- .text.__errno  0x0000000010006814        0xc /Applications/ARM/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp/libc.a(lib_a-errno.o)
-                0x0000000010006814                __errno
- .text.strchr   0x0000000010006820       0xc0 /Applications/ARM/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp/libc.a(lib_a-strchr.o)
-                0x0000000010006820                strchr
- .text.strlen   0x00000000100068e0       0x5c /Applications/ARM/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp/libc.a(lib_a-strlen-stub.o)
-                0x00000000100068e0                strlen
+                0x000000001000525c       0x4c CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/pico_multicore/multicore.c.obj
+                0x000000001000525c                multicore_launch_core1
+ .text          0x00000000100052a8       0x18 ../../libraries/mbedtls/library/libmbedcrypto.a(platform_util.c.obj)
+                0x00000000100052a8                mbedtls_platform_zeroize
+ .text          0x00000000100052c0     0x16a4 ../../libraries/mbedtls/library/libmbedcrypto.a(sha1.c.obj)
+                0x00000000100052c0                mbedtls_sha1_init
+                0x00000000100052cc                mbedtls_sha1_free
+                0x00000000100052dc                mbedtls_sha1_clone
+                0x00000000100052e8                mbedtls_sha1_starts_ret
+                0x000000001000531c                mbedtls_sha1_starts
+                0x000000001000534c                mbedtls_internal_sha1_process
+                0x0000000010006800                mbedtls_sha1_process
+                0x0000000010006808                mbedtls_sha1_update_ret
+                0x0000000010006818                mbedtls_sha1_update
+                0x0000000010006824                mbedtls_sha1_finish_ret
+                0x00000000100068ec                mbedtls_sha1_finish
+                0x00000000100068f4                mbedtls_sha1_ret
+                0x000000001000695c                mbedtls_sha1
+ .text.atoi     0x0000000010006964        0xc /Applications/ARM/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp/libc.a(lib_a-atoi.o)
+                0x0000000010006964                atoi
+ .text.__errno  0x0000000010006970        0xc /Applications/ARM/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp/libc.a(lib_a-errno.o)
+                0x0000000010006970                __errno
+ .text.strchr   0x000000001000697c       0xc0 /Applications/ARM/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp/libc.a(lib_a-strchr.o)
+                0x000000001000697c                strchr
+ .text.strlen   0x0000000010006a3c       0x5c /Applications/ARM/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp/libc.a(lib_a-strlen-stub.o)
+                0x0000000010006a3c                strlen
  .text._strtol_l.part.0
-                0x000000001000693c      0x144 /Applications/ARM/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp/libc.a(lib_a-strtol.o)
- .text.strtol   0x0000000010006a80       0x2c /Applications/ARM/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp/libc.a(lib_a-strtol.o)
-                0x0000000010006a80                strtol
- .text.toupper  0x0000000010006aac       0x14 /Applications/ARM/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp/libc.a(lib_a-toupper.o)
-                0x0000000010006aac                toupper
+                0x0000000010006a98      0x144 /Applications/ARM/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp/libc.a(lib_a-strtol.o)
+ .text.strtol   0x0000000010006bdc       0x2c /Applications/ARM/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp/libc.a(lib_a-strtol.o)
+                0x0000000010006bdc                strtol
+ .text.toupper  0x0000000010006c08       0x14 /Applications/ARM/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp/libc.a(lib_a-toupper.o)
+                0x0000000010006c08                toupper
  *(.fini)
- .fini          0x0000000010006ac0        0x4 /Applications/ARM/bin/../lib/gcc/arm-none-eabi/10.3.1/thumb/v6-m/nofp/crti.o
-                0x0000000010006ac0                _fini
- *fill*         0x0000000010006ac4        0x4 
- .fini.__stub   0x0000000010006ac8       0x80 linker stubs
+ .fini          0x0000000010006c1c        0x4 /Applications/ARM/bin/../lib/gcc/arm-none-eabi/10.3.1/thumb/v6-m/nofp/crti.o
+                0x0000000010006c1c                _fini
+ .fini.__stub   0x0000000010006c20       0x80 linker stubs
  *crtbegin.o(.ctors)
  *crtbegin?.o(.ctors)
  *(EXCLUDE_FILE(*crtend.o *crtend?.o) .ctors)
@@ -4068,128 +4072,134 @@ LOAD /Applications/ARM/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-
  *(SORT_BY_NAME(.dtors.*))
  *(.dtors)
  *(.eh_frame*)
- .eh_frame      0x0000000010006b48        0x0 /Applications/ARM/bin/../lib/gcc/arm-none-eabi/10.3.1/thumb/v6-m/nofp/crtbegin.o
-                0x0000000010006b48                . = ALIGN (0x4)
+ .eh_frame      0x0000000010006ca0        0x0 /Applications/ARM/bin/../lib/gcc/arm-none-eabi/10.3.1/thumb/v6-m/nofp/crtbegin.o
+                0x0000000010006ca0                . = ALIGN (0x4)
 
-.glue_7         0x0000000010006b48        0x0
- .glue_7        0x0000000010006b48        0x0 linker stubs
+.glue_7         0x0000000010006ca0        0x0
+ .glue_7        0x0000000010006ca0        0x0 linker stubs
 
-.glue_7t        0x0000000010006b48        0x0
- .glue_7t       0x0000000010006b48        0x0 linker stubs
+.glue_7t        0x0000000010006ca0        0x0
+ .glue_7t       0x0000000010006ca0        0x0 linker stubs
 
-.vfp11_veneer   0x0000000010006b48        0x0
- .vfp11_veneer  0x0000000010006b48        0x0 linker stubs
+.vfp11_veneer   0x0000000010006ca0        0x0
+ .vfp11_veneer  0x0000000010006ca0        0x0 linker stubs
 
-.v4_bx          0x0000000010006b48        0x0
- .v4_bx         0x0000000010006b48        0x0 linker stubs
+.v4_bx          0x0000000010006ca0        0x0
+ .v4_bx         0x0000000010006ca0        0x0 linker stubs
 
-.iplt           0x0000000010006b48        0x0
- .iplt          0x0000000010006b48        0x0 /Applications/ARM/bin/../lib/gcc/arm-none-eabi/10.3.1/thumb/v6-m/nofp/crtbegin.o
+.iplt           0x0000000010006ca0        0x0
+ .iplt          0x0000000010006ca0        0x0 /Applications/ARM/bin/../lib/gcc/arm-none-eabi/10.3.1/thumb/v6-m/nofp/crtbegin.o
 
-.rodata         0x0000000010006b48      0x71c
+.rodata         0x0000000010006ca0      0x784
  *(EXCLUDE_FILE(*libm.a: *libc.a:*lib_a-mem*.o *libgcc.a:) .rodata*)
  .rodata._Z14slaveLoopCore1v.str1.4
-                0x0000000010006b48       0xcb CMakeFiles/minerSlave.dir/minerSlave.cpp.obj
- *fill*         0x0000000010006c13        0x1 
+                0x0000000010006ca0       0xcb CMakeFiles/minerSlave.dir/minerSlave.cpp.obj
+ *fill*         0x0000000010006d6b        0x1 
+ .rodata._ZL16slave_on_receivei.str1.4
+                0x0000000010006d6c       0x1e CMakeFiles/minerSlave.dir/minerSlave.cpp.obj
+ *fill*         0x0000000010006d8a        0x2 
+ .rodata._ZL16slave_on_receivei
+                0x0000000010006d8c       0x44 CMakeFiles/minerSlave.dir/minerSlave.cpp.obj
  .rodata.main.str1.4
-                0x0000000010006c14       0xef CMakeFiles/minerSlave.dir/minerSlave.cpp.obj
- *fill*         0x0000000010006d03        0x1 
+                0x0000000010006dd0       0xef CMakeFiles/minerSlave.dir/minerSlave.cpp.obj
+ *fill*         0x0000000010006ebf        0x1 
  .rodata.calculateHashCore0.str1.4
-                0x0000000010006d04       0xb7 CMakeFiles/minerSlave.dir/__/__/port/utils/src/duinoCoinUtils.cpp.obj
- *fill*         0x0000000010006dbb        0x1 
+                0x0000000010006ec0       0xb7 CMakeFiles/minerSlave.dir/__/__/port/utils/src/duinoCoinUtils.cpp.obj
+ *fill*         0x0000000010006f77        0x1 
  .rodata.calculateHashCore1.str1.4
-                0x0000000010006dbc       0x34 CMakeFiles/minerSlave.dir/__/__/port/utils/src/duinoCoinUtils.cpp.obj
+                0x0000000010006f78       0x34 CMakeFiles/minerSlave.dir/__/__/port/utils/src/duinoCoinUtils.cpp.obj
  .rodata.hardware_alarm_claim.str1.4
-                0x0000000010006df0       0x22 CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/hardware_timer/timer.c.obj
- *fill*         0x0000000010006e12        0x2 
+                0x0000000010006fac       0x22 CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/hardware_timer/timer.c.obj
+ *fill*         0x0000000010006fce        0x2 
  .rodata.str1.4
-                0x0000000010006e14       0x20 CMakeFiles/minerSlave.dir/__/__/port/ioLibrary_Driver/src/w5x00_spi.c.obj
+                0x0000000010006fd0       0x20 CMakeFiles/minerSlave.dir/__/__/port/ioLibrary_Driver/src/w5x00_spi.c.obj
  .rodata.__bi_146.0
-                0x0000000010006e34        0x8 CMakeFiles/minerSlave.dir/__/__/port/ioLibrary_Driver/src/w5x00_spi.c.obj
+                0x0000000010006ff0        0x8 CMakeFiles/minerSlave.dir/__/__/port/ioLibrary_Driver/src/w5x00_spi.c.obj
  .rodata.__bi_154.1
-                0x0000000010006e3c        0xc CMakeFiles/minerSlave.dir/__/__/port/ioLibrary_Driver/src/w5x00_spi.c.obj
+                0x0000000010006ff8        0xc CMakeFiles/minerSlave.dir/__/__/port/ioLibrary_Driver/src/w5x00_spi.c.obj
  .rodata.__bi_58.2
-                0x0000000010006e48        0xc CMakeFiles/minerSlave.dir/__/__/port/ioLibrary_Driver/src/w5x00_spi.c.obj
+                0x0000000010007004        0xc CMakeFiles/minerSlave.dir/__/__/port/ioLibrary_Driver/src/w5x00_spi.c.obj
  .rodata.panic.str1.4
-                0x0000000010006e54       0x10 CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/pico_runtime/runtime.c.obj
+                0x0000000010007010       0x10 CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/pico_runtime/runtime.c.obj
                                          0x12 (size before relaxing)
  .rodata.hard_assertion_failure.str1.4
-                0x0000000010006e64        0xc CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/pico_runtime/runtime.c.obj
+                0x0000000010007020        0xc CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/pico_runtime/runtime.c.obj
  .rodata._ftoa.str1.4
-                0x0000000010006e70       0x15 CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/pico_printf/printf.c.obj
- *fill*         0x0000000010006e85        0x3 
+                0x000000001000702c       0x15 CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/pico_printf/printf.c.obj
+ *fill*         0x0000000010007041        0x3 
  .rodata._vsnprintf
-                0x0000000010006e88      0x1e0 CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/pico_printf/printf.c.obj
+                0x0000000010007044      0x1e0 CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/pico_printf/printf.c.obj
+ *fill*         0x0000000010007224        0x4 
  .rodata.pow10.0
-                0x0000000010007068       0x50 CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/pico_printf/printf.c.obj
+                0x0000000010007228       0x50 CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/pico_printf/printf.c.obj
  .rodata.str1.4
-                0x00000000100070b8       0x40 CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/pico_standard_link/binary_info.c.obj
+                0x0000000010007278       0x40 CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/pico_standard_link/binary_info.c.obj
  .rodata.__bi_44
-                0x00000000100070f8        0xc CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/pico_standard_link/binary_info.c.obj
+                0x00000000100072b8        0xc CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/pico_standard_link/binary_info.c.obj
  .rodata.__bi_75
-                0x0000000010007104        0xc CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/pico_standard_link/binary_info.c.obj
+                0x00000000100072c4        0xc CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/pico_standard_link/binary_info.c.obj
  .rodata.__bi_81
-                0x0000000010007110        0xc CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/pico_standard_link/binary_info.c.obj
+                0x00000000100072d0        0xc CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/pico_standard_link/binary_info.c.obj
  .rodata.crlf_str.0
-                0x000000001000711c        0x2 CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/pico_stdio/stdio.c.obj
- *fill*         0x000000001000711e        0x2 
+                0x00000000100072dc        0x2 CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/pico_stdio/stdio.c.obj
+ *fill*         0x00000000100072de        0x2 
  .rodata.str1.4
-                0x0000000010007120       0x2c CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/pico_stdio_uart/stdio_uart.c.obj
+                0x00000000100072e0       0x2c CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/pico_stdio_uart/stdio_uart.c.obj
  .rodata.__bi_28.4
-                0x000000001000714c        0xc CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/pico_stdio_uart/stdio_uart.c.obj
+                0x000000001000730c        0xc CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/pico_stdio_uart/stdio_uart.c.obj
  .rodata.__bi_29.5
-                0x0000000010007158        0x8 CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/pico_stdio_uart/stdio_uart.c.obj
+                0x0000000010007318        0x8 CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/pico_stdio_uart/stdio_uart.c.obj
  .rodata._ctype_
-                0x0000000010007160      0x101 /Applications/ARM/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp/libc.a(lib_a-ctype_.o)
-                0x0000000010007160                _ctype_
-                0x0000000010007264                . = ALIGN (0x4)
- *fill*         0x0000000010007261        0x3 
+                0x0000000010007320      0x101 /Applications/ARM/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp/libc.a(lib_a-ctype_.o)
+                0x0000000010007320                _ctype_
+                0x0000000010007424                . = ALIGN (0x4)
+ *fill*         0x0000000010007421        0x3 
  *(SORT_BY_ALIGNMENT(SORT_BY_NAME(.flashdata*)))
-                0x0000000010007264                . = ALIGN (0x4)
+                0x0000000010007424                . = ALIGN (0x4)
 
-.rel.dyn        0x0000000010007264        0x0
- .rel.iplt      0x0000000010007264        0x0 /Applications/ARM/bin/../lib/gcc/arm-none-eabi/10.3.1/thumb/v6-m/nofp/crtbegin.o
+.rel.dyn        0x0000000010007424        0x0
+ .rel.iplt      0x0000000010007424        0x0 /Applications/ARM/bin/../lib/gcc/arm-none-eabi/10.3.1/thumb/v6-m/nofp/crtbegin.o
 
 .ARM.extab
  *(.ARM.extab* .gnu.linkonce.armextab.*)
-                0x0000000010007264                __exidx_start = .
+                0x0000000010007424                __exidx_start = .
 
 .ARM.exidx
  *(.ARM.exidx* .gnu.linkonce.armexidx.*)
-                0x0000000010007264                __exidx_end = .
-                0x0000000010007264                . = ALIGN (0x4)
-                0x0000000010007264                __binary_info_start = .
+                0x0000000010007424                __exidx_end = .
+                0x0000000010007424                . = ALIGN (0x4)
+                0x0000000010007424                __binary_info_start = .
 
-.binary_info    0x0000000010007264       0x30
+.binary_info    0x0000000010007424       0x30
  *(.binary_info.keep.*)
  .binary_info.keep.__bi_ptr146
-                0x0000000010007264        0x4 CMakeFiles/minerSlave.dir/__/__/port/ioLibrary_Driver/src/w5x00_spi.c.obj
+                0x0000000010007424        0x4 CMakeFiles/minerSlave.dir/__/__/port/ioLibrary_Driver/src/w5x00_spi.c.obj
  .binary_info.keep.__bi_ptr154
-                0x0000000010007268        0x4 CMakeFiles/minerSlave.dir/__/__/port/ioLibrary_Driver/src/w5x00_spi.c.obj
+                0x0000000010007428        0x4 CMakeFiles/minerSlave.dir/__/__/port/ioLibrary_Driver/src/w5x00_spi.c.obj
  .binary_info.keep.__bi_ptr58
-                0x000000001000726c        0x4 CMakeFiles/minerSlave.dir/__/__/port/ioLibrary_Driver/src/w5x00_spi.c.obj
+                0x000000001000742c        0x4 CMakeFiles/minerSlave.dir/__/__/port/ioLibrary_Driver/src/w5x00_spi.c.obj
  .binary_info.keep.__bi_ptr22
-                0x0000000010007270        0x4 CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/pico_standard_link/binary_info.c.obj
+                0x0000000010007430        0x4 CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/pico_standard_link/binary_info.c.obj
  .binary_info.keep.__bi_ptr30
-                0x0000000010007274        0x4 CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/pico_standard_link/binary_info.c.obj
+                0x0000000010007434        0x4 CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/pico_standard_link/binary_info.c.obj
  .binary_info.keep.__bi_ptr38
-                0x0000000010007278        0x4 CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/pico_standard_link/binary_info.c.obj
+                0x0000000010007438        0x4 CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/pico_standard_link/binary_info.c.obj
  .binary_info.keep.__bi_ptr44
-                0x000000001000727c        0x4 CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/pico_standard_link/binary_info.c.obj
+                0x000000001000743c        0x4 CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/pico_standard_link/binary_info.c.obj
  .binary_info.keep.__bi_ptr50
-                0x0000000010007280        0x4 CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/pico_standard_link/binary_info.c.obj
+                0x0000000010007440        0x4 CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/pico_standard_link/binary_info.c.obj
  .binary_info.keep.__bi_ptr75
-                0x0000000010007284        0x4 CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/pico_standard_link/binary_info.c.obj
+                0x0000000010007444        0x4 CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/pico_standard_link/binary_info.c.obj
  .binary_info.keep.__bi_ptr81
-                0x0000000010007288        0x4 CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/pico_standard_link/binary_info.c.obj
+                0x0000000010007448        0x4 CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/pico_standard_link/binary_info.c.obj
  *(.binary_info.*)
  .binary_info.__bi_ptr28
-                0x000000001000728c        0x4 CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/pico_stdio_uart/stdio_uart.c.obj
+                0x000000001000744c        0x4 CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/pico_stdio_uart/stdio_uart.c.obj
  .binary_info.__bi_ptr29
-                0x0000000010007290        0x4 CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/pico_stdio_uart/stdio_uart.c.obj
-                0x0000000010007294                __binary_info_end = .
-                0x0000000010007294                . = ALIGN (0x4)
-                0x0000000010007294                __etext = .
+                0x0000000010007450        0x4 CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/pico_stdio_uart/stdio_uart.c.obj
+                0x0000000010007454                __binary_info_end = .
+                0x0000000010007454                . = ALIGN (0x4)
+                0x0000000010007454                __etext = .
 
 .ram_vector_table
                 0x0000000020000000       0xc0
@@ -4198,7 +4208,7 @@ LOAD /Applications/ARM/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-
                 0x0000000020000000       0xc0 CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/pico_runtime/runtime.c.obj
                 0x0000000020000000                ram_vector_table
 
-.data           0x00000000200000c0      0x9d8 load address 0x0000000010007294
+.data           0x00000000200000c0      0x9d8 load address 0x0000000010007454
                 0x00000000200000c0                __data_start__ = .
  *(vtable)
  *(.time_critical*)
@@ -4243,24 +4253,27 @@ LOAD /Applications/ARM/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-
                 0x0000000020000570        0x1 CMakeFiles/minerSlave.dir/minerSlave.cpp.obj
  .data._ZL18HashCalStatusCore1
                 0x0000000020000571        0x1 CMakeFiles/minerSlave.dir/minerSlave.cpp.obj
+ *fill*         0x0000000020000572        0x2 
+ .data._ZL11hashDelayUs
+                0x0000000020000574        0x4 CMakeFiles/minerSlave.dir/__/__/port/utils/src/duinoCoinUtils.cpp.obj
  .data.striped_spin_lock_num
-                0x0000000020000572        0x1 CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/hardware_sync/sync.c.obj
- *fill*         0x0000000020000573        0x1 
+                0x0000000020000578        0x1 CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/hardware_sync/sync.c.obj
+ *fill*         0x0000000020000579        0x3 
  .data.i2c0_inst
-                0x0000000020000574        0x8 CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/hardware_i2c/i2c.c.obj
-                0x0000000020000574                i2c0_inst
- .data.i2c1_inst
                 0x000000002000057c        0x8 CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/hardware_i2c/i2c.c.obj
-                0x000000002000057c                i2c1_inst
- .data          0x0000000020000584       0x48 CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/hardware_irq/irq_handler_chain.S.obj
-                0x0000000020000584                irq_handler_chain_slots
-                0x00000000200005b4                irq_handler_chain_first_slot
-                0x00000000200005be                irq_handler_chain_remove_tail
+                0x000000002000057c                i2c0_inst
+ .data.i2c1_inst
+                0x0000000020000584        0x8 CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/hardware_i2c/i2c.c.obj
+                0x0000000020000584                i2c1_inst
+ .data          0x000000002000058c       0x48 CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/hardware_irq/irq_handler_chain.S.obj
+                0x000000002000058c                irq_handler_chain_slots
+                0x00000000200005bc                irq_handler_chain_first_slot
+                0x00000000200005c6                irq_handler_chain_remove_tail
  .data.default_alarm_pool
-                0x00000000200005cc       0x18 CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/common/pico_time/time.c.obj
+                0x00000000200005d4       0x18 CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/common/pico_time/time.c.obj
  .data.default_alarm_pool_heap
-                0x00000000200005e4       0x10 CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/common/pico_time/time.c.obj
- *fill*         0x00000000200005f4        0xc 
+                0x00000000200005ec       0x10 CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/common/pico_time/time.c.obj
+ *fill*         0x00000000200005fc        0x4 
  .data.aeabi_bits_funcs
                 0x0000000020000600       0x10 CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/pico_bit_ops/bit_ops_aeabi.S.obj
                 0x0000000020000600                aeabi_bits_funcs
@@ -4319,29 +4332,29 @@ LOAD /Applications/ARM/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-
                 0x0000000020000a98                . = ALIGN (0x4)
                 0x0000000020000a98                __data_end__ = .
 
-.igot.plt       0x0000000020000a98        0x0 load address 0x0000000010007c6c
+.igot.plt       0x0000000020000a98        0x0 load address 0x0000000010007e2c
  .igot.plt      0x0000000020000a98        0x0 /Applications/ARM/bin/../lib/gcc/arm-none-eabi/10.3.1/thumb/v6-m/nofp/crtbegin.o
 
 .uninitialized_data
-                0x0000000020000a98        0x0 load address 0x0000000010007c6c
+                0x0000000020000a98        0x0 load address 0x0000000010007e2c
                 0x0000000020000a98                . = ALIGN (0x4)
  *(.uninitialized_data*)
 
-.scratch_x      0x0000000020040000        0x0 load address 0x0000000010007c6c
+.scratch_x      0x0000000020040000        0x0 load address 0x0000000010007e2c
                 0x0000000020040000                __scratch_x_start__ = .
  *(.scratch_x.*)
                 0x0000000020040000                . = ALIGN (0x4)
                 0x0000000020040000                __scratch_x_end__ = .
-                0x0000000010007c6c                __scratch_x_source__ = LOADADDR (.scratch_x)
+                0x0000000010007e2c                __scratch_x_source__ = LOADADDR (.scratch_x)
 
-.scratch_y      0x0000000020041000        0x0 load address 0x0000000010007c6c
+.scratch_y      0x0000000020041000        0x0 load address 0x0000000010007e2c
                 0x0000000020041000                __scratch_y_start__ = .
  *(.scratch_y.*)
                 0x0000000020041000                . = ALIGN (0x4)
                 0x0000000020041000                __scratch_y_end__ = .
-                0x0000000010007c6c                __scratch_y_source__ = LOADADDR (.scratch_y)
+                0x0000000010007e2c                __scratch_y_source__ = LOADADDR (.scratch_y)
 
-.bss            0x0000000020000a98      0xdf8
+.bss            0x0000000020000a98      0xf00
                 0x0000000020000a98                . = ALIGN (0x4)
                 0x0000000020000a98                __bss_start__ = .
  *(SORT_BY_ALIGNMENT(SORT_BY_NAME(.bss*)))
@@ -4386,59 +4399,64 @@ LOAD /Applications/ARM/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-
                 0x00000000200013ac       0x10 CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/hardware_timer/timer.c.obj
  .bss.boot2_copyout
                 0x00000000200013bc      0x100 CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/hardware_flash/flash.c.obj
+ .bss.configBuffer
+                0x00000000200014bc      0x104 CMakeFiles/minerSlave.dir/minerSlave.cpp.obj
+                0x00000000200014bc                configBuffer
  .bss.configured_freq
-                0x00000000200014bc       0x28 CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/hardware_clocks/clocks.c.obj
+                0x00000000200015c0       0x28 CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/hardware_clocks/clocks.c.obj
  .bss.default_alarm_pool_entry_ids_high
-                0x00000000200014e4       0x10 CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/common/pico_time/time.c.obj
+                0x00000000200015e8       0x10 CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/common/pico_time/time.c.obj
  .bss.default_alarm_pool_heap_nodes
-                0x00000000200014f4       0x30 CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/common/pico_time/time.c.obj
- .bss.drivers   0x0000000020001524        0x4 CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/pico_stdio/stdio.c.obj
- .bss.filter    0x0000000020001528        0x4 CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/pico_stdio/stdio.c.obj
+                0x00000000200015f8       0x30 CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/common/pico_time/time.c.obj
+ .bss.drivers   0x0000000020001628        0x4 CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/pico_stdio/stdio.c.obj
+ .bss.filter    0x000000002000162c        0x4 CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/pico_stdio/stdio.c.obj
  .bss.i2c_slaves
-                0x000000002000152c       0x18 CMakeFiles/minerSlave.dir/__/__/port/i2c_slave/i2c_slave.c.obj
+                0x0000000020001630       0x18 CMakeFiles/minerSlave.dir/__/__/port/i2c_slave/i2c_slave.c.obj
  .bss.lazy_vsnprintf
-                0x0000000020001544        0x4 CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/pico_printf/printf.c.obj
- .bss.pools     0x0000000020001548       0x10 CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/common/pico_time/time.c.obj
+                0x0000000020001648        0x4 CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/pico_printf/printf.c.obj
+ .bss.load_value
+                0x000000002000164c        0x4 CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/hardware_watchdog/watchdog.c.obj
+ .bss.pools     0x0000000020001650       0x10 CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/common/pico_time/time.c.obj
  .bss.receiveBuffer0
-                0x0000000020001558      0x104 CMakeFiles/minerSlave.dir/minerSlave.cpp.obj
-                0x0000000020001558                receiveBuffer0
+                0x0000000020001660      0x104 CMakeFiles/minerSlave.dir/minerSlave.cpp.obj
+                0x0000000020001660                receiveBuffer0
  .bss.receiveBuffer1
-                0x000000002000165c      0x104 CMakeFiles/minerSlave.dir/minerSlave.cpp.obj
-                0x000000002000165c                receiveBuffer1
+                0x0000000020001764      0x104 CMakeFiles/minerSlave.dir/minerSlave.cpp.obj
+                0x0000000020001764                receiveBuffer1
  .bss.requestBuffer
-                0x0000000020001760      0x104 CMakeFiles/minerSlave.dir/minerSlave.cpp.obj
-                0x0000000020001760                requestBuffer
+                0x0000000020001868      0x104 CMakeFiles/minerSlave.dir/minerSlave.cpp.obj
+                0x0000000020001868                requestBuffer
  .bss.retrieved_id
-                0x0000000020001864        0x8 CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/pico_unique_id/unique_id.c.obj
+                0x000000002000196c        0x8 CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/pico_unique_id/unique_id.c.obj
  .bss.sf_clz_func
-                0x000000002000186c        0x4 CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/pico_double/double_init_rom.c.obj
-                0x000000002000186c                sf_clz_func
+                0x0000000020001974        0x4 CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/pico_double/double_init_rom.c.obj
+                0x0000000020001974                sf_clz_func
  .bss.sleep_notifier
-                0x0000000020001870        0x4 CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/common/pico_time/time.c.obj
+                0x0000000020001978        0x4 CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/common/pico_time/time.c.obj
  .bss.target_hi
-                0x0000000020001874       0x10 CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/hardware_timer/timer.c.obj
+                0x000000002000197c       0x10 CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/hardware_timer/timer.c.obj
  .bss.uart_char_to_line_feed
-                0x0000000020001884        0x4 CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/hardware_uart/uart.c.obj
-                0x0000000020001884                uart_char_to_line_feed
+                0x000000002000198c        0x4 CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/hardware_uart/uart.c.obj
+                0x000000002000198c                uart_char_to_line_feed
  .bss.uart_instance
-                0x0000000020001888        0x4 CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/pico_stdio_uart/stdio_uart.c.obj
+                0x0000000020001990        0x4 CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/pico_stdio_uart/stdio_uart.c.obj
  .bss.boot2_copyout_valid
-                0x000000002000188c        0x1 CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/hardware_flash/flash.c.obj
- .bss.claimed   0x000000002000188d        0x1 CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/hardware_timer/timer.c.obj
+                0x0000000020001994        0x1 CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/hardware_flash/flash.c.obj
+ .bss.claimed   0x0000000020001995        0x1 CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/hardware_timer/timer.c.obj
  .bss.irq_hander_chain_free_slot_head
-                0x000000002000188e        0x1 CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/hardware_irq/irq.c.obj
+                0x0000000020001996        0x1 CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/hardware_irq/irq.c.obj
  .bss.timer_callbacks_pending
-                0x000000002000188f        0x1 CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/hardware_timer/timer.c.obj
+                0x0000000020001997        0x1 CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/hardware_timer/timer.c.obj
  *(COMMON)
-                0x0000000020001890                . = ALIGN (0x4)
-                0x0000000020001890                __bss_end__ = .
+                0x0000000020001998                . = ALIGN (0x4)
+                0x0000000020001998                __bss_end__ = .
 
-.heap           0x0000000020001890      0x800
-                0x0000000020001890                __end__ = .
-                0x0000000020001890                end = __end__
+.heap           0x0000000020001998      0x800
+                0x0000000020001998                __end__ = .
+                0x0000000020001998                end = __end__
  *(.heap*)
- .heap          0x0000000020001890      0x800 CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/pico_standard_link/crt0.S.obj
-                0x0000000020002090                __HeapLimit = .
+ .heap          0x0000000020001998      0x800 CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/pico_standard_link/crt0.S.obj
+                0x0000000020002198                __HeapLimit = .
 
 .stack1_dummy   0x0000000020040000      0x800
  *(.stack1*)
@@ -4448,8 +4466,8 @@ LOAD /Applications/ARM/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-
  *(.stack*)
  .stack         0x0000000020041000      0x800 CMakeFiles/minerSlave.dir/__/__/libraries/pico-sdk/src/rp2_common/pico_standard_link/crt0.S.obj
 
-.flash_end      0x0000000010007c6c        0x0
-                0x0000000010007c6c                __flash_binary_end = .
+.flash_end      0x0000000010007e2c        0x0
+                0x0000000010007e2c                __flash_binary_end = .
                 0x0000000020040000                __StackLimit = (ORIGIN (RAM) + LENGTH (RAM))
                 0x0000000020041000                __StackOneTop = (ORIGIN (SCRATCH_X) + LENGTH (SCRATCH_X))
                 0x0000000020042000                __StackTop = (ORIGIN (SCRATCH_Y) + LENGTH (SCRATCH_Y))
@@ -4593,7 +4611,7 @@ LOAD ../../libraries/libETHERNET_FILES.a
 LOAD ../../libraries/libW5100S_FILES.a
 LOAD ../../libraries/libETHERNET_FILES.a
 LOAD ../../libraries/libW5100S_FILES.a
-LOAD /var/folders/7z/r4r2qbgd4bb_p1x_wcg8qx4c0000gn/T//ccRx97b1.o
+LOAD /var/folders/7z/r4r2qbgd4bb_p1x_wcg8qx4c0000gn/T//ccjOXbiG.o
 LOAD /Applications/ARM/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp/libstdc++.a
 LOAD /Applications/ARM/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp/libm.a
 START GROUP
@@ -4711,7 +4729,7 @@ LOAD linker stubs
  .ARM.attributes
                 0x00000000000007ce       0x2c ../../libraries/mbedtls/library/libmbedcrypto.a(sha1.c.obj)
  .ARM.attributes
-                0x00000000000007fa       0x22 /var/folders/7z/r4r2qbgd4bb_p1x_wcg8qx4c0000gn/T//ccRx97b1.o
+                0x00000000000007fa       0x22 /var/folders/7z/r4r2qbgd4bb_p1x_wcg8qx4c0000gn/T//ccjOXbiG.o
  .ARM.attributes
                 0x000000000000081c       0x1e /Applications/ARM/bin/../lib/gcc/arm-none-eabi/10.3.1/thumb/v6-m/nofp/libgcc.a(_dvmd_tls.o)
  .ARM.attributes

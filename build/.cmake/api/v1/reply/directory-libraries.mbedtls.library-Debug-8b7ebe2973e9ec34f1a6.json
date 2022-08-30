@@ -1,0 +1,81 @@
+{
+	"backtraceGraph" : 
+	{
+		"commands" : 
+		[
+			"install"
+		],
+		"files" : 
+		[
+			"libraries/mbedtls/library/CMakeLists.txt"
+		],
+		"nodes" : 
+		[
+			{
+				"file" : 0
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 221,
+				"parent" : 0
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 221,
+				"parent" : 0
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 221,
+				"parent" : 0
+			}
+		]
+	},
+	"installers" : 
+	[
+		{
+			"backtrace" : 1,
+			"component" : "Unspecified",
+			"destination" : "lib",
+			"paths" : 
+			[
+				"libraries/mbedtls/library/libmbedcrypto.a"
+			],
+			"targetId" : "mbedcrypto::@5057db8c34de054eb6c6",
+			"targetIndex" : 24,
+			"type" : "target"
+		},
+		{
+			"backtrace" : 2,
+			"component" : "Unspecified",
+			"destination" : "lib",
+			"paths" : 
+			[
+				"libraries/mbedtls/library/libmbedx509.a"
+			],
+			"targetId" : "mbedx509::@5057db8c34de054eb6c6",
+			"targetIndex" : 26,
+			"type" : "target"
+		},
+		{
+			"backtrace" : 3,
+			"component" : "Unspecified",
+			"destination" : "lib",
+			"paths" : 
+			[
+				"libraries/mbedtls/library/libmbedtls.a"
+			],
+			"targetId" : "mbedtls::@5057db8c34de054eb6c6",
+			"targetIndex" : 25,
+			"type" : "target"
+		}
+	],
+	"paths" : 
+	{
+		"build" : "libraries/mbedtls/library",
+		"source" : "libraries/mbedtls/library"
+	}
+}
