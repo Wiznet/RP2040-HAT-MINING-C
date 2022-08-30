@@ -569,7 +569,8 @@ void duino_master_state_loop (void) //i2c whlie
             if(ducoClient[clientNo].diff > 2000)
             {
                 printf("Client %d: Hash difficulty is too high %d\n",clientNo, ducoClient[clientNo].diff);
-                ducoClient[clientNo].state = JOB_REQUEST;
+                tcp_client_close(ducoClient[clientNo].tcp_client_pcb);//close the socket
+                ducoClient[clientNo].state = CONNECT;//and connect again
                 break;
             }
             //add the core number in front of the job string for the slave hash calculation.
