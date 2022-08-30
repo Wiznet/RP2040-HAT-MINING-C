@@ -623,10 +623,16 @@ void duino_master_state_loop (void) //i2c whlie
             ducoClient[clientNo].hashrate = ducoClient[clientNo].hashResult/ducoClient[clientNo].elapsedTime;
 
             if(ducoClient[clientNo].hashResult == 0){
-                printf("Client %d: wrong result\n",clientNo);
-                ducoClient[clientNo].state = CONNECT; // went wrong
+                if(ducoClient[clientNo].retryCounter == 2){//retry twice
+                    ducoClient[clientNo].retryCounter = 0;
+                    printf("Client %d: wrong result\n",clientNo);
+                    ducoClient[clientNo].state = CONNECT; // went wrong
+                    break;
+                }
+                ducoClient[clientNo].retryCounter++;
                 break;
             }
+            ducoClient[clientNo].retryCounter = 0;
             memset(ducoClient[clientNo].socketBuffer,0,128);
             set_duino_res_msg(( uint8_t *)ducoClient[clientNo].socketBuffer, ducoClient[clientNo].hashResult, ducoClient[clientNo].hashrate);
             printf("Client %d: message '%s' will be sent.\n",clientNo, ducoClient[clientNo].socketBuffer);
