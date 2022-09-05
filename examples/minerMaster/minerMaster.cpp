@@ -505,6 +505,10 @@ void duino_master_state_loop (void) //i2c whlie
             if(core[coreNumber] == '0'){// IDLE
                 printf("Job request string: %s",send_req_str);
                 err = tcp_write((tcp_pcb *)ducoClient[clientNo].tcp_client_pcb, send_req_str, sizeof(send_req_str)-1, 0);
+                if(err != ERR_OK){
+                    ducoClient[clientNo].state = CONNECT;
+                    break;
+                }
                 ducoClient[clientNo].timeOut = timeOut(SERVER_RESPONSE_TIMEOUT);//10 second
                 ducoClient[clientNo].state = REQUEST_WAIT;
             } else if (core[coreNumber] == '1'){//BUSY
@@ -707,9 +711,13 @@ void set_duino_req_msg (void)
 static void set_duino_res_msg(uint8_t * socketBuffer, uint32_t duco_numeric_result, float hashrate, uint8_t slaveNumber)
 {
     memset(socketBuffer, 0x00, SOCK_BUF_SIZE );
-    sprintf((char*)socketBuffer, "%d,%.2f,%s%02d\n", duco_numeric_result , hashrate, DUINO_RIG_IDENTIFIER, slaveNumber);
     // printf("[Hoon] len = %d, %s\r\n", 1024, (char*)socketBuffer);
-    sprintf((char*)g_ethernet_buf, "%d,%.2f,%s %s,%s%02d\n", duco_numeric_result , hashrate, DUINO_MINER_BANNER, DUINO_MINER_VER, DUINO_RIG_IDENTIFIER,slaveNumber);
+
+    // sprintf((char*)socketBuffer, "%d,%.2f,%s%02d\n", duco_numeric_result , hashrate, DUINO_RIG_IDENTIFIER, slaveNumber);
+    //miner 3.3 + information
+    // sprintf((char*)socketBuffer, "%d,%.2f,%s %s,%s%02d\n", duco_numeric_result , hashrate, DUINO_MINER_BANNER, DUINO_MINER_VER, DUINO_RIG_IDENTIFIER,slaveNumber);
+    //no hash rate information
+    sprintf((char*)socketBuffer, "%d,,%s%02d\n", duco_numeric_result, DUINO_RIG_IDENTIFIER,slaveNumber);
 }
 
 // move to utils 
