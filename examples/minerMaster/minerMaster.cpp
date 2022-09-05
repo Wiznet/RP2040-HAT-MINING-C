@@ -51,19 +51,20 @@ extern "C" {
 #define PORT_SSL 443
 
 /* Duino coin */
-#define DUINO_CHIP_ID           "1234b" 
-#define DUINO_USER_NAME         "wiznet_test"
+#define DUINO_USER_NAME         "wiznet-mason"
 #define DUINO_MINER_KEY         "1234"
     // Change the part in brackets if you want to set a custom miner name (use Auto to autogenerate, None for no name)
-#define DUINO_RIG_IDENTIFIER    "W5100" 
+#define DUINO_RIG_IDENTIFIER    "WIZnet_Miner_" 
     // Do not change the lines below. These lines are static and dynamic variables
     //  that will be used by the program for counters and measurements.
 #define DUINO_HTTP_GET_URL      "https://server.duinocoin.com/getPool"
-#define DUINO_MINER_VER         "3.18"                  
+#define DUINO_MINER_VER         "3.3"                  
 #define DUINO_MINER_BANNER      "W5100S-EVB-Pico Miner"
 
 #define DUINO_MSG_LEN_HASH  40
 #define DUINO_MSG_LEN_TOTAL 90
+
+#define DUINO_PLATFORM  "ESP8266NH"
 
 /* Multicore*/
 #define USE_DUALCORE
@@ -72,6 +73,8 @@ extern "C" {
 #define HASH_FINDING        0
 #define HASH_NOT_FIND       1
 #define HASH_RATE_DELAY_US  0
+
+#define HASH_DELAY  "0\n"
 
 /* Duco miner */
 #define BUF_SIZE        256
@@ -149,7 +152,7 @@ static wiz_NetInfo g_net_info =
 #define SOCK_BUF_SIZE 128
 
 #define SERVER_RESPONSE_TIMEOUT 20
-#define SLAVE_CALCULATION_TIMEOUT 20
+#define SLAVE_CALCULATION_TIMEOUT 50
 
 typedef struct _ducoClient {
     struct tcp_pcb *tcp_client_pcb;
@@ -248,7 +251,7 @@ void duino_server_state_loop(void);
 void duino_master_init(void);
 void duino_master_state_loop (void); 
 bool connect_to_server(tcp_pcb *);
-static void set_duino_res_msg(uint8_t * socketBuffer, uint32_t duco_numeric_result, float hashrate);
+static void set_duino_res_msg(uint8_t * socketBuffer, uint32_t duco_numeric_result, float hashrate, uint8_t slaveNumber);
 /*DHCP*/
 void wizchip_net_info_set(void);
 void wizchip_dhcp_init(void);
@@ -431,12 +434,11 @@ void duino_master_init (void)
     for(int i = 0 ; i < g_slave_count ; i++)
         printf("Detected slave address[%d]: %d\n",i, g_duino_slave[i]);
     
-    char * hashDelayStr = "300\n";
     for(int i = 0 ; i < g_slave_count ; i++){
-        writeCmd(g_duino_slave[i],CMD_CONFIG_HASH_DELAY,(uint8_t *)hashDelayStr, sizeof(hashDelayStr));
+        writeCmd(g_duino_slave[i],CMD_CONFIG_HASH_DELAY,(uint8_t *)HASH_DELAY, sizeof(HASH_DELAY));
         sleep_ms(100);
     }
-    printf("Slave hash delay has been set to %s\n",hashDelayStr);
+    printf("Slave hash delay has been set to %s,%d\n",HASH_DELAY,sizeof(HASH_DELAY));
 }
 
 uint64_t timeOut(uint32_t sec){
@@ -501,6 +503,7 @@ void duino_master_state_loop (void) //i2c whlie
 
             // printf("core[0]:%c, core[1]:%c\n",core[0],core[1]);
             if(core[coreNumber] == '0'){// IDLE
+                printf("Job request string: %s",send_req_str);
                 err = tcp_write((tcp_pcb *)ducoClient[clientNo].tcp_client_pcb, send_req_str, sizeof(send_req_str)-1, 0);
                 ducoClient[clientNo].timeOut = timeOut(SERVER_RESPONSE_TIMEOUT);//10 second
                 ducoClient[clientNo].state = REQUEST_WAIT;
@@ -566,13 +569,13 @@ void duino_master_state_loop (void) //i2c whlie
             jobBuffer.readStringUntil('\n',(char*)tempBuffer);
             ducoClient[clientNo].diff = atoi((char*)tempBuffer);
 
-            if(ducoClient[clientNo].diff > 2000)
-            {
-                printf("Client %d: Hash difficulty is too high %d\n",clientNo, ducoClient[clientNo].diff);
-                tcp_client_close(ducoClient[clientNo].tcp_client_pcb);//close the socket
-                ducoClient[clientNo].state = CONNECT;//and connect again
-                break;
-            }
+            // if(ducoClient[clientNo].diff > 2000)
+            // {
+            //     printf("Client %d: Hash difficulty is too high %d\n",clientNo, ducoClient[clientNo].diff);
+            //     tcp_client_close(ducoClient[clientNo].tcp_client_pcb);//close the socket
+            //     ducoClient[clientNo].state = CONNECT;//and connect again
+            //     break;
+            // }
             //add the core number in front of the job string for the slave hash calculation.
             sprintf((char*)g_slave_job, "%d%s", coreNumber, (char*)ducoClient[clientNo].socketBuffer);
             //send the write hash command and the job string
@@ -634,7 +637,7 @@ void duino_master_state_loop (void) //i2c whlie
             }
             ducoClient[clientNo].retryCounter = 0;
             memset(ducoClient[clientNo].socketBuffer,0,128);
-            set_duino_res_msg(( uint8_t *)ducoClient[clientNo].socketBuffer, ducoClient[clientNo].hashResult, ducoClient[clientNo].hashrate);
+            set_duino_res_msg(( uint8_t *)ducoClient[clientNo].socketBuffer, ducoClient[clientNo].hashResult, ducoClient[clientNo].hashrate, clientNo);
             printf("Client %d: message '%s' will be sent.\n",clientNo, ducoClient[clientNo].socketBuffer);
             if(ducoClient[clientNo].tcp_client_pcb->state != ESTABLISHED){//if socket state is not in ESTABLISHED
                 ducoClient[clientNo].state = CONNECT;//try to connect again
@@ -659,6 +662,7 @@ void duino_master_state_loop (void) //i2c whlie
         case RESULT_UPDATE:
             ducoClient[clientNo].state = JOB_REQUEST;
             printf("Client %d: RESULT_UPDATE\n",clientNo);
+            printf("Client %d: %s",clientNo, ducoClient[clientNo].socketBuffer);
             if (0 == strncmp((char*)ducoClient[clientNo].socketBuffer, "GOOD", 4)) 
             {
                 printf("Client %d: GOOD, %d, hashrate:%.2fKH/s (%.2fs)  \r\n\r\n", clientNo, ducoClient[clientNo].hashResult, ducoClient[clientNo].hashrate/1000, ducoClient[clientNo].elapsedTime);
@@ -697,16 +701,15 @@ void core1_entry(void)
 void set_duino_req_msg (void)
 {
     memset(send_req_str, 0x00, 128);
-    sprintf(send_req_str, "JOB,%s,ESP32,%s\n", DUINO_USER_NAME, DUINO_MINER_KEY);
-
+    sprintf(send_req_str, "JOB,%s,%s,%s\n", DUINO_USER_NAME, DUINO_PLATFORM, DUINO_MINER_KEY);
 }
 
-static void set_duino_res_msg(uint8_t * socketBuffer, uint32_t duco_numeric_result, float hashrate)
+static void set_duino_res_msg(uint8_t * socketBuffer, uint32_t duco_numeric_result, float hashrate, uint8_t slaveNumber)
 {
     memset(socketBuffer, 0x00, SOCK_BUF_SIZE );
-    sprintf((char*)socketBuffer, "%d,%.2f,%s %s,%s,DUCOID%s\n", duco_numeric_result , hashrate       , DUINO_MINER_BANNER, DUINO_MINER_VER
-                                                         , DUINO_RIG_IDENTIFIER, DUINO_CHIP_ID);
+    sprintf((char*)socketBuffer, "%d,%.2f,%s%02d\n", duco_numeric_result , hashrate, DUINO_RIG_IDENTIFIER, slaveNumber);
     // printf("[Hoon] len = %d, %s\r\n", 1024, (char*)socketBuffer);
+    sprintf((char*)g_ethernet_buf, "%d,%.2f,%s %s,%s%02d\n", duco_numeric_result , hashrate, DUINO_MINER_BANNER, DUINO_MINER_VER, DUINO_RIG_IDENTIFIER,slaveNumber);
 }
 
 // move to utils 
@@ -971,14 +974,14 @@ void set_lcd_print_log(void)
         start_mem_cnt=0;
     else
         start_mem_cnt= g_lcd_newest_mem_index+1;
-    
+    // ILI9340_ClearScreen();
     for(int8_t i=0; g_lcd_printed_line_cnt > i; i++)
     { 
         ILI9340_Write_Mining_State( i, g_duino_lcd_info[start_mem_cnt].slave_index
-                                     , g_duino_lcd_info[start_mem_cnt].result       , g_duino_lcd_info[start_mem_cnt].difficulty                    
+                                     , g_duino_lcd_info[start_mem_cnt].result       , g_duino_lcd_info[start_mem_cnt].difficulty
                                      , g_duino_lcd_info[start_mem_cnt].hashrate     , g_duino_lcd_info[start_mem_cnt].elapsed_time_s);
 
-        if (start_mem_cnt == LCD_DUINO_INFO_MEM_CNT_MAX)         
+        if (start_mem_cnt == LCD_DUINO_INFO_MEM_CNT_MAX)
             start_mem_cnt=0;
         else 
             start_mem_cnt++;

@@ -610,7 +610,8 @@ void ILI9340_Write_Mining_State(uint16_t y1, char* slv_index, char* result, char
 {
 	y1= (y1* FONT_HIGHT_OFFSET_ONE_BLOCK) + LCD_WIDTH_BASE_Y;
 	uint16_t y2= y1+FONT_HIGHT_OFFSET_LINE_1;
-
+	
+	ILI9340_FillRect(0,y1,100,16,0);
 	ILI9340_DrawCharString(FONT_WIDTH_X_SLAVE_TEXT , y1, "Slv"    , 3 , WHITE);
 	ILI9340_DrawCharString(FONT_WIDTH_X_SLAVE_INDEX, y1, slv_index, LCD_STRING_SIZE_SLAVE_INDEX, WHITE); //remove
 	ILI9340_DrawCharString(FONT_WIDTH_X_RESULT     , y1, result   , LCD_STRING_SIZE_RESULT, (0==strncmp(result, "GOOD",4))?WHITE:RED); //remove

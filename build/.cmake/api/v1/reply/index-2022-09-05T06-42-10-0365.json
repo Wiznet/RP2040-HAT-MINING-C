@@ -35,11 +35,20 @@
 			}
 		},
 		{
-			"jsonFile" : "cache-v2-d72a3c3d7cbc5a7002b6.json",
+			"jsonFile" : "cache-v2-5e4bbeb12b75315ecca2.json",
 			"kind" : "cache",
 			"version" : 
 			{
 				"major" : 2,
+				"minor" : 0
+			}
+		},
+		{
+			"jsonFile" : "cmakeFiles-v1-f59aa233a1519ccfb9f9.json",
+			"kind" : "cmakeFiles",
+			"version" : 
+			{
+				"major" : 1,
 				"minor" : 0
 			}
 		},
@@ -72,12 +81,16 @@
 					{
 						"kind" : "toolchains",
 						"version" : 1
+					},
+					{
+						"kind" : "cmakeFiles",
+						"version" : 1
 					}
 				],
 				"responses" : 
 				[
 					{
-						"jsonFile" : "cache-v2-d72a3c3d7cbc5a7002b6.json",
+						"jsonFile" : "cache-v2-5e4bbeb12b75315ecca2.json",
 						"kind" : "cache",
 						"version" : 
 						{
@@ -97,6 +110,15 @@
 					{
 						"jsonFile" : "toolchains-v1-fbdea11eda365b7acdce.json",
 						"kind" : "toolchains",
+						"version" : 
+						{
+							"major" : 1,
+							"minor" : 0
+						}
+					},
+					{
+						"jsonFile" : "cmakeFiles-v1-f59aa233a1519ccfb9f9.json",
+						"kind" : "cmakeFiles",
 						"version" : 
 						{
 							"major" : 1,
