@@ -1,0 +1,2 @@
+add_subdirectory(minerMaster)
+add_subdirectory(minerSlave)

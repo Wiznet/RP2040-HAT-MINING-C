@@ -1,0 +1,16 @@
+diff --git a/source/interface/transport_interface.h b/source/interface/transport_interface.h
+index cfe0af7..d49e7f8 100644
+--- a/source/interface/transport_interface.h
++++ b/source/interface/transport_interface.h
+@@ -185,7 +185,10 @@
+  * This context is passed into the network interface functions.
+  */
+ /* @[define_networkcontext] */
+-struct NetworkContext;
++struct NetworkContext
++{
++    int socketDescriptor;
++};
+ typedef struct NetworkContext NetworkContext_t;
+ /* @[define_networkcontext] */
+ 
