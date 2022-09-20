@@ -118,7 +118,7 @@ typedef struct Duino_host_t
 /* Network */
 static wiz_NetInfo g_net_info =
 {
-    .mac = {0x00, 0x08, 0xDC, 0x5C, 0x7D, 0x50}, // MAC address
+    .mac = {0x00, 0x08, 0xDC, 0x12, 0x34, 0x56}, // MAC address
     .ip =  {192, 168, 11, 2},                     // IP address
     .sn =  {255, 255, 255, 0},                    // Subnet Mask
     .gw =  {192, 168, 11, 1},                     // Gateway
