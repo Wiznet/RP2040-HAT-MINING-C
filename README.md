@@ -1,7 +1,7 @@
 Please refer to bel for examples usage.
 
 1. [miner_W5100S-EVB-Pico Readme.md][link-miner_W5100S-EVB-Pico_Readme]
-2. [Multiple miner W5100S-Pico-Mining Readme.md][link-miner_W5100S-EVB-Pico_Readme]
+2. [Multiple miner W5100S-Pico-Mining Readme.md][link-miner_W5100S-EVB-Pico-Multi_Readme]
 
 <!--
 Link
