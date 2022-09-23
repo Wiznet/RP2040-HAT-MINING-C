@@ -641,7 +641,6 @@ void connect_to_server(uint8_t socket_num, uint32_t close_flag)
     {
         printf(" failed\n  ! socket returned %d\n\n", ret);
     }
-    printf("Hoon-1\r\n");
 
     /* send msg: request hash data */
     ret= connect(socket_num, g_duino_host.ip,  g_duino_host.port);
@@ -650,7 +649,6 @@ void connect_to_server(uint8_t socket_num, uint32_t close_flag)
         printf(" failed\n  ! connect returned %d\n\n", ret);
         while(1);
     }
-    printf("Hoon-2\r\n");
     
     recv_data_from_server(socket_num, server_ver, 16, 0);
     printf("Connected to the server. Server version: %s\r\n", server_ver);
@@ -689,7 +687,6 @@ int get_hash_data_from_server(uint8_t socket_num, uint8_t *recv_buf, uint32_t re
 
     ret = send(socket_num, send_req_str, strlen(send_req_str));
     printf("Send Data = %s, len = %d\r\n", send_req_str, strlen(send_req_str));
-    //printf("send_ret = %d\r\n", ret);
     ret = recv_data_from_server(socket_num, recv_buf, recv_buf_size, US_TIMER_WAIT_TIMEOUT);
 
     return ret;
@@ -703,8 +700,6 @@ float calculate_hash_core0(uint8_t socket_num, uint32_t difficulty, uint8_t *las
     uint32_t hash_number;    
     uint32_t start_time = 0;
     uint32_t end_time = 0;
-    uint32_t keepalive_start_time = 0;
-    uint32_t keepalive_end_time = 0;
     unsigned long elapsed_time = 0; 
     float elapsed_time_s = 0;
     
@@ -726,8 +721,6 @@ float calculate_hash_core0(uint8_t socket_num, uint32_t difficulty, uint8_t *las
     if ( ret = mbedtls_sha1_update_ret(&sha1_ctx_base, last_block_hash_str, strlen(last_block_hash_str) ) != 0 )
         printf("Failed mbedtls_sha1_update_ret = %d\r\n", ret);
         
-    keepalive_start_time = time_us_32();
-
     for (hash_number = 0; hash_number < difficulty; hash_number++)
     {
         memcpy(&sha1_ctx, &sha1_ctx_base, sizeof(mbedtls_sha1_context));
@@ -739,8 +732,6 @@ float calculate_hash_core0(uint8_t socket_num, uint32_t difficulty, uint8_t *las
 
         if ( ret = mbedtls_sha1_finish_ret(&sha1_ctx, hashArray) != 0 )
             printf("Failed mbedtls_sha1_finish_ret = %d\r\n", ret);
-
-        keepalive_end_time = time_us_32();
 
         if(!(memcmp(expected_hash_arry, hashArray, 20)))
         {
@@ -774,8 +765,6 @@ float calculate_hash_core1(uint8_t socket_num, uint32_t difficulty, uint8_t *las
     uint32_t hash_number;    
     uint32_t start_time = 0;
     uint32_t end_time = 0;
-    uint32_t keepalive_start_time = 0;
-    uint32_t keepalive_end_time = 0;
     unsigned long elapsed_time = 0; 
     float elapsed_time_s = 0;
     
@@ -796,8 +785,6 @@ float calculate_hash_core1(uint8_t socket_num, uint32_t difficulty, uint8_t *las
         
     if ( ret = mbedtls_sha1_update_ret(&sha1_ctx_base, last_block_hash_str, strlen(last_block_hash_str) ) != 0 )
         printf("Failed mbedtls_sha1_update_ret = %d\r\n", ret);
-        
-    keepalive_start_time = time_us_32();
 
     for (hash_number = 0; hash_number < difficulty; hash_number++)
     {
@@ -810,8 +797,6 @@ float calculate_hash_core1(uint8_t socket_num, uint32_t difficulty, uint8_t *las
 
         if ( ret = mbedtls_sha1_finish_ret(&sha1_ctx, hashArray) != 0 )
             printf("Failed mbedtls_sha1_finish_ret = %d\r\n", ret);
-
-        keepalive_end_time = time_us_32();
 
         if(!(memcmp(expected_hash_arry, hashArray, 20)))
         {
