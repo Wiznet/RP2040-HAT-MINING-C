@@ -73,7 +73,8 @@
 // Miner key : input yours
 #define DUINO_MINER_KEY         "miner key"
 //RIG_Identifier : Anything can be used for here
-#define DUINO_RIG_IDENTIFIER    "W5100S-EVB-Pico" 
+#define DUINO_RIG_IDENTIFIER    "RP2040_Core" 
+
 //Miner software version
 #define DUINO_MINER_BANNER      "W5100S-EVB-Pico Miner v1.0"
 //Duino Platform name to be used when requesting hash job
@@ -158,7 +159,7 @@ static void set_clock_khz(void);
 /* Duino */
 static uint8_t str_to_array(uint8_t * str, uint8_t * hex);
 static void set_duino_req_msg (void);
-static void set_duino_res_msg(uint32_t duco_numeric_result, float hashrate, uint8_t *res_buf, uint32_t res_buf_size);
+static void set_duino_res_msg(uint8_t socket_num, uint32_t duco_numeric_result, float hashrate, uint8_t *res_buf, uint32_t res_buf_size);
 static uint8_t get_duino_hash_data (char* data, char* separator, char* last_block_hash, char* expected_hash, uint32_t* difficulty);
 void set_duino_host_addr_info (uint8_t* addr, uint32_t* port);
 void update_pool(void);
@@ -451,14 +452,21 @@ static void set_duino_req_msg (void)
     printf("%s\r\n", send_req_str);
 }
 
-static void set_duino_res_msg(uint32_t duco_numeric_result, float hashrate, uint8_t *res_buf, uint32_t res_buf_size)
+static void set_duino_res_msg(uint8_t socket_num, uint32_t duco_numeric_result, float hashrate, uint8_t *res_buf, uint32_t res_buf_size)
 {
+    uint8_t core_num;
+    if (socket_num == SOCKET_CORE0)
+        core_num = 0;
+    else if (socket_num == SOCKET_CORE1)
+        core_num = 1;
+
     memset(res_buf, 0x00, res_buf_size );
     //sprintf(g_ethernet_buf, "%d,%.2f\n", duco_numeric_result , hashrate);
-    sprintf(res_buf, "%d,%.2f,%s %s,%s,DUCOID%s\n", duco_numeric_result , hashrate, DUINO_MINER_BANNER, DUINO_MINER_VER
-                                                    , DUINO_RIG_IDENTIFIER, rp2040_id);
+    sprintf(res_buf, "%d,%.2f,%s %s,%s%d,DUCOID%s\n", duco_numeric_result , hashrate, DUINO_MINER_BANNER, DUINO_MINER_VER
+                                                    , DUINO_RIG_IDENTIFIER, core_num, rp2040_id);
     printf("len = %d, %s\r\n", strlen(res_buf), res_buf);
 }
+
 
 void set_duino_host_addr_info (uint8_t* addr, uint32_t* port)
 {
@@ -826,7 +834,7 @@ float calculate_hash_core1(uint8_t socket_num, uint32_t difficulty, uint8_t *las
 void send_hash_result_to_server(uint8_t socket_num, uint32_t duco_numeric_result, float hashrate, uint8_t *send_buf, uint32_t send_buf_size)
 {
     /* send msg: response hash data */
-    set_duino_res_msg(duco_numeric_result, hashrate, send_buf, send_buf_size);
+    set_duino_res_msg(socket_num, duco_numeric_result, hashrate, send_buf, send_buf_size);
     send(socket_num, send_buf, strlen(send_buf));
     printf("%s\r\n", send_buf);
 }
