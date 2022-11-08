@@ -18,7 +18,7 @@
 #include "pico/critical_section.h"
 #include "pico/binary_info.h"
 #include "pico/unique_id.h"
-//#include "pico/multicore.h"
+#include "pico/util/datetime.h"
 
 #include "hardware/spi.h"
 #include "hardware/dma.h"
@@ -26,6 +26,8 @@
 #include "hardware/gpio.h"
 #include "hardware/i2c.h"
 #include "hardware/timer.h"
+#include "hardware/watchdog.h"
+#include "hardware/rtc.h"
 
 #include "mbedtls/x509_crt.h"
 #include "mbedtls/error.h"

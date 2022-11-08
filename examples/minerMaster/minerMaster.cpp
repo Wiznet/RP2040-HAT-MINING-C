@@ -72,6 +72,7 @@ extern "C" {
 #define DUINO_MSG_LEN_HASH  40
 #define DUINO_MSG_LEN_TOTAL 90
 
+#define DUNO_DEBUG_MSG    1
 /* Multicore*/
 #define USE_DUALCORE
 #define HASH_START          0
@@ -93,6 +94,9 @@ extern "C" {
 #define CMD_READ_RESULT 0x02
 #define CMD_RESET       0x55
 #define CMD_CONFIG_HASH_DELAY   0x10
+
+/* WatchDog Timer */
+#define WATCHDOG_TIMER_MS 60000
 
 typedef enum {
     UpdatePool = 0,
@@ -122,19 +126,17 @@ typedef enum _duinoClientState{
 } duinoClientState;
 
 /* LCD */
-typedef struct Duino_lcd_info_t
-{
+typedef struct Duino_lcd_info_t {
     char  slave_index[LCD_STRING_SIZE_SLAVE_INDEX];
     char  result[LCD_STRING_SIZE_RESULT];
     char  hashrate[LCD_STRING_SIZE_HASH_RATE];
     char  elapsed_time_s[LCD_STRING_SIZE_ELAP_TIME];
     char  difficulty[LCD_STRING_SIZE_DIFFICULTY];
-}Duino_lcd_info;
+} Duino_lcd_info;
 
 /* Default W5100S Network information*/
-static wiz_NetInfo g_net_info =
-{
-    .mac = {0x00, 0x08, 0xDC, 0xff, 0xff, 0x12}, // MAC address
+static wiz_NetInfo g_net_info = {
+    .mac = {0x00, 0x08, 0xDC, 0xff, 0xff, 0x18}, // MAC address
     .ip =  {192, 168, 11, 2},                     // IP address
     .sn =  {255, 255, 255, 0},                    // Subnet Mask
     .gw =  {192, 168, 11, 1},                     // Gateway
@@ -146,6 +148,8 @@ static wiz_NetInfo g_net_info =
 #define SOCK_BUF_SIZE 128
 //Server response timeout in sec
 #define SERVER_RESPONSE_TIMEOUT 20
+//Server connect fail counter
+#define SERVER_DISCONNECT_COUNTER 10
 //Slave calculation timeout in sec
 #define SLAVE_CALCULATION_TIMEOUT 30
 
@@ -164,10 +168,12 @@ typedef struct _ducoClient {
     int hashResult;
     float elapsedTime;
     uint32_t diff;
-    uint8_t retryCounter;
+    uint8_t retryCounter;   //to slave
+    uint8_t disconnCounter; // to server
+    int8_t wait_open_time;  // start time+ client number, min
 } DucoClient;
 
-
+int8_t g_tcp_connect_retry = SERVER_DISCONNECT_COUNTER; 
 static DucoClient ducoClient[SOCKET_MAX];
 
 static uint8_t * g_ethernet_buf;
@@ -192,6 +198,7 @@ static char send_req_str[128];
 uint8_t g_duino_slave[10];
 uint8_t g_slave_job[BUF_SIZE];
 uint32_t g_slave_count;
+
 // I2C Buffer
 CharBuffer receiveBuffer, jobBuffer;
 
@@ -201,6 +208,7 @@ static Duino_lcd_info g_duino_lcd_info[LCD_DUINO_INFO_MEM_ARR_SIZE];
 int8_t g_lcd_newest_mem_index= 0;
 int8_t g_lcd_printed_line_cnt= 1;
 
+int8_t g_start_min = -1;
 
 /**
  * ----------------------------------------------------------------------------------------------------
@@ -237,6 +245,10 @@ static void tcp_client_close(struct tcp_pcb *tpcb);
 /* Multicore */
 void core1_entry(void);
 
+/* RTC Timer */
+void duino_print_rtc_log (datetime_t t);
+void duino_set_start_time (void);
+
 /* LCD */
 void set_lcd_print_info(int8_t mem_index, int8_t slave_indnex, float elapsed_time_s, float hashrate, uint32_t difficulty, char* result);
 void set_lcd_print_log(void);
@@ -247,11 +259,23 @@ int main()
 
     int ret;
     err_t err;
-    /* Initialize */
+    
+   // Start on Friday 5th of June 2020 15:45:00
+    datetime_t t = {
+            .year  = 2022,
+            .month = 01,
+            .day   = 01,
+            .dotw  = 0, // 0 is Sunday, so 5 is Friday
+            .hour  = 1,
+            .min   = 1,
+            .sec   = 01
+    };
+
+    // Start the RTC
 
     set_clock_khz();
     stdio_init_all();
-
+ 
     wizchip_delay_ms(1000 * 3); // wait for 3 seconds
     g_ethernet_buf = (uint8_t*)malloc(2048);
     
@@ -269,6 +293,7 @@ int main()
     wizchip_net_info_set();
     //get the pool ip
     update_pool();
+
     free(g_ethernet_buf);
     //Change the mode for the W5100S to MACRAW
     wizchip_lwip_init(SOCKET_MACRAW, &g_netif, &g_net_info);
@@ -278,15 +303,25 @@ int main()
     multicore_launch_core1(core1_entry);
 #endif
     duino_master_init();
+    duino_set_start_time();
+
+    rtc_init();
+    rtc_set_datetime(&t);
+    watchdog_enable(WATCHDOG_TIMER_MS, true);
+
     while(1)
-    { 
+    {
         duino_master_state_loop();
+
+        DHCP_run();
+        rtc_get_datetime(&t);
+        duino_print_rtc_log(t);
+        watchdog_update();
     } 
 }
 
 /* DHCP */
-static void wizchip_dhcp_assign(void)
-{
+static void wizchip_dhcp_assign(void){
     getIPfromDHCP(g_net_info.ip);
     getGWfromDHCP(g_net_info.gw);
     getSNfromDHCP(g_net_info.sn);
@@ -301,16 +336,14 @@ static void wizchip_dhcp_assign(void)
     printf(" DHCP leased time : %ld seconds\n", getDHCPLeasetime());
 }
 
-static void wizchip_dhcp_conflict(void)
-{
+static void wizchip_dhcp_conflict(void){
     printf(" Conflict IP from DHCP\n");
 
     // halt or reset or any...
     while (1); // this example is halt.
 }
 
-void wizchip_dhcp_init(void)
-{
+void wizchip_dhcp_init(void){
     printf("\n DHCP client running\n");
 
     DHCP_init(SOCKET_DHCP, g_ethernet_buf);
@@ -324,14 +357,17 @@ uint32_t busScan(uint8_t * slaveAddressArray){
     int8_t ret = 0;
     uint8_t dummy;
     for(int addr = 0 ; addr < (1 << 7); ++addr){
-        if (reserved_addr(addr))
+        if (reserved_addr(addr)) {
             ret = PICO_ERROR_GENERIC;
+        }
         else{
             ret = i2c_read_blocking(i2c1, addr, &dummy, 1, false);
         }
+
         if(ret > 0){
             slaveAddressArray[slaveCount++] = addr;
         }
+
         if(slaveCount > 10){
             printf("maximum number of slaves are 10\n");
             return 10;
@@ -352,7 +388,6 @@ uint32_t writeCmd(uint8_t slaveAddress, uint8_t cmd, uint8_t * follow, uint32_t 
     //write command
     Wire1.write(cmd);
     //write follow
-    // sleep_ms(10);
     if(follow)
         Wire1.write((const uint8_t *)follow, len);
     count = Wire1.endTransmission(true);
@@ -372,8 +407,7 @@ uint32_t readData(uint8_t slaveAddress, uint32_t len){
 
 //I2C master init
 //i2c bus scan -> store slave's information -> set the slave's hash delay
-void duino_master_init (void)
-{
+void duino_master_init (void) {
     Wire1.begin();
     
     printf("I2C Bus scanning..\n");
@@ -394,53 +428,122 @@ uint64_t timeOut(uint32_t sec){
     return time_us_64() + sec*1000000;
 }
 
-void duino_master_state_loop (void) //i2c whlie
-{
+void duino_set_start_time (void) {
+
+    if (watchdog_caused_reboot()) {
+        printf(" >> Rebooted by Watchdog! restart wait 3 min\n");
+        for (int i=0 ; i<SOCKET_MAX; i++)
+            ducoClient[i].wait_open_time=((i/2) +3);
+    }
+    else{
+        for (int i=0 ; i<SOCKET_MAX; i++)
+            ducoClient[i].wait_open_time=i/2;
+    }
+}
+
+void duino_print_rtc_log (datetime_t t) {
+    char datetime_buf[256];
+    char *datetime_str = &datetime_buf[0];
+
+    if (t.min != g_start_min) {
+        g_start_min=t.min;
+        datetime_to_str(datetime_str, sizeof(datetime_buf), &t);
+        printf("\r----------------  RTC Time (min): %s  ----------------\r\n", datetime_str);
+    }
+
+}
+
+void init_client_open_timeout (uint8_t clinet_num) {
+    ducoClient[clinet_num].wait_open_time= -1;
+}
+
+void set_client_connect_timeout (int8_t clinet_num, int add_min) {
+    int8_t min;
+    if (add_min<0) 
+        min= g_start_min + clinet_num;
+    else 
+        min= g_start_min + add_min;
+
+    if (min>= 60) min-=60;
+    printf(" >set open timer%d: %d->%d \n", clinet_num, g_start_min, min);
+    ducoClient[clinet_num].wait_open_time= min;
+    return;
+}
+
+void duino_master_state_loop (void) {//i2c whlie
     uint8_t tempBuffer[64] = "";
     uint8_t core[2];
+
     uint8_t slaveNumber = 0;
     uint8_t coreNumber = 0;
     err_t err;
 
     bool success;
 
-    for(int clientNo = 0; clientNo < g_slave_count * 2; clientNo++)//0 ~ 19
-    {
+    for(int clientNo = 0; clientNo < g_slave_count * 2; clientNo++) {//0 ~ 19
         slaveNumber = clientNo/2;// Slave Number
         coreNumber = clientNo%2;// 0 or 1 => core0 or core1
         switch (ducoClient[clientNo].state)
         {
         case CONNECT:
+            if(ducoClient[clientNo].wait_open_time != g_start_min && ducoClient[clientNo].wait_open_time != -1){
+                break;
+            }
+
+            if(ducoClient[clientNo].tcp_client_pcb != NULL)
+                tcp_client_close(ducoClient[clientNo].tcp_client_pcb);
+            ducoClient[clientNo].tcp_client_pcb = tcp_new();
+
+            if (ducoClient[clientNo].tcp_client_pcb == NULL){                    
+                g_tcp_connect_retry--;  
+                if (g_tcp_connect_retry< 0){   
+                    printf("create socket fail: %d, wait watchdog reboot. reset after (%d ms)\n", clientNo, WATCHDOG_TIMER_MS);          
+                    for(int i=0; i<SOCKET_MAX; i++){
+                        tcp_close(ducoClient[i].tcp_client_pcb); // close connection
+                    }
+                    while (1); //reset by watchdog
+                }   
+                break;
+            }
+            
             printf("Client %d: CONNECT\n", clientNo);
             ducoClient[clientNo].elapsedTime = 0.0;
-            ducoClient[clientNo].hashrate = 0.0;
-            ducoClient[clientNo].hashResult = 0;
-
-            if (ducoClient[clientNo].tcp_client_pcb == NULL)
-            {
-                ducoClient[clientNo].tcp_client_pcb = tcp_new();
-            }
-            if(ducoClient[clientNo].tcp_client_pcb->state != 0) tcp_client_close(ducoClient[clientNo].tcp_client_pcb);
+            ducoClient[clientNo].hashrate    = 0.0;
+            ducoClient[clientNo].hashResult  = 0;
+            
             err = tcp_connect(ducoClient[clientNo].tcp_client_pcb, &g_tcp_client_target_ip, g_tcp_client_target_port, tcp_callback_connected);
-            if(err == ERR_OK)
-            {
+            if(err == ERR_OK){
+                init_client_open_timeout(clientNo);
+                g_tcp_connect_retry = SERVER_DISCONNECT_COUNTER; //connect to server is ok, reflash counter
                 ducoClient[clientNo].timeOut = timeOut(SERVER_RESPONSE_TIMEOUT);//10 second
                 ducoClient[clientNo].state = CONNECT_WAIT;
-            } else {
+            } 
+            else{//connect fail             
+                g_tcp_connect_retry --;
+                if (g_tcp_connect_retry< 0){   
+                    printf("create socket fail: %d, wait watchdog reboot. reset after (%d ms)\n", clientNo, WATCHDOG_TIMER_MS);          
+                    for(int i=0; i<SOCKET_MAX; i++){
+                        tcp_close(ducoClient[i].tcp_client_pcb); // close connection
+                    }
+                    while (1); //reset by watchdog
+                }   
                 tcp_client_close(ducoClient[clientNo].tcp_client_pcb);//close socket and
+                set_client_connect_timeout(clientNo, 2); //retry after 2 min
+                printf("connect fail: %d, connect time out: ->%d/ retry cnt: %d\n", clientNo, ducoClient[clientNo].wait_open_time, g_tcp_connect_retry); 
                 ducoClient[clientNo].state = CONNECT;//try to connect again
             }
+ 
             break;
         case CONNECT_WAIT:
             if(ducoClient[clientNo].timeOut < time_us_64()){//timeout
                 printf("Client %d: CONNECT_WAIT timeout.\n", clientNo);
                 tcp_client_close(ducoClient[clientNo].tcp_client_pcb);//close socket and 
+                set_client_connect_timeout(clientNo, 1); //retry after (clientNo) min
                 ducoClient[clientNo].state = CONNECT;//try to connect again
             }   
             break;
         case JOB_REQUEST:
             printf("Client %d: JOB_REQUEST\n", clientNo);
-            
             //check status
             writeCmd(g_duino_slave[slaveNumber],CMD_STATUS,NULL,0);//read status command
             sleep_ms(10);
@@ -451,37 +554,53 @@ void duino_master_state_loop (void) //i2c whlie
             receiveBuffer.clear();
 
             if(core[coreNumber] == '0'){// IDLE
-                printf("Job request string: %s",send_req_str);
+#ifdef DUNO_DEBUG_MSG            
+                printf("Job request string: %s\n",send_req_str);
+#endif                
                 err = tcp_write((tcp_pcb *)ducoClient[clientNo].tcp_client_pcb, send_req_str, strlen(send_req_str), 0);
-                if(err != ERR_OK){
+                if(err != ERR_OK){              
+                    printf("tcp_write failed: %d\n",clientNo);
+                    tcp_client_close(ducoClient[clientNo].tcp_client_pcb);//close socket and       
+                    set_client_connect_timeout(clientNo, 1); //retry after 1 min 
                     ducoClient[clientNo].state = CONNECT;
                     break;
                 }
                 ducoClient[clientNo].timeOut = timeOut(SERVER_RESPONSE_TIMEOUT);//10 second
                 ducoClient[clientNo].state = REQUEST_WAIT;
-            } else if (core[coreNumber] == '1'){//BUSY
+            } 
+            else if (core[coreNumber] == '1'){//BUSY
                 printf("Client %d: busy. Socket state: %d\n",clientNo, ducoClient[clientNo].tcp_client_pcb->state);
                 //do nothing
-            } else if(core[coreNumber] == '2'){//DONE
+            } 
+            else if(core[coreNumber] == '2'){//DONE
                 printf("Client %d: hash done. Socket state: %d\n",clientNo, ducoClient[clientNo].tcp_client_pcb->state);
                 ducoClient[clientNo].state = SEND_RESULT;//read out
-            } else { // SOMETHING WRONG!
-                if(ducoClient[clientNo].retryCounter < 10)
-                {
+            } 
+            else { // SOMETHING WRONG!
+                if(ducoClient[clientNo].retryCounter < 10){
                     printf("Client %d: went wrong %02x retry %d.\n",clientNo,core[coreNumber],ducoClient[clientNo].retryCounter);
                     ducoClient[clientNo].state = JOB_REQUEST;//retry
                     ducoClient[clientNo].retryCounter++;
-                } else {
+                } 
+                else {
                     printf("Client %d: slave %d error. SLAVE_FAULT!! \n", clientNo, slaveNumber);
                     ducoClient[clientNo].state = SLAVE_FAULT;//retry
                 }
             }
             break;
         case REQUEST_WAIT:
-            ducoClient[clientNo].retryCounter = 0;
+            ducoClient[clientNo].disconnCounter = 2;
             if(ducoClient[clientNo].timeOut < time_us_64()){//time out
-                printf("Client %d: REQUEST_WAIT timeout\n", clientNo);
-                ducoClient[clientNo].state = JOB_REQUEST;
+                printf("Client %d: REQUEST_WAIT timeout, retry cnt:%d\n", clientNo, ducoClient[clientNo].retryCounter);
+                if (ducoClient[clientNo].disconnCounter) {
+                    ducoClient[clientNo].disconnCounter --;
+                    ducoClient[clientNo].state = JOB_REQUEST;
+                }                    
+                else {
+                    ducoClient[clientNo].disconnCounter = 2;
+                    set_client_connect_timeout(clientNo, 1); //retry after client/2 min 
+                    ducoClient[clientNo].state = CONNECT;
+                }
             }   
             break;
         case HASH_CALCULATION:{
@@ -493,12 +612,11 @@ void duino_master_state_loop (void) //i2c whlie
             //To get the hash difficulty from the job message
             jobBuffer.setBuffer((char*)ducoClient[clientNo].socketBuffer,strlen((char*)ducoClient[clientNo].socketBuffer));
             jobBuffer.readStringUntil(',',(char*)tempBuffer);//Last Block Hash => dummy
-            if(strcmp((char*)tempBuffer, "BAD") == 0){ //if server response is "BAD" or the same block hash received.
+            if(strcmp((char*)tempBuffer, "BAD") == 0) { //if server response is "BAD" or the same block hash received.
                 printf("Client %d: wrong job string. Retry to get the job.\n", clientNo);
                 ducoClient[clientNo].state = JOB_REQUEST;//send job request again
                 break;
             }
-
             memcpy(ducoClient[clientNo].lastBlockHash, tempBuffer, strlen((char*)tempBuffer));
         
             memset(tempBuffer,0,64);
@@ -514,8 +632,9 @@ void duino_master_state_loop (void) //i2c whlie
             sprintf((char*)g_slave_job, "%d%s", coreNumber, (char*)ducoClient[clientNo].socketBuffer);
             //send the write hash command and the job string
             writeCmd(g_duino_slave[slaveNumber],CMD_WRITE_JOB, (uint8_t *)g_slave_job, strlen((char*)g_slave_job));
-            
-            printf("Client %d: job allocated => %s",clientNo, g_slave_job);
+#ifdef DUNO_DEBUG_MSG
+            printf("Client %d: job allocated => %s\n",clientNo, g_slave_job);
+#endif            
             ducoClient[clientNo].state = CALCULATION_WAIT;
             ducoClient[clientNo].timeOut = timeOut(SLAVE_CALCULATION_TIMEOUT);
             break;
@@ -535,12 +654,10 @@ void duino_master_state_loop (void) //i2c whlie
                 break;
             }
             //if timeout
-            if(ducoClient[clientNo].timeOut < time_us_64()){//time out
+            if(ducoClient[clientNo].timeOut < time_us_64()) {//time out
                 printf("Client %d: CALCULATION_WAIT timeout\n", clientNo);
                 ducoClient[clientNo].timeOut = timeOut(SLAVE_CALCULATION_TIMEOUT);//timer update
             }
-            
-
             break;
         case SEND_RESULT:
             ducoClient[clientNo].retryCounter = 0;
@@ -550,9 +667,9 @@ void duino_master_state_loop (void) //i2c whlie
             sleep_ms(10);
             //read data: hash result
             readData(g_duino_slave[slaveNumber],128);
-            
-            printf("Client %d: result => %s", clientNo, receiveBuffer.buf());
-
+#ifdef DUNO_DEBUG_MSG            
+            printf("Client %d: result => %s\n", clientNo, receiveBuffer.buf());
+#endif
             //read the hash result from the i2c buffer
             memset(tempBuffer,0x00,64);
             receiveBuffer.readStringUntil(',',(char *)tempBuffer);
@@ -570,8 +687,9 @@ void duino_master_state_loop (void) //i2c whlie
 
             if(ducoClient[clientNo].hashResult == 0){
                 if(ducoClient[clientNo].retryCounter == 2){//retry to get the hash result twice
-                    ducoClient[clientNo].retryCounter = 0;
                     printf("Client %d: wrong result\n",clientNo);
+                    ducoClient[clientNo].retryCounter = 0;
+                    set_client_connect_timeout(clientNo, 1); //retry after 1 min 
                     ducoClient[clientNo].state = CONNECT; //something went wrong(i2c, lwip)
                     break;
                 }
@@ -585,14 +703,18 @@ void duino_master_state_loop (void) //i2c whlie
 
             memset(ducoClient[clientNo].socketBuffer,0,128);
             set_duino_res_msg(( uint8_t *)ducoClient[clientNo].socketBuffer, ducoClient[clientNo].hashResult, ducoClient[clientNo].hashrate, g_duino_slave[slaveNumber], clientNo);
+#ifdef DUNO_DEBUG_MSG            
             printf("Client %d: message '%s' will be sent.\n",clientNo, ducoClient[clientNo].socketBuffer);
-            if(ducoClient[clientNo].tcp_client_pcb->state != ESTABLISHED){//if socket state is not in ESTABLISHED
+#endif            
+            if(ducoClient[clientNo].tcp_client_pcb->state != ESTABLISHED) {//if socket state is not in ESTABLISHED
                 ducoClient[clientNo].state = CONNECT;//try to connect again
                 break;
             }
             err = tcp_write((tcp_pcb *)ducoClient[clientNo].tcp_client_pcb, ( uint8_t *)ducoClient[clientNo].socketBuffer, strlen((char *)ducoClient[clientNo].socketBuffer), 0); //Getting hash job
             if(err < 0) {
-                printf("SEND_RESULT Error:%02x",err);
+                printf("SEND_RESULT write Error:%02x\n",err);
+                tcp_client_close(ducoClient[clientNo].tcp_client_pcb);//close socket and 
+                set_client_connect_timeout(clientNo, 1); //retry after 
                 ducoClient[clientNo].state = CONNECT;
                 break;
             }
@@ -602,23 +724,24 @@ void duino_master_state_loop (void) //i2c whlie
         case RESULT_WAIT:
             if(ducoClient[clientNo].timeOut < time_us_64()){//time out
                 printf("Client %d: RESULT_WAIT timeout.\n", clientNo);
-                // tcp_client_close(ducoClient[i].tcp_client_pcb);
+                set_client_connect_timeout(clientNo, 1); //retry after client/1 min 
                 ducoClient[clientNo].state = CONNECT;//try to reconnect again
             }  
             break;
         case RESULT_UPDATE:
             ducoClient[clientNo].state = JOB_REQUEST;
-            printf("Client %d: RESULT_UPDATE\n",clientNo);
             printf("Client %d: %s",clientNo, ducoClient[clientNo].socketBuffer);
-            if (0 == strncmp((char*)ducoClient[clientNo].socketBuffer, "GOOD", 4)) 
-            {
+            if (0 == strncmp((char*)ducoClient[clientNo].socketBuffer, "GOOD", 4))  {
+#ifdef DUNO_DEBUG_MSG                
                 printf("Client %d: GOOD, %d, hashrate:%.2fKH/s (%.2fs)  \r\n\r\n", clientNo, ducoClient[clientNo].hashResult, ducoClient[clientNo].hashrate/1000, ducoClient[clientNo].elapsedTime);
+#endif                
                 set_lcd_print_info(g_lcd_newest_mem_index, clientNo, ducoClient[clientNo].elapsedTime, ducoClient[clientNo].hashrate/1000, ducoClient[clientNo].diff, "GOOD");
                 set_lcd_print_log();
             }
-            else if (0 == strncmp((char*)ducoClient[clientNo].socketBuffer, "BAD", 3)) 
-            {
+            else if (0 == strncmp((char*)ducoClient[clientNo].socketBuffer, "BAD", 3)) {
+#ifdef DUNO_DEBUG_MSG                
                 printf("Client %d: BAD, %d, hashrate:%.2fKH/s (%.2fs)  \r\n\r\n", clientNo, ducoClient[clientNo].hashResult, ducoClient[clientNo].hashrate/1000, ducoClient[clientNo].elapsedTime);                    
+#endif                
                 set_lcd_print_info(g_lcd_newest_mem_index, clientNo, ducoClient[clientNo].elapsedTime, ducoClient[clientNo].hashrate/1000, ducoClient[clientNo].diff, "BAD");
                 set_lcd_print_log();
             }
@@ -635,24 +758,19 @@ void duino_master_state_loop (void) //i2c whlie
 }
 
 /*Core 1 loop function for the lwip tcp/ip stack*/
-void core1_entry(void)
-{
+void core1_entry(void){
     printf("core1_entry: wizchip_lwip_process\r\n");
     while(1)
-    {
         wizchip_lwip_process(SOCKET_MACRAW, &g_netif, pack2);
-    }
 }
 
 /* connect to duino server */
-void set_duino_req_msg (void)
-{
+void set_duino_req_msg (void){
     memset(send_req_str, 0x00, 128);
     sprintf(send_req_str, "JOB,%s,%s,%s\n\0", DUINO_USER_NAME, DUINO_PLATFORM, DUINO_MINER_KEY);
 }
 
-static void set_duino_res_msg(uint8_t * socketBuffer, uint32_t duco_numeric_result, float hashrate, uint8_t slaveAddress, uint8_t slaveNumber)
-{
+static void set_duino_res_msg(uint8_t * socketBuffer, uint32_t duco_numeric_result, float hashrate, uint8_t slaveAddress, uint8_t slaveNumber){
     memset(socketBuffer, 0x00, SOCK_BUF_SIZE );
     // sprintf((char*)socketBuffer, "%d,%0.2f,%s,%s%02d_%02d,DUCOID%02d%02d\n", duco_numeric_result, hashrate, DUINO_MINER_BANNER, DUINO_RIG_IDENTIFIER,slaveAddress,slaveNumber,slaveAddress,slaveNumber);
     // the hash rate doesn't need to be sent.
@@ -660,26 +778,19 @@ static void set_duino_res_msg(uint8_t * socketBuffer, uint32_t duco_numeric_resu
 }
 
 //set the W5100S network information
-void wizchip_net_info_set(void)
-{
+void wizchip_net_info_set(void){
     int ret;
-    if (g_net_info.dhcp == NETINFO_DHCP) // DHCP
-    {
+    if (g_net_info.dhcp == NETINFO_DHCP){
         wizchip_dhcp_init();
 
-        while (1)
-        {
+        while (1){
             ret = DHCP_run();
-
             if (ret == DHCP_IP_LEASED)
-            {
                 break;
-            }
             wizchip_delay_ms(1000);
         }
     }
-    else // static
-    {
+    else {
         network_initialize(g_net_info);
         print_network_information(g_net_info);
     }
@@ -687,15 +798,12 @@ void wizchip_net_info_set(void)
 
 
 /* Lwip */
-int tcp_find_socket(tcp_pcb *tpcb)
-{
+int tcp_find_socket(tcp_pcb *tpcb){
     int cnt;
     
-    for (cnt=0; cnt < SOCKET_MAX; cnt++)
-    {
-        if (ducoClient[cnt].tcp_client_pcb == tpcb){
+    for (cnt=0; cnt < SOCKET_MAX; cnt++){
+        if (ducoClient[cnt].tcp_client_pcb == tpcb)
             break;
-        }
     }
     if (cnt == SOCKET_MAX) 
         cnt = -1;
@@ -703,8 +811,7 @@ int tcp_find_socket(tcp_pcb *tpcb)
     return cnt;
 }
      
-static err_t tcp_callback_connected(void *arg, struct tcp_pcb *pcb_new, err_t err)
-{
+static err_t tcp_callback_connected(void *arg, struct tcp_pcb *pcb_new, err_t err){
     LWIP_UNUSED_ARG(arg);
 
     if (err != ERR_OK) //error when connect to the server
@@ -721,9 +828,9 @@ static err_t tcp_callback_connected(void *arg, struct tcp_pcb *pcb_new, err_t er
     return ERR_OK;
 }
 
-static err_t tcp_callback_sent(void *arg, struct tcp_pcb *tpcb, u16_t len)
-{
+static err_t tcp_callback_sent(void *arg, struct tcp_pcb *tpcb, u16_t len){
     uint8_t socketNumber = tcp_find_socket(tpcb);
+
     LWIP_UNUSED_ARG(arg);//?
     LWIP_UNUSED_ARG(tpcb);//?
     LWIP_UNUSED_ARG(len);//?
@@ -733,41 +840,37 @@ static err_t tcp_callback_sent(void *arg, struct tcp_pcb *tpcb, u16_t len)
   return ERR_OK;
 }
 
-static err_t tcp_callback_received(void *arg, struct tcp_pcb *tpcb, struct pbuf *p, err_t err)
-{
+static err_t tcp_callback_received(void *arg, struct tcp_pcb *tpcb, struct pbuf *p, err_t err){
     int i;
     err_t ret_err;
     int socket_number;
     socket_number = tcp_find_socket(tpcb);
 
-    if (p == NULL) //pbuf is null when session is closed
-    {
+    if (p == NULL) {//pbuf is null when session is closed
         tcp_client_close(tpcb);
         printf("Client %d: socket closed => 0x%x, 0x%x\n",socket_number, tpcb, ducoClient[socket_number].tcp_client_pcb);
         ret_err = ERR_OK;
     }
-    else if (err != ERR_OK) //ERR_ABRT is returned when called tcp_abort
-    {
+    else if (err != ERR_OK) {//ERR_ABRT is returned when called tcp_abort
+        printf("Client %d: socket aborted => 0x%x, 0x%x\n",socket_number, tpcb, ducoClient[socket_number].tcp_client_pcb);
         tcp_recved(tpcb, p->tot_len); //advertise window size
-
+        tcp_client_close(tpcb);
         pbuf_free(p); //free pbuf
+
+        ducoClient[socket_number].state= CONNECT;
         ret_err = err;
     }
-    else //receiving data
-    {
-        if (socket_number<0)
-        {
+    else {//receiving data    
+        if (socket_number<0){
             printf("invalid socket number\n");
             pbuf_free(p);
             return err;
         }
-
         tcp_recved(tpcb, p->tot_len); 
         memset(ducoClient[socket_number].socketBuffer,0,128);
         memcpy((void *)ducoClient[socket_number].socketBuffer, p->payload, p->len);
 
-        switch (ducoClient[socket_number].state)
-        {
+        switch (ducoClient[socket_number].state){
             case CONNECT_WAIT:
                 printf("Client %d: Connected.\n", socket_number);
                 ducoClient[socket_number].state= JOB_REQUEST;
@@ -781,28 +884,24 @@ static err_t tcp_callback_received(void *arg, struct tcp_pcb *tpcb, struct pbuf 
                 ducoClient[socket_number].state= RESULT_UPDATE;
                 break;
         }
-
         pbuf_free(p); //free pbuf
         ret_err = ERR_OK;
     }
-  return ret_err;
+    return ret_err;
 }
 
 
-static void tcp_callback_error(void *arg, err_t err)
-{
+static void tcp_callback_error(void *arg, err_t err){
   LWIP_UNUSED_ARG(arg);
   LWIP_UNUSED_ARG(err);
 }
 
 
-static err_t tcp_callback_poll(void *arg, struct tcp_pcb *tpcb)
-{
+static err_t tcp_callback_poll(void *arg, struct tcp_pcb *tpcb){
   return ERR_OK;
 }
 
-static void tcp_client_close(struct tcp_pcb *tpcb)
-{
+static void tcp_client_close(struct tcp_pcb *tpcb){
     uint8_t socketNumber = tcp_find_socket(tpcb);
     /* Clear callback functions */
     tcp_arg(ducoClient[socketNumber].tcp_client_pcb, NULL);
@@ -814,8 +913,7 @@ static void tcp_client_close(struct tcp_pcb *tpcb)
     ducoClient[socketNumber].tcp_client_pcb = NULL;
 }
 
-void update_pool(void)
-{
+void update_pool(void){
     char* pBody=NULL;
     size_t bodyLen;
 
@@ -833,8 +931,7 @@ void update_pool(void)
     http_get(SOCKET_HTTP, g_ethernet_buf, DUINO_HTTP_GET_URL, &g_http_tls_context, &pBody, &bodyLen);
 
     result = JSON_Validate( pBody, bodyLen );
-    if( result == JSONSuccess )
-    {
+    if( result == JSONSuccess ){
         JSON_Search( ( char * )pBody, bodyLen, "ip", sizeof("ip")-1, &pOutValue, (size_t *)&outValueLength);
         sprintf((char*)s_ip,"%.*s", outValueLength, pOutValue);
         inet_addr_((uint8_t*)s_ip, ip);
@@ -846,15 +943,12 @@ void update_pool(void)
         printf("\r\n > [host addr: %d.%d.%d.%d / %d]\r\n", ip[0], ip[1], ip[2], ip[3], g_tcp_client_target_port );
         memset(g_ethernet_buf, 0x00, ETHERNET_BUF_MAX_SIZE );
     }
-    else
-    {
+    else{
         printf("\r\nThe json document is invalid!!: %d", result);
     }
-
 }
 
-void set_lcd_print_info(int8_t mem_index, int8_t slave_indnex, float elapsed_time_s, float hashrate, uint32_t difficulty, char* result)
-{
+void set_lcd_print_info(int8_t mem_index, int8_t slave_indnex, float elapsed_time_s, float hashrate, uint32_t difficulty, char* result){
    
     memset(&g_duino_lcd_info[mem_index], 0x00, sizeof(Duino_lcd_info));
 
@@ -866,8 +960,7 @@ void set_lcd_print_info(int8_t mem_index, int8_t slave_indnex, float elapsed_tim
 
 }
 
-void set_lcd_print_log(void)
-{
+void set_lcd_print_log(void){
     int8_t start_mem_cnt;
     
     if (g_lcd_newest_mem_index == LCD_DUINO_INFO_MEM_CNT_MAX|| g_lcd_printed_line_cnt < LCD_DUINO_INFO_PRINT_CNT_MAX )
@@ -875,8 +968,7 @@ void set_lcd_print_log(void)
     else
         start_mem_cnt= g_lcd_newest_mem_index+1;
     // ILI9340_ClearScreen();
-    for(int8_t i=0; g_lcd_printed_line_cnt > i; i++)
-    { 
+    for(int8_t i=0; g_lcd_printed_line_cnt > i; i++) { 
         ILI9340_Write_Mining_State( i, g_duino_lcd_info[start_mem_cnt].slave_index
                                      , g_duino_lcd_info[start_mem_cnt].result       , g_duino_lcd_info[start_mem_cnt].difficulty
                                      , g_duino_lcd_info[start_mem_cnt].hashrate     , g_duino_lcd_info[start_mem_cnt].elapsed_time_s);
@@ -886,13 +978,11 @@ void set_lcd_print_log(void)
         else 
             start_mem_cnt++;
     }
-
     g_lcd_newest_mem_index= start_mem_cnt;
     
     if(g_lcd_printed_line_cnt < LCD_DUINO_INFO_PRINT_CNT_MAX )
         g_lcd_printed_line_cnt++;
 }
-
 
 #ifdef __cplusplus
 }

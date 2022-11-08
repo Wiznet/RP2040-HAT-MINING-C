@@ -22,6 +22,7 @@ target_link_libraries(IOLIBRARY_FILES PRIVATE
         hardware_i2c
         hardware_spi
         hardware_dma
+        hardware_rtc
         hardware_clocks
         mbedcrypto
         mbedx509
@@ -111,7 +112,7 @@ target_link_libraries(I2C_SLAVE PUBLIC
         pico_unique_id
         hardware_resets
         hardware_i2c
-        hardware_irq
+        hardware_irq        
         hardware_clocks
         )
 
@@ -148,6 +149,7 @@ target_link_libraries(UTILS_FILE PUBLIC
         hardware_i2c
         hardware_irq
         hardware_spi
+        hardware_rtc        
         mbedx509
         mbedtls
         mbedcrypto
